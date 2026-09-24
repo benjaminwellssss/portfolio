@@ -808,6 +808,53 @@
   }
   .btn:hover { background: var(--red-deep); border-color: var(--red-deep); }
 
+  /* ---- development page ---- */
+  .dev-lede {
+    max-width: 62ch;
+    color: var(--slate);
+    font-size: 1.02rem;
+    margin-bottom: 1.75rem;
+  }
+  .dev-gh-cta {
+    margin-bottom: clamp(2.5rem, 6vw, 3.5rem);
+  }
+  .dev-posts {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(2.5rem, 6vw, 3.5rem);
+    padding-bottom: clamp(3rem, 7vw, 4.5rem);
+  }
+  .dev-post {
+    border: 1px solid var(--slate-line-soft);
+    background: var(--charcoal-raised);
+  }
+  .dev-post-media {
+    background: #000;
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid var(--slate-line-soft);
+  }
+  .dev-post-media svg { width: 100%; max-width: 560px; height: auto; display: block; }
+  .dev-post-body {
+    padding: clamp(1.5rem, 3.5vw, 2rem);
+  }
+  .dev-post-body .label { margin-bottom: 0.6rem; }
+  .dev-post-body h3 { font-size: clamp(1.3rem, 2.8vw, 1.7rem); font-weight: 800; margin-bottom: 0.9rem; }
+  .dev-post-body p { color: var(--slate); font-size: 0.96rem; line-height: 1.7; margin: 0 0 1rem; }
+  .dev-post-body p:last-of-type { margin-bottom: 1.3rem; }
+  .dev-repo-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--ink);
+    font-weight: 700;
+    font-size: 0.85rem;
+    border-bottom: 1px solid var(--slate-line);
+    padding-bottom: 0.15rem;
+  }
+  .dev-repo-link:hover { border-color: var(--ink); }
+
   /* ---- resume access terminal ---- */
   .terminal-wrap {
     max-width: 640px;
@@ -919,7 +966,7 @@
       <a href="#signs" data-nav="signs">Sign Design</a>
       <a href="#about" data-nav="about">About</a>
       <a href="#resumes" data-nav="resumes">Resume</a>
-      <a href="https://github.com/benjaminwellssss" target="_blank" rel="noopener noreferrer">GitHub &#8599;</a>
+      <a href="#development" data-nav="development">Development</a>
     </nav>
   </div>
 </div>
@@ -1279,6 +1326,98 @@
     </div>
   </section>
 
+  <section class="view" data-view="development">
+    <span class="back-link" data-nav="home">&larr; Home</span>
+    <div class="page-head">
+      <span class="label">04 &middot; Development</span>
+      <h2>Development</h2>
+      <p>Small tools built to fix specific, repeated friction in my own video workflow &mdash; not polished products, just software written to solve a real problem I kept running into.</p>
+    </div>
+    <div class="dev-gh-cta">
+      <a class="btn" href="https://github.com/benjaminwellssss" target="_blank" rel="noopener noreferrer">Link to GitHub &#8599;</a>
+    </div>
+    <div class="dev-posts">
+      <article class="dev-post">
+        <div class="dev-post-media">
+          <svg viewBox="0 0 560 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Caption Speaker Editor app screenshot: file pickers for video, captions, and speakers config, with a Load button">
+            <rect width="560" height="360" fill="#141517" />
+            <text x="32" y="52" fill="#f2f1ee" font-family="Archivo, Arial, sans-serif" font-size="22" font-weight="700">Caption Speaker Editor</text>
+            <text x="32" y="78" fill="#9aa0aa" font-family="Archivo, Arial, sans-serif" font-size="12">Pick a video file and its caption cards (and optionally an</text>
+            <text x="32" y="94" fill="#9aa0aa" font-family="Archivo, Arial, sans-serif" font-size="12">existing speakers config to reuse names/keys/colors across jobs).</text>
+            <g font-family="Archivo, Arial, sans-serif">
+              <text x="32" y="146" fill="#e7e6e2" font-size="13" font-weight="700">Video file</text>
+              <text x="32" y="164" fill="#6b7078" font-size="11" font-style="italic">no file chosen</text>
+              <rect x="428" y="128" width="100" height="34" rx="6" fill="#26282d" stroke="#34373d" />
+              <text x="478" y="150" fill="#f2f1ee" font-size="12" text-anchor="middle">Choose&#8230;</text>
+
+              <text x="32" y="200" fill="#e7e6e2" font-size="13" font-weight="700">Captions (cards.json)</text>
+              <text x="32" y="218" fill="#6b7078" font-size="11" font-style="italic">no file chosen</text>
+              <rect x="428" y="182" width="100" height="34" rx="6" fill="#26282d" stroke="#34373d" />
+              <text x="478" y="204" fill="#f2f1ee" font-size="12" text-anchor="middle">Choose&#8230;</text>
+
+              <text x="32" y="254" fill="#e7e6e2" font-size="13" font-weight="700">Speakers config (optional)</text>
+              <text x="32" y="272" fill="#6b7078" font-size="11" font-style="italic">none &mdash; will prompt to create on first save</text>
+              <rect x="428" y="236" width="100" height="34" rx="6" fill="#26282d" stroke="#34373d" />
+              <text x="478" y="258" fill="#f2f1ee" font-size="12" text-anchor="middle">Choose&#8230;</text>
+
+              <rect x="32" y="300" width="90" height="38" rx="8" fill="#3b6df0" />
+              <text x="77" y="324" fill="#ffffff" font-size="14" font-weight="700" text-anchor="middle">Load</text>
+            </g>
+          </svg>
+        </div>
+        <div class="dev-post-body">
+          <span class="label">Local Tool &middot; Python + JS</span>
+          <h3>Caption Speaker Editor</h3>
+          <p>A standalone local browser app for correcting word-level captions on a short-form video while watching it play back &mdash; instead of guessing speaker attribution and timing from a flat transcript file.</p>
+          <p>Point it at a video file and its caption cards (a <code>cards.json</code> export), and optionally an existing speakers config to reuse the same names, keys, and colors across jobs. It runs a tiny local server (<code>server.py</code>) and opens a browser UI where each caption card can be re-timed, reassigned to the correct speaker, or corrected in place while scrubbing the actual footage &mdash; the fix that's tedious to do blind in a text editor.</p>
+          <a class="dev-repo-link" href="https://github.com/benjaminwellssss/caption-editor" target="_blank" rel="noopener noreferrer">View repository &#8599;</a>
+        </div>
+      </article>
+
+      <article class="dev-post">
+        <div class="dev-post-media">
+          <svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pipeline diagram: Intake, Transcribe, Cut, Resolve, Graphics, Finish">
+            <rect width="560" height="200" fill="#141517" />
+            <g font-family="Archivo, Arial, sans-serif" font-size="12" font-weight="700" fill="#f2f1ee" text-anchor="middle">
+              <rect x="14" y="82" width="76" height="44" rx="6" fill="#202226" stroke="#34373d" />
+              <text x="52" y="108">Intake</text>
+              <rect x="106" y="82" width="92" height="44" rx="6" fill="#202226" stroke="#34373d" />
+              <text x="152" y="102">Transcribe</text>
+              <text x="152" y="116" font-size="9" font-weight="400" fill="#6b7078">WhisperX</text>
+              <rect x="214" y="82" width="70" height="44" rx="6" fill="#202226" stroke="#34373d" />
+              <text x="249" y="108">Cut</text>
+              <rect x="300" y="82" width="100" height="44" rx="6" fill="#202226" stroke="#34373d" />
+              <text x="350" y="102">Resolve</text>
+              <text x="350" y="116" font-size="9" font-weight="400" fill="#6b7078">DaVinci MCP</text>
+              <rect x="416" y="82" width="94" height="44" rx="6" fill="#202226" stroke="#34373d" />
+              <text x="463" y="102">Graphics</text>
+              <text x="463" y="116" font-size="9" font-weight="400" fill="#6b7078">HyperFrames</text>
+            </g>
+            <text x="280" y="170" fill="#e5171f" font-family="Archivo, Arial, sans-serif" font-size="13" font-weight="800" text-anchor="middle">&rarr; Finish</text>
+            <g stroke="#6b7078" stroke-width="1.5" fill="none" marker-end="url(#arrow)">
+              <path d="M90,104 L106,104" />
+              <path d="M198,104 L214,104" />
+              <path d="M284,104 L300,104" />
+              <path d="M400,104 L416,104" />
+            </g>
+            <defs>
+              <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                <path d="M0,0 L6,3 L0,6 Z" fill="#6b7078" />
+              </marker>
+            </defs>
+          </svg>
+        </div>
+        <div class="dev-post-body">
+          <span class="label">Local Tool &middot; Python + Claude Skills</span>
+          <h3>Video Editor Pipeline</h3>
+          <p>An end-to-end pipeline that takes raw talking-head/stream footage to a captioned, edited DaVinci Resolve deliverable, built around a set of Claude Code skills instead of one monolithic script.</p>
+          <p>Six stages: <strong>Intake</strong> organizes raw footage into a per-job folder structure, <strong>Transcribe</strong> runs WhisperX for word-level timing, <strong>Cut</strong> identifies the usable ranges, <strong>Resolve</strong> replays the edit into DaVinci Resolve over its MCP integration, <strong>Graphics</strong> lays in ProRes overlays via HyperFrames, and <strong>Finish</strong> renders the deliverable. Each stage is its own skill under <code>.claude/skills/</code>, so a job can be picked up or re-run at any stage rather than starting over.</p>
+          <a class="dev-repo-link" href="https://github.com/benjaminwellssss/video-editor" target="_blank" rel="noopener noreferrer">View repository &#8599;</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
   <section class="view" data-view="resumes">
     <span class="back-link" data-nav="home">&larr; Home</span>
     <div class="page-head">
@@ -1395,7 +1534,7 @@
   document.documentElement.style.setProperty('--img-wix-work-artboard-f-png', 'url(' + IMG['wix_work_artboard_f.png'] + ')');
   var views = document.querySelectorAll('.view');
   var navEls = document.querySelectorAll('[data-nav]');
-  var valid = ['home', 'design', 'signs', 'about', 'case', 'resumes'];
+  var valid = ['home', 'design', 'signs', 'about', 'case', 'resumes', 'development'];
 
   var CASE_STUDIES = {
     'sign-dewitt': {
