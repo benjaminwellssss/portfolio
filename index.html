@@ -223,6 +223,25 @@
     padding-bottom: 0.08em;
   }
   .home-hero h1 .red { color: var(--red); }
+  .build-word { display: inline-block; }
+  .build-letter {
+    display: inline-block;
+    animation: build-in 0.55s cubic-bezier(.34,1.56,.64,1) both;
+  }
+  .build-letter:nth-child(1) { animation-delay: .05s; }
+  .build-letter:nth-child(2) { animation-delay: .15s; }
+  .build-letter:nth-child(3) { animation-delay: .25s; }
+  .build-letter:nth-child(4) { animation-delay: .35s; }
+  .build-letter:nth-child(5) { animation-delay: .45s; }
+  .build-letter:nth-child(6) { animation-delay: .55s; }
+  @keyframes build-in {
+    0%   { opacity: 0; transform: translateY(-0.6em) scale(.6); }
+    60%  { opacity: 1; transform: translateY(0.08em) scale(1.08); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .build-letter { animation: none; }
+  }
   .home-hero p {
     max-width: 52ch;
     margin: 1.4rem 0 0;
@@ -342,8 +361,8 @@
     100% { font-family: 'Archivo', sans-serif; font-weight: 800; }
   }
 
-  /* ---- card 2 (Sign Design): a light sweep across the card, like a sign catching light ---- */
-  .cat-wrap:nth-child(2) .cat-btn::after {
+  /* ---- all cards: a light sweep across the card on hover, layered on top of each card's own effect ---- */
+  .cat-btn::after {
     content: "";
     position: absolute;
     top: 0;
@@ -354,12 +373,34 @@
     transform: skewX(-20deg);
     pointer-events: none;
   }
-  .cat-wrap:nth-child(2):hover .cat-btn::after {
+  .cat-wrap:hover .cat-btn::after {
     animation: sign-sweep 0.85s ease;
   }
   @keyframes sign-sweep {
     from { left: -60%; }
     to { left: 130%; }
+  }
+
+  /* ---- card 2 (Sign Design): lights-turning-on flicker, on top of the shared sweep ---- */
+  .cat-wrap:nth-child(2) .cat-btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    box-shadow: inset 0 0 0 rgba(210, 230, 255, 0);
+    pointer-events: none;
+  }
+  .cat-wrap:nth-child(2):hover .cat-btn::before {
+    animation: lights-flicker 1s steps(1, end) forwards;
+  }
+  @keyframes lights-flicker {
+    0%   { opacity: 0; box-shadow: inset 0 0 0 rgba(210,230,255,0); }
+    8%   { opacity: 1; box-shadow: inset 0 0 26px rgba(210,230,255,.55); }
+    16%  { opacity: 0; box-shadow: inset 0 0 0 rgba(210,230,255,0); }
+    24%  { opacity: 1; box-shadow: inset 0 0 26px rgba(210,230,255,.55); }
+    30%  { opacity: .25; box-shadow: inset 0 0 10px rgba(210,230,255,.2); }
+    40%  { opacity: 1; box-shadow: inset 0 0 30px rgba(210,230,255,.65); }
+    100% { opacity: 1; box-shadow: inset 0 0 30px rgba(210,230,255,.65); }
   }
 
   /* ---- card 3 (About): typing bio, starts right on "What I do" ---- */
@@ -1031,7 +1072,7 @@
       <div class="wrap hero-grid">
         <div class="home-hero">
           <span class="label">Graphic Design &amp; Brand Identity</span>
-          <h1>Design that gets<br /><span class="red">built.</span></h1>
+          <h1>Design that gets<br /><span class="red build-word"><span class="build-letter">b</span><span class="build-letter">u</span><span class="build-letter">i</span><span class="build-letter">l</span><span class="build-letter">t</span><span class="build-letter">.</span></span></h1>
           <p>Logos, brand systems, and print work built to hold up everywhere they show up &mdash; from a first sketch to a finished kit. Available now for freelance and full-time work.</p>
         </div>
         <div class="home-cards-stack">
@@ -1390,77 +1431,6 @@
     </div>
     <div class="dev-posts">
       <article class="dev-post">
-        <div class="dev-post-media">
-          <svg viewBox="0 0 560 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mockup of the Overlay Control Hub's Windows-95-styled control panel, showing a grid of program icons: pushups, visibility, theme, presets, alert test, peek test, and design">
-            <rect width="560" height="340" fill="#008080" />
-            <rect x="20" y="16" width="520" height="308" fill="#c0c0c0" stroke="#000" stroke-width="1" />
-            <rect x="22" y="18" width="516" height="2" fill="#fff" />
-            <rect x="22" y="18" width="2" height="304" fill="#fff" />
-            <rect x="536" y="18" width="2" height="304" fill="#404040" />
-            <rect x="22" y="320" width="516" height="2" fill="#404040" />
-            <rect x="20" y="16" width="520" height="24" fill="#000080" />
-            <text x="34" y="33" fill="#fff" font-family="'Courier New', monospace" font-size="13" font-weight="700">Overlay Control Hub</text>
-            <rect x="500" y="21" width="16" height="14" fill="#c0c0c0" stroke="#000" />
-            <rect x="519" y="21" width="16" height="14" fill="#c0c0c0" stroke="#000" />
-            <text x="527" y="32" fill="#000" font-family="Arial" font-size="11" text-anchor="middle">&#10005;</text>
-            <rect x="34" y="52" width="130" height="20" rx="2" fill="#0a6b0a" />
-            <text x="99" y="66" fill="#fff" font-family="Arial" font-size="10" text-anchor="middle" font-weight="700">&#9679; CONNECTED</text>
-            <g font-family="Arial" font-size="10" text-anchor="middle">
-              <g>
-                <rect x="34" y="90" width="76" height="66" fill="#c0c0c0" stroke="#000" />
-                <rect x="36" y="92" width="72" height="1" fill="#fff" /><rect x="36" y="92" width="1" height="62" fill="#fff" />
-                <rect x="46" y="102" width="36" height="30" fill="#fff" stroke="#000" />
-                <text x="64" y="122" font-size="16" text-anchor="middle">&#128170;</text>
-                <text x="72" y="150" fill="#000">pushups.exe</text>
-              </g>
-              <g>
-                <rect x="116" y="90" width="76" height="66" fill="#c0c0c0" stroke="#000" />
-                <rect x="118" y="92" width="72" height="1" fill="#fff" /><rect x="118" y="92" width="1" height="62" fill="#fff" />
-                <rect x="128" y="102" width="36" height="30" fill="#fff" stroke="#000" />
-                <text x="146" y="122" font-size="16" text-anchor="middle">&#128065;</text>
-                <text x="154" y="150" fill="#000">visibility.exe</text>
-              </g>
-              <g>
-                <rect x="198" y="90" width="76" height="66" fill="#c0c0c0" stroke="#000" />
-                <rect x="200" y="92" width="72" height="1" fill="#fff" /><rect x="200" y="92" width="1" height="62" fill="#fff" />
-                <rect x="210" y="102" width="36" height="30" fill="#fff" stroke="#000" />
-                <text x="228" y="122" font-size="16" text-anchor="middle">&#127912;</text>
-                <text x="236" y="150" fill="#000">theme.exe</text>
-              </g>
-              <g>
-                <rect x="280" y="90" width="76" height="66" fill="#c0c0c0" stroke="#000" />
-                <rect x="282" y="92" width="72" height="1" fill="#fff" /><rect x="282" y="92" width="1" height="62" fill="#fff" />
-                <rect x="292" y="102" width="36" height="30" fill="#fff" stroke="#000" />
-                <text x="310" y="122" font-size="16" text-anchor="middle">&#128190;</text>
-                <text x="318" y="150" fill="#000">presets.exe</text>
-              </g>
-              <g>
-                <rect x="362" y="90" width="76" height="66" fill="#c0c0c0" stroke="#000" />
-                <rect x="364" y="92" width="72" height="1" fill="#fff" /><rect x="364" y="92" width="1" height="62" fill="#fff" />
-                <rect x="374" y="102" width="36" height="30" fill="#fff" stroke="#000" />
-                <text x="392" y="122" font-size="16" text-anchor="middle">&#128227;</text>
-                <text x="400" y="150" fill="#000">alert_test.exe</text>
-              </g>
-              <g>
-                <rect x="444" y="90" width="76" height="66" fill="#c0c0c0" stroke="#000" />
-                <rect x="446" y="92" width="72" height="1" fill="#fff" /><rect x="446" y="92" width="1" height="62" fill="#fff" />
-                <rect x="456" y="102" width="36" height="30" fill="#fff" stroke="#000" />
-                <text x="474" y="122" font-size="16" text-anchor="middle">&#128064;</text>
-                <text x="482" y="150" fill="#000">peek_test.exe</text>
-              </g>
-              <g>
-                <rect x="34" y="168" width="76" height="66" fill="#c0c0c0" stroke="#000" />
-                <rect x="36" y="170" width="72" height="1" fill="#fff" /><rect x="36" y="170" width="1" height="62" fill="#fff" />
-                <rect x="46" y="180" width="36" height="30" fill="#fff" stroke="#000" />
-                <text x="64" y="200" font-size="16" text-anchor="middle">&#128421;</text>
-                <text x="72" y="228" fill="#000">design.exe</text>
-              </g>
-            </g>
-            <rect x="34" y="270" width="482" height="42" fill="#fff" stroke="#000" />
-            <text x="44" y="286" fill="#000" font-family="Arial" font-size="10" font-weight="700">&#128220; Reminder:</text>
-            <text x="44" y="300" fill="#404040" font-family="Arial" font-size="10">check stream deck battery before going live</text>
-          </svg>
-        </div>
         <div class="dev-post-media gif-pair">
           <div class="dev-media-item">
             <img data-img="hub_theme_switch_handles.gif" alt="Live theme switch demoed on the handles overlay, switching visual styles instantly without touching OBS" />
