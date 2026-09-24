@@ -250,6 +250,7 @@
     --card: var(--charcoal-raised);
     background: var(--card);
     padding: clamp(0.66rem, 1.6vw, 0.96rem) clamp(0.75rem, 1.8vw, 1.1rem);
+    padding-left: clamp(1.15rem, 2.4vw, 1.5rem);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -309,7 +310,7 @@
       align-items: center;
       justify-content: flex-start;
       gap: 0.7rem;
-      padding: 0.7rem 0.9rem;
+      padding: 0.7rem 0.9rem 0.7rem 1.3rem;
       border-radius: 12px;
     }
     .cat-index { display: none; }
@@ -966,7 +967,7 @@
       <a href="#signs" data-nav="signs">Sign Design</a>
       <a href="#about" data-nav="about">About</a>
       <a href="#resumes" data-nav="resumes">Resume</a>
-      <a href="#development" data-nav="development">Development</a>
+      <a href="#development" data-nav="development">Dev</a>
     </nav>
   </div>
 </div>
@@ -1329,14 +1330,66 @@
   <section class="view" data-view="development">
     <span class="back-link" data-nav="home">&larr; Home</span>
     <div class="page-head">
-      <span class="label">04 &middot; Development</span>
-      <h2>Development</h2>
+      <span class="label">04 &middot; Dev</span>
+      <h2>Dev</h2>
       <p>Small tools built to fix specific, repeated friction in my own video workflow &mdash; not polished products, just software written to solve a real problem I kept running into.</p>
     </div>
     <div class="dev-gh-cta">
       <a class="btn" href="https://github.com/benjaminwellssss" target="_blank" rel="noopener noreferrer">Link to GitHub &#8599;</a>
     </div>
     <div class="dev-posts">
+      <article class="dev-post">
+        <div class="dev-post-media">
+          <svg viewBox="0 0 560 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram: Twitch events feed the Overlay Control Hub over a local WebSocket, which drives the control panel and pushes live state to connected OBS overlays">
+            <rect width="560" height="220" fill="#141517" />
+            <g font-family="Archivo, Arial, sans-serif" text-anchor="middle">
+              <rect x="16" y="20" width="150" height="52" rx="6" fill="#202226" stroke="#34373d" />
+              <text x="91" y="42" fill="#f2f1ee" font-size="13" font-weight="700">Twitch</text>
+              <text x="91" y="58" fill="#6b7078" font-size="10">chat, subs, gift subs</text>
+
+              <rect x="205" y="84" width="150" height="52" rx="6" fill="#202226" stroke="#e5171f" stroke-width="1.5" />
+              <text x="280" y="106" fill="#f2f1ee" font-size="13" font-weight="700">Control Hub</text>
+              <text x="280" y="122" fill="#6b7078" font-size="10">local WebSocket server</text>
+
+              <rect x="16" y="148" width="150" height="52" rx="6" fill="#202226" stroke="#34373d" />
+              <text x="91" y="168" fill="#f2f1ee" font-size="12" font-weight="700">Control Panel</text>
+              <text x="91" y="184" fill="#6b7078" font-size="10">toggles &amp; theme editor</text>
+
+              <rect x="394" y="20" width="150" height="52" rx="6" fill="#202226" stroke="#34373d" />
+              <text x="469" y="40" fill="#f2f1ee" font-size="12" font-weight="700">Alerts / Chat</text>
+              <text x="469" y="56" fill="#6b7078" font-size="10">OBS browser sources</text>
+
+              <rect x="394" y="84" width="150" height="52" rx="6" fill="#202226" stroke="#34373d" />
+              <text x="469" y="104" fill="#f2f1ee" font-size="12" font-weight="700">Pushups / Handles</text>
+              <text x="469" y="120" fill="#6b7078" font-size="10">OBS browser sources</text>
+
+              <rect x="394" y="148" width="150" height="52" rx="6" fill="#202226" stroke="#34373d" />
+              <text x="469" y="168" fill="#f2f1ee" font-size="12" font-weight="700">Facecam / Donation Bar</text>
+              <text x="469" y="184" fill="#6b7078" font-size="10">OBS browser sources</text>
+            </g>
+            <g stroke="#6b7078" stroke-width="1.5" fill="none" marker-end="url(#arrow2)">
+              <path d="M166,46 L205,100" />
+              <path d="M205,120 L166,168" />
+              <path d="M355,100 L394,46" />
+              <path d="M355,105 L394,110" />
+              <path d="M355,120 L394,168" />
+            </g>
+            <defs>
+              <marker id="arrow2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                <path d="M0,0 L6,3 L0,6 Z" fill="#6b7078" />
+              </marker>
+            </defs>
+          </svg>
+        </div>
+        <div class="dev-post-body">
+          <span class="label">Local Tool &middot; WebSocket + Browser Sources</span>
+          <h3>Overlay Control Hub</h3>
+          <p>A companion app for the <code>beanjahmean</code> Twitch stream overlay kit &mdash; a small local server that watches Twitch events (first-time chatters, subs, resubs, gift subs) and pushes live state to every connected overlay over a WebSocket, so nothing has to be triggered by hand mid-stream.</p>
+          <p>It also drives a control panel for the manual side of things: a pushup counter, per-overlay show/hide toggles, and a live theme editor that recolors every connected overlay at once through shared CSS custom properties. Each overlay is a single self-contained HTML file added to OBS as a Browser Source, and still works standalone with no live sync if the hub isn't running &mdash; the hub only adds the "live" layer on top.</p>
+          <a class="dev-repo-link" href="https://github.com/benjaminwellssss/beanjahmean-overlay-control-hub" target="_blank" rel="noopener noreferrer">View repository &#8599;</a>
+        </div>
+      </article>
+
       <article class="dev-post">
         <div class="dev-post-media">
           <svg viewBox="0 0 560 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Caption Speaker Editor app screenshot: file pickers for video, captions, and speakers config, with a Load button">
