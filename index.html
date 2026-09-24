@@ -138,6 +138,22 @@
   .topnav a:hover { opacity: 1; }
   .topnav a.active { opacity: 1; border-color: var(--red); }
 
+  /* ---- mobile: nav now has 5 items (Design/Sign Design/About/Resume/GitHub),
+  too many to fit beside the wordmark on a phone -- stack wordmark above, nav
+  below, and let the nav wrap onto its own lines instead of overflowing. ---- */
+  @media (max-width: 640px) {
+    .topbar-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.7rem;
+    }
+    .topnav {
+      width: 100%;
+      flex-wrap: wrap;
+      gap: 0.6rem 1.1rem;
+    }
+  }
+
   /* ---- views ---- */
   .view { display: none; }
   .view.active { display: block; animation: fade-in .35s ease both; }
@@ -183,6 +199,9 @@
   }
   @media (max-width: 900px) {
     .hero-grid { flex-direction: column; align-items: stretch; gap: clamp(2rem, 6vw, 3rem); }
+  }
+  @media (max-width: 640px) {
+    .hero-grid { padding: clamp(2rem, 8vw, 3rem) 0 1.5rem; }
   }
   .home-hero {
     position: relative;
@@ -321,6 +340,9 @@
     color: var(--slate-dim);
     font-size: 0.85rem;
     padding: clamp(1.75rem, 4vw, 2.5rem) 0 clamp(1.5rem, 4vw, 2rem);
+  }
+  @media (max-width: 640px) {
+    .home-footer-note { padding: 0.5rem 0 1.25rem; }
   }
 
   /* ---- home: stats strip ---- */
@@ -603,7 +625,7 @@
   .mi-map-wrap {
     position: relative;
     max-width: 340px;
-    aspect-ratio: 300 / 420;
+    aspect-ratio: 161.4 / 218.2;
     margin: 0 auto clamp(1.75rem, 4vw, 2.5rem);
   }
   .mi-map-svg {
@@ -633,6 +655,11 @@
     transform: translate(-50%, -50%);
     animation: pin-pulse 2.6s ease-in-out infinite;
   }
+  .mi-pin::before {
+    content: "";
+    position: absolute;
+    inset: -13px;
+  }
   .mi-pin:hover, .mi-pin:focus-visible {
     background: var(--ink);
     box-shadow: 0 0 0 4px rgba(242,241,238,0.3);
@@ -656,153 +683,6 @@
     font-size: 0.95rem;
     max-width: 46ch;
     margin: 0 auto;
-  }
-
-  /* ---- sign map (sign design page) ---- */
-  .mi-map-wrap {
-    position: relative;
-    max-width: 900px;
-    aspect-ratio: 235.238 / 268.882;
-    margin: clamp(0.5rem, 1.5vw, 0.85rem) auto clamp(0.75rem, 2vw, 1.1rem);
-  }
-  .mi-map-img {
-    position: absolute;
-    height: auto;
-    display: block;
-    filter: drop-shadow(0 16px 44px rgba(0,0,0,0.35));
-  }
-  .mi-map-neighbors {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-  }
-  .mi-map-neighbors path {
-    fill: none;
-    stroke: var(--red);
-    stroke-width: 0.45px;
-    stroke-dasharray: 0.55 1.3;
-    stroke-linecap: round;
-    opacity: 0.55;
-  }
-  .mi-map-neighbor-label {
-    font-family: var(--mono, monospace);
-    font-size: 4px;
-    letter-spacing: 0.08em;
-    fill: var(--red);
-    opacity: 0.55;
-  }
-  .pin-dot {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 13px;
-    height: 13px;
-    border-radius: 50%;
-    background: var(--red);
-    border: 2px solid var(--ink);
-    box-shadow: 0 0 0 4px rgba(229,23,31,0.22);
-    cursor: pointer;
-    padding: 0;
-    display: block;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    z-index: 25;
-    animation: pin-pulse 2.6s ease-in-out infinite;
-  }
-  .pin-dot::before {
-    content: "";
-    position: absolute;
-    inset: -11px;
-  }
-  @keyframes pin-pulse {
-    0%, 100% { box-shadow: 0 0 0 4px rgba(229,23,31,0.22); }
-    50% { box-shadow: 0 0 0 9px rgba(229,23,31,0.05); }
-  }
-  .pin-dot.open,
-  .pin-dot:hover,
-  .pin-dot:focus-visible {
-    background: var(--ink);
-    box-shadow: 0 0 0 4px rgba(242,241,238,0.3);
-  }
-  .pin-card {
-    position: absolute;
-    transform: translate(-50%, calc(-100% - 7px));
-    width: min(220px, 62vw);
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    z-index: 10;
-    transition: opacity .18s ease, transform .18s ease;
-    text-align: left;
-  }
-  .pin-card.open {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-    transform: translate(-50%, calc(-100% - 12px));
-  }
-  .pin-card-body {
-    background: var(--charcoal-raised);
-    border: 1px solid var(--slate-line);
-    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%);
-    padding: 0.75rem 0.75rem 0.85rem;
-    box-shadow: 0 16px 36px rgba(0,0,0,0.45);
-  }
-  .pin-tail-border {
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0; height: 0;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-top: 12px solid var(--slate-line);
-  }
-  .pin-tail-fill {
-    position: absolute;
-    top: calc(100% - 1px);
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0; height: 0;
-    border-left: 9px solid transparent;
-    border-right: 9px solid transparent;
-    border-top: 11px solid var(--charcoal-raised);
-  }
-  .pin-photo {
-    display: block;
-    aspect-ratio: 4 / 3;
-    overflow: hidden;
-    background: var(--charcoal-raised-2);
-    margin-bottom: 0.65rem;
-  }
-  .pin-photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    filter: saturate(0.96);
-  }
-  .pin-title {
-    font-size: 0.92rem;
-    font-weight: 800;
-    line-height: 1.25;
-    margin-bottom: 0.35rem;
-  }
-  .pin-meta {
-    font-size: 0.7rem;
-    color: var(--slate);
-    line-height: 1.5;
-    margin-bottom: 0.8rem;
-  }
-  .pin-cta {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    padding: 0.55rem 0.7rem;
-    font-size: 0.7rem;
-  }
-  @media (max-width: 560px) {
-    .mi-map-wrap { max-width: 420px; }
   }
 
   /* ---- capabilities (about page) ---- */
@@ -1204,8 +1084,8 @@
     </div>
 
     <div class="mi-map-wrap">
-      <svg class="mi-map-svg" viewBox="0 0 300 420" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-        <path class="mi-map-shape" d="M70,400 L55,340 L35,270 L45,190 L60,130 L50,95 L75,80 L95,45 L130,35 L160,55 L175,110 L185,175 L200,220 L245,195 L255,225 L215,245 L205,275 L215,300 L205,330 L195,365 L100,390 Z" />
+      <svg class="mi-map-svg" viewBox="238 87.8 161.4 218.2" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+        <path class="mi-map-shape" d="M353.4,147.9v11.9c-.8,1.4-3.6,2.9-4.9,3-.4-.2-.8-1.3-1.5-.9s-.5,1.1-.7,1.7l-3.4,12.5-6.9,2.4c-1,4.3-2.5,9.8-.1,13.8s6.2,4.2,9.1,5.3l9-9.4c2.6-2.7,1.9-8.9,4.4-11.6,3-2.2,7.6-2.8,10.5-5.5,4.6-.3,10.6,9.4,11.5,14.7,3.3,17.4,11.1,29.8,11,39.9,0,4.2-.4,8.5.7,12.5-2,2.3-5.3-.3-7.6,0-5.7.6-2.9,11.5-10.5,17.4s1.3,8.9-1.6,15.3c-.3.3-.8.7-1.1.8-5.2,1.4-6.1,8.9-7.5,13.5-7,.8-14.8,1.6-21.9,3.2-6.9,1.5-13.6,1.4-20.6,3.9-4.4-3.3-9.2-2.8-14.2-1.6l-56.7,5.4c-1.5.1-2.4-1.2-2.3-2.2,1.4-1.1,2.2-3.6,4.4-3.9s2-.5,2.4-1.2,0-2,.1-3c.3-4.5,4.4-7.8,5.1-12.1l3.7-24.8c1.2-8-9.7-27.6-15.8-37.5s-.1-7.6.3-10.6c.8-7.1-3.4-13.5-1-19.8,2.2.4,4.4-5.8,3.2-8.2l1-7.7c1.8.2,2.3-.8,2.1-2.6s-.6-1.8-2.1-1.6l-.3-5.8c1-.4,1.4-1.2,1.4-2.1,1.1.2,3,.2,3.6-.7s0-3.4.3-4.1c3.4-1,.7-8.3,9.8-10.2,2.3-3.5,2.1-7.4,3.8-8,4.6-1.5-4.7,9.6-.5,18.2.9,1.8,6.7-1.1,5.6-3.4.2,0,.7-.2.9,0,9.6,4.1-1.9-22.8,7.8-25.2l10.5-2.6c-.1-4.2-3.4-4.7-7-5.1-4.2-5.3,2.1-10,10-14.2l8.3,5c1.7.2,5.3-2.3,7.5-.7,7.9,5.6,16.4,9.2,26.2,11.1,3.2,4.7,8.4,7.4,8,9.4s-2.5.9-3.1,1.6c-2.3,2.7-.4,7.6,2.4,9.6,7.5,5.5,2.1,14.2,6.7,14.4Z" />
       </svg>
       <button class="mi-pin" style="left:37.3%; top:69.0%;" data-target="sign-dewitt" title="DeWitt, MI &mdash; DeWitt Schools Yard Signs" aria-label="DeWitt, MI &mdash; DeWitt Schools Yard Signs"></button>
       <button class="mi-pin" style="left:42.7%; top:73.3%;" data-target="sign-legion-explorer" title="Lansing, MI &mdash; Michigan State Commander Vehicle" aria-label="Lansing, MI &mdash; Michigan State Commander Vehicle"></button>
@@ -1677,7 +1557,7 @@
   (function () {
     var emailLink = document.getElementById('emailLink');
     if (!emailLink) return;
-    var reversed = 'moc.liamg@sssslew.nimajneb';
+    var reversed = 'moc.liamg@ssssllew.nimajneb';
     var addr = reversed.split('').reverse().join('');
     emailLink.href = 'mailto:' + addr;
     emailLink.textContent = addr;
