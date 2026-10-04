@@ -34,7 +34,7 @@
 
     /* card palette — variations in the same bright-red / slate / charcoal family */
     --card-design: #E5171F;
-    --card-signs: #35495E;
+    --card-dev: #35495E;
     --card-about: #3A3D42;
   }
 
@@ -254,10 +254,10 @@
   .home-cards-stack {
     position: relative;
     z-index: 2;
-    flex: 0 0 320px;
+    flex: 0 0 400px;
     display: flex;
     flex-direction: column;
-    gap: clamp(0.55rem, 1.5vw, 0.85rem);
+    gap: clamp(0.65rem, 1.5vw, 0.95rem);
   }
   @media (max-width: 900px) {
     .home-cards-stack { flex: none; width: 100%; }
@@ -265,19 +265,15 @@
   .cat-wrap {
     position: relative;
     width: 100%;
-    aspect-ratio: 10 / 3.6;
-    min-height: 106px;
+    height: 10.8rem;
   }
   .cat-btn {
     --card: var(--charcoal-raised);
     background: linear-gradient(135deg, color-mix(in srgb, var(--card) 100%, white 10%) 0%, var(--card) 45%, color-mix(in srgb, var(--card) 100%, black 30%) 100%);
-    padding: clamp(0.66rem, 1.6vw, 0.96rem) clamp(0.75rem, 1.8vw, 1.1rem);
-    padding-left: clamp(1.15rem, 2.4vw, 1.5rem);
+    padding: 1rem 1.2rem 1rem clamp(1.15rem, 2.4vw, 1.5rem);
+    padding-right: calc(150px + 1.6rem);
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 0.25rem;
+    align-items: center;
     cursor: pointer;
     position: relative;
     overflow: hidden;
@@ -286,39 +282,48 @@
     color: var(--ink);
     width: 100%;
     height: 100%;
-    border-radius: 0 22px 0 0;
-    box-shadow: 0 1px 0 rgba(0,0,0,.2);
+    border-radius: 0 24px 0 0;
+    box-shadow: 0 1px 0 rgba(0,0,0,.2), inset 0 0 0 1px rgba(255,255,255,.07);
     transition: transform .22s ease, box-shadow .22s ease;
   }
   .cat-wrap:hover .cat-btn {
     transform: translateY(-3px);
-    box-shadow: 0 14px 28px rgba(0,0,0,.4);
+    box-shadow: 0 14px 28px rgba(0,0,0,.4), inset 0 0 0 1px rgba(255,255,255,.12);
   }
-  .cat-wrap:hover .cat-arrow {
-    transform: translateX(4px);
-    color: var(--ink);
+  .cat-design .cat-btn { --card: var(--card-design); }
+  .cat-dev .cat-btn { --card: var(--card-dev); }
+  .cat-about .cat-btn { --card: var(--card-about); }
+  .cat-main {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0.32rem;
+    min-width: 0;
   }
-  .cat-wrap:nth-child(1) .cat-btn { --card: var(--card-design); }
-  .cat-wrap:nth-child(2) .cat-btn { --card: var(--card-signs); }
-  .cat-wrap:nth-child(3) .cat-btn { --card: var(--card-about); }
   .cat-index {
-    font-size: 0.68rem;
-    letter-spacing: 0.1em;
-    color: rgba(242,241,238,.6);
+    font-size: 0.64rem;
+    letter-spacing: 0.14em;
     font-weight: 700;
+    color: rgba(242,241,238,.85);
+    border: 1px solid rgba(242,241,238,.32);
+    border-radius: 99px;
+    padding: 0.08rem 0.55rem;
   }
   .cat-title {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: clamp(1.2rem, 2.4vw, 1.55rem);
+    font-size: clamp(1.45rem, 2.4vw, 1.85rem);
     font-weight: 400;
-    line-height: 1.15;
+    line-height: 1.12;
   }
   .cat-sub {
     display: block;
     font-size: 0.8rem;
     line-height: 1.35;
-    color: rgba(242,241,238,.78);
-    max-width: 34ch;
+    color: rgba(242,241,238,.8);
+    max-width: 30ch;
     flex: none;
     height: 2.16rem;
     overflow: hidden;
@@ -326,32 +331,52 @@
     transition: opacity .25s ease;
   }
   .cat-arrow {
-    margin-top: 0.1rem;
+    position: absolute;
+    right: 0.9rem;
+    bottom: 0.8rem;
+    z-index: 2;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid rgba(242,241,238,.45);
+    border-radius: 50%;
     font-size: 1rem;
-    color: rgba(242,241,238,.6);
-    transition: transform .2s ease, color .2s ease;
+    color: var(--ink);
+    transition: transform .2s ease, background .2s ease, color .2s ease, border-color .2s ease;
   }
-
-  /* ---- landing cards on mobile: shrink into a compact button-style list, more app-like ---- */
-  @media (max-width: 640px) {
-    .home-cards-stack { gap: 0.5rem; }
-    .cat-wrap { aspect-ratio: unset; min-height: 0; }
-    .cat-btn {
-      flex-direction: row;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 0.7rem;
-      padding: 0.7rem 0.9rem 0.7rem 1.3rem;
-      border-radius: 12px;
-    }
-    .cat-index { display: none; }
-    .cat-title { font-size: 1rem; line-height: 1.2; }
-    .cat-sub { display: none; }
-    .cat-arrow { margin-top: 0; margin-left: auto; }
+  .cat-wrap:hover .cat-arrow {
+    transform: translateX(3px);
+    background: var(--ink);
+    border-color: var(--ink);
+    color: #17181A;
   }
+  .cat-visual { position: absolute; z-index: 0; pointer-events: none; }
 
-  /* ---- card 1 (Design): title cycles through fonts while hovered ---- */
-  .cat-wrap:nth-child(1):hover .font-cycle {
+  /* ---- card 1 (Design): a fan of real project thumbnails that spreads on hover ---- */
+  .cat-fan { right: 1.2rem; top: 1.2rem; width: 150px; height: 84px; }
+  .cat-fan img {
+    position: absolute;
+    top: 8px;
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    background: #fff;
+    border: 3px solid #fff;
+    border-radius: 3px;
+    box-shadow: 0 6px 14px rgba(0,0,0,.35);
+    transition: transform .35s cubic-bezier(.34,1.3,.64,1);
+  }
+  .cat-fan img:nth-child(1) { left: 6px;  transform: rotate(-9deg); z-index: 1; }
+  .cat-fan img:nth-child(2) { left: 44px; transform: translateY(-6px); z-index: 2; }
+  .cat-fan img:nth-child(3) { left: 82px; transform: rotate(9deg); z-index: 3; }
+  .cat-design:hover .cat-fan img:nth-child(1) { transform: translateX(-10px) rotate(-15deg); }
+  .cat-design:hover .cat-fan img:nth-child(2) { transform: translateY(-12px) scale(1.06); }
+  .cat-design:hover .cat-fan img:nth-child(3) { transform: translateX(10px) rotate(15deg); }
+
+  /* title cycles through fonts while hovered */
+  .cat-design:hover .font-cycle {
     animation: font-cycle-seq 5s steps(5) infinite;
   }
   @keyframes font-cycle-seq {
@@ -363,54 +388,77 @@
     100% { font-family: 'Archivo', sans-serif; font-weight: 800; }
   }
 
-  /* ---- all cards: a light sweep across the card on hover, layered on top of each card's own effect ---- */
-  .cat-btn::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -60%;
-    width: 40%;
-    height: 100%;
-    background: linear-gradient(115deg, transparent 0%, rgba(255,255,255,0.35) 50%, transparent 100%);
-    transform: skewX(-20deg);
-    pointer-events: none;
+  /* ---- card 2 (Dev): a mini terminal that types its lines out on hover ---- */
+  .cat-term {
+    right: 0.9rem;
+    top: 1.1rem;
+    width: 150px;
+    background: #0d0f12;
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 8px 18px rgba(0,0,0,.35);
+    font-family: 'Courier New', ui-monospace, monospace;
+    font-size: 9px;
+    line-height: 1.45;
+    color: #9fe3a8;
   }
-  .cat-wrap:hover .cat-btn::after {
-    animation: sign-sweep 0.85s ease;
+  .cat-term-bar { display: flex; gap: 3px; padding: 4px 6px; background: #181b20; }
+  .cat-term-bar i { width: 5px; height: 5px; border-radius: 50%; background: #555a63; }
+  .cat-term-bar i:nth-child(1) { background: #ff5f56; }
+  .cat-term-bar i:nth-child(2) { background: #ffbd2e; }
+  .cat-term-bar i:nth-child(3) { background: #27c93f; }
+  .cat-term-body { display: block; padding: 5px 7px 6px; }
+  .term-line { display: block; white-space: nowrap; overflow: hidden; max-width: 100%; }
+  .term-dim { color: #7f8791; }
+  .term-cursor {
+    display: inline-block;
+    width: 5px;
+    height: 9px;
+    margin-left: 2px;
+    background: #9fe3a8;
+    vertical-align: -1px;
+    animation: term-blink 1s steps(1) infinite;
   }
-  @keyframes sign-sweep {
-    from { left: -60%; }
-    to { left: 130%; }
-  }
+  @keyframes term-blink { 50% { opacity: 0; } }
+  .cat-dev:hover .term-line { animation: term-type .5s steps(14) both; }
+  .cat-dev:hover .term-line:nth-child(2) { animation-delay: .45s; }
+  .cat-dev:hover .term-line:nth-child(3) { animation-delay: .85s; }
+  .cat-dev:hover .term-line:nth-child(4) { animation-delay: 1.25s; }
+  @keyframes term-type { from { max-width: 0; } to { max-width: 100%; } }
 
-  /* ---- card 2 (Sign Design): lights-turning-on flicker, on top of the shared sweep ---- */
-  .cat-wrap:nth-child(2) .cat-btn::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    box-shadow: inset 0 0 0 rgba(210, 230, 255, 0);
-    pointer-events: none;
+  /* ---- card 3 (About): logo watermark, availability pill, typing bio ---- */
+  .cat-about-logo { right: -18px; bottom: -22px; height: 150px; width: auto; opacity: .14; }
+  .cat-pill {
+    right: 0.9rem;
+    top: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    background: rgba(0,0,0,.28);
+    border: 1px solid rgba(255,255,255,.18);
+    border-radius: 99px;
+    padding: 0.28rem 0.65rem;
   }
-  .cat-wrap:nth-child(2):hover .cat-btn::before {
-    animation: lights-flicker 1s steps(1, end) forwards;
+  .cat-pill i {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: #4ade80;
+    animation: pill-ping 1.8s ease-out infinite;
   }
-  @keyframes lights-flicker {
-    0%   { opacity: 0; box-shadow: inset 0 0 0 rgba(210,230,255,0); }
-    8%   { opacity: 1; box-shadow: inset 0 0 26px rgba(210,230,255,.55); }
-    16%  { opacity: 0; box-shadow: inset 0 0 0 rgba(210,230,255,0); }
-    24%  { opacity: 1; box-shadow: inset 0 0 26px rgba(210,230,255,.55); }
-    30%  { opacity: .25; box-shadow: inset 0 0 10px rgba(210,230,255,.2); }
-    40%  { opacity: 1; box-shadow: inset 0 0 30px rgba(210,230,255,.65); }
-    100% { opacity: 1; box-shadow: inset 0 0 30px rgba(210,230,255,.65); }
+  @keyframes pill-ping {
+    0%   { box-shadow: 0 0 0 0 rgba(74,222,128,.6); }
+    100% { box-shadow: 0 0 0 0.5rem rgba(74,222,128,0); }
   }
-
-  /* ---- card 3 (About): typing bio, starts right on "What I do" ---- */
   .cat-subwrap {
     position: relative;
     display: block;
   }
-  .cat-wrap:nth-child(3):hover .cat-sub {
+  .cat-about:hover .cat-sub {
     opacity: 0;
   }
   .cat-bio {
@@ -424,13 +472,60 @@
     mask-image: linear-gradient(to bottom, transparent 0%, black 24%, black 100%);
     transition: opacity .3s ease;
   }
-  .cat-wrap:nth-child(3):hover .cat-bio { opacity: 1; }
+  .cat-about:hover .cat-bio { opacity: 1; }
   .cat-bio-text {
     display: block;
     font-size: 0.8rem;
     line-height: 1.4;
     color: rgba(242,241,238,.82);
     transition: transform .15s linear;
+  }
+
+  /* ---- all cards: a light sweep across the card on hover, layered on top of each card's own effect ---- */
+  .cat-btn::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -60%;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(115deg, transparent 0%, rgba(255,255,255,0.35) 50%, transparent 100%);
+    transform: skewX(-20deg);
+    pointer-events: none;
+    z-index: 3;
+  }
+  .cat-wrap:hover .cat-btn::after {
+    animation: sign-sweep 0.85s ease;
+  }
+  @keyframes sign-sweep {
+    from { left: -60%; }
+    to { left: 130%; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cat-btn::after, .cat-pill i, .term-cursor, .cat-dev:hover .term-line { animation: none !important; }
+  }
+
+  /* ---- landing cards on mobile: shrink into a compact button-style list, more app-like ---- */
+  @media (max-width: 640px) {
+    .home-cards-stack { gap: 0.5rem; }
+    .cat-wrap { height: auto; }
+    .cat-btn {
+      padding: 0.7rem 0.9rem 0.7rem 1.3rem;
+      border-radius: 12px;
+    }
+    .cat-main { flex-direction: row; align-items: center; gap: 0.7rem; }
+    .cat-index, .cat-sub, .cat-subwrap, .cat-visual { display: none; }
+    .cat-title { font-size: 1rem; line-height: 1.2; }
+    .cat-arrow {
+      position: static;
+      width: auto;
+      height: auto;
+      margin-left: auto;
+      border: none;
+      border-radius: 0;
+      background: none;
+    }
+    .cat-wrap:hover .cat-arrow { background: none; color: var(--ink); }
   }
 
   .home-footer-note {
@@ -730,17 +825,51 @@
   .case-detail-body p { margin: 0; }
   #caseGallery { padding-bottom: clamp(3rem, 7vw, 4.5rem); }
 
-  /* ---- sign design page: tighter overall rhythm ---- */
-  [data-view="signs"] .page-head {
-    padding-top: clamp(1.5rem, 3.5vw, 2.25rem);
-    padding-bottom: clamp(1rem, 2.5vw, 1.5rem);
-    margin-bottom: clamp(1rem, 2.5vw, 1.5rem);
+  /* ---- merged Design page: filter chips + the Michigan map section ---- */
+  .design-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    margin-bottom: clamp(1.4rem, 3vw, 2rem);
   }
-  [data-view="signs"] .case-more-note {
-    padding-bottom: clamp(1.75rem, 4vw, 2.5rem);
+  .design-chip {
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--slate);
+    background: transparent;
+    border: 1px solid var(--slate-line);
+    border-radius: 99px;
+    padding: 0.5rem 1rem;
+    transition: color .15s ease, border-color .15s ease, background .15s ease;
+  }
+  .design-chip:hover { color: var(--ink); border-color: var(--slate); }
+  .design-chip.active { background: var(--red); border-color: var(--red); color: var(--ink); }
+  .design-chip-link { border-style: dashed; margin-left: auto; }
+  .design-body {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1.5rem, 4vw, 2.5rem);
+  }
+  .design-body[data-filter="brand"] [data-cat="signs"] { display: none; }
+  .design-body[data-filter="signs"] [data-cat="brand"] { display: none; }
+  .design-body[data-filter="signs"] .design-map { order: -1; }
+  .design-map-head { text-align: center; margin-bottom: 1rem; }
+  .design-map-head h3 { font-size: clamp(1.3rem, 3vw, 1.8rem); margin: 0.4rem 0; }
+  .design-map-head p { color: var(--slate); font-size: 0.9rem; margin: 0; }
+  .case-card { scroll-margin-top: 5rem; }
+  .case-card.flash { animation: card-flash 1.5s ease; }
+  @keyframes card-flash {
+    0%, 100% { border-color: var(--slate-line-soft); box-shadow: none; }
+    25%, 75% { border-color: var(--red); box-shadow: 0 0 0 3px var(--red-dim); }
   }
 
-  /* ---- sign design page: Michigan map ---- */
+  /* ---- Michigan map ---- */
   .mi-map-wrap {
     position: relative;
     max-width: 460px;
@@ -800,22 +929,6 @@
   @keyframes pin-pulse {
     0%, 100% { box-shadow: 0 0 0 4px rgba(229,23,31,0.22); }
     50% { box-shadow: 0 0 0 9px rgba(229,23,31,0.05); }
-  }
-  .signs-recent-head {
-    margin: 0 0 clamp(1rem, 2.5vw, 1.25rem);
-  }
-  .signs-empty {
-    border: 1px dashed var(--slate-line);
-    background: var(--charcoal-raised);
-    padding: clamp(2.5rem, 6vw, 4rem) clamp(1.5rem, 4vw, 2rem);
-    text-align: center;
-    margin-bottom: clamp(2rem, 5vw, 3rem);
-  }
-  .signs-empty p {
-    color: var(--slate);
-    font-size: 0.95rem;
-    max-width: 46ch;
-    margin: 0 auto;
   }
 
   /* ---- capabilities (about page) ---- */
@@ -1094,7 +1207,6 @@
     <div class="wordmark" data-nav="home"><img class="wordmark-logo wordmark-pop" src="data:image/png;base64,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" alt="Benjamin Wells logo mark" /><span class="wordmark-pop">Benjamin Wells</span></div>
     <nav class="topnav">
       <a href="#design" data-nav="design">Design</a>
-      <a href="#signs" data-nav="signs">Sign Design</a>
       <a href="#about" data-nav="about">About</a>
       <a href="#resumes" data-nav="resumes">Resume</a>
       <a href="#development" data-nav="development">Dev</a>
@@ -1114,30 +1226,52 @@
           <p>Logos, brand systems, and print work built to hold up everywhere they show up &mdash; from a first sketch to a finished kit. Available now for freelance and full-time work.</p>
         </div>
         <div class="home-cards-stack">
-          <div class="cat-wrap">
+          <div class="cat-wrap cat-design">
             <button class="cat-btn" data-nav="design">
-              <span class="cat-index">01</span>
-              <span class="cat-title font-cycle">Design</span>
-              <span class="cat-sub">Logos, brand systems, apparel, and print work.</span>
-              <span class="cat-arrow">&rarr;</span>
-            </button>
-          </div>
-          <div class="cat-wrap">
-            <button class="cat-btn" data-nav="signs">
-              <span class="cat-index">02</span>
-              <span class="cat-title">Sign Design</span>
-              <span class="cat-sub">Vehicle graphics, building signage, dimensional layouts.</span>
-              <span class="cat-arrow">&rarr;</span>
-            </button>
-          </div>
-          <div class="cat-wrap">
-            <button class="cat-btn" data-nav="about">
-              <span class="cat-index">03</span>
-              <span class="cat-title">About</span>
-              <span class="cat-subwrap">
-                <span class="cat-sub">What I do, and how to reach me.</span>
-                <span class="cat-bio"><span class="cat-bio-text" id="bioText"></span></span>
+              <span class="cat-main">
+                <span class="cat-index">01</span>
+                <span class="cat-title font-cycle">Design</span>
+                <span class="cat-sub">Brands, print, apparel &amp; signs.</span>
               </span>
+              <span class="cat-visual cat-fan" aria-hidden="true">
+                <img data-img="legion_van_hero.jpg" alt="" />
+                <img data-img="dewitt_swim.jpg" alt="" />
+                <img data-img="pulpit_cover.png" alt="" />
+              </span>
+              <span class="cat-arrow">&rarr;</span>
+            </button>
+          </div>
+          <div class="cat-wrap cat-dev">
+            <button class="cat-btn" data-nav="development">
+              <span class="cat-main">
+                <span class="cat-index">02</span>
+                <span class="cat-title">Dev</span>
+                <span class="cat-sub">Apps, overlays &amp; video tools I build.</span>
+              </span>
+              <span class="cat-visual cat-term" aria-hidden="true">
+                <span class="cat-term-bar"><i></i><i></i><i></i></span>
+                <span class="cat-term-body">
+                  <span class="term-line"><span class="term-dim">$</span> ls ~/dev</span>
+                  <span class="term-line">wellsdone/</span>
+                  <span class="term-line">plantain/</span>
+                  <span class="term-line">overlay-hub/<span class="term-cursor"></span></span>
+                </span>
+              </span>
+              <span class="cat-arrow">&rarr;</span>
+            </button>
+          </div>
+          <div class="cat-wrap cat-about">
+            <button class="cat-btn" data-nav="about">
+              <span class="cat-main">
+                <span class="cat-index">03</span>
+                <span class="cat-title">About</span>
+                <span class="cat-subwrap">
+                  <span class="cat-sub">What I do, and how to reach me.</span>
+                  <span class="cat-bio"><span class="cat-bio-text" id="bioText"></span></span>
+                </span>
+              </span>
+              <img class="cat-visual cat-about-logo js-logo-clone" alt="" />
+              <span class="cat-visual cat-pill" aria-hidden="true"><i></i>Open to work</span>
               <span class="cat-arrow">&rarr;</span>
             </button>
           </div>
@@ -1205,11 +1339,18 @@
     <span class="back-link" data-nav="home">&larr; Home</span>
     <div class="page-head">
       <span class="label">01 &middot; Design</span>
-      <h2>Logos, Brand &amp; Print</h2>
-      <p>Identity marks, full brand systems, apparel graphics, and print pieces &mdash; from a first logo to a complete kit.</p>
+      <h2>Design &amp; Signage</h2>
+      <p>Identity marks, brand systems, apparel, and print &mdash; plus vehicle graphics and physical signs built around Michigan.</p>
     </div>
-    <div class="case-grid">
-      <article class="case-card">
+    <div class="design-filters" role="group" aria-label="Filter work">
+      <button type="button" class="design-chip active" data-filter="all" aria-pressed="true">All work</button>
+      <button type="button" class="design-chip" data-filter="brand" aria-pressed="false">Brand &amp; Print</button>
+      <button type="button" class="design-chip" data-filter="signs" aria-pressed="false">Signage</button>
+      <button type="button" class="design-chip design-chip-link" id="designMapJump">Map &darr;</button>
+    </div>
+    <div class="design-body" id="designBody" data-filter="all">
+      <div class="case-grid">
+      <article class="case-card" data-cat="brand">
         <a class="case-photo" href="#case/mythicfoundry" aria-label="Read the Mythic Foundry case study">
           <img data-img="mythic_lockup_color.png" alt="Mythic Foundry emblem, full color" />
         </a>
@@ -1230,7 +1371,7 @@
         </div>
       </article>
 
-      <article class="case-card">
+      <article class="case-card" data-cat="brand">
         <a class="case-photo" href="#case/onebynine" aria-label="Read the onebynine.ai case study">
           <img data-img="onebynine_icon_green.png" alt="onebynine.ai 3x3 grid icon mark" />
         </a>
@@ -1252,7 +1393,27 @@
         </div>
       </article>
 
-      <article class="case-card">
+      <article class="case-card" data-cat="signs" id="post-sign-dewitt">
+        <a class="case-photo" href="#case/sign-dewitt" aria-label="Read the DeWitt Schools Yard Signs case study">
+          <img data-img="dewitt_swim.jpg" alt="DeWitt Swim and Dive yard sign design" />
+        </a>
+        <div class="case-body">
+          <div>
+            <span class="label case-kicker">Case Study &middot; Yard Signs &middot; 2023&ndash;2026</span>
+            <h3 class="case-title">DeWitt Schools Yard Signs</h3>
+          </div>
+          <p class="case-blurb">Recurring personalized athlete yard signs for DeWitt Public Schools &mdash; roughly ten new sport designs a year, thousands of signs printed over the run of the program.</p>
+          <div class="case-foot">
+            <div class="case-thumbs">
+              <span class="case-thumb"><img data-img="dewitt_baseball.jpg" alt="DeWitt Baseball yard sign" /></span>
+              <span class="case-thumb"><img data-img="dewitt_cheer.jpg" alt="DeWitt Cheer yard sign" /></span>
+            </div>
+            <a class="btn case-cta" href="#case/sign-dewitt">Read the whole blog post &rarr;</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="case-card" data-cat="brand">
         <a class="case-photo" href="#case/msutee" aria-label="Read the Jesus Loves MSU case study">
           <img data-img="tee_front_mockup.png" alt="Jesus Loves MSU t-shirt front design" />
         </a>
@@ -1273,7 +1434,48 @@
         </div>
       </article>
 
-      <article class="case-card">
+      <article class="case-card" data-cat="signs" id="post-sign-legion-explorer">
+        <a class="case-photo" href="#case/sign-legion-explorer" aria-label="Read the Michigan State Commander Vehicle case study">
+          <img data-img="legion_explorer_hero.jpg" alt="Ford Explorer with Michigan State Commander vehicle graphics" />
+        </a>
+        <div class="case-body">
+          <div>
+            <span class="label case-kicker">Case Study &middot; Vehicle Graphics &middot; June 2024</span>
+            <h3 class="case-title">Michigan State Commander Vehicle</h3>
+          </div>
+          <p class="case-blurb">Official vehicle graphics for the American Legion&rsquo;s elected Michigan State Commander &mdash; flag graphics, military seals, and a veterans-crisis-awareness decal, designed to read as dignified as the role itself.</p>
+          <div class="case-foot">
+            <div class="case-thumbs">
+              <span class="case-thumb"><img data-img="legion_explorer_side.jpg" alt="Rear flag graphic and seals on the Explorer" /></span>
+              <span class="case-thumb"><img data-img="legion_explorer_front.jpg" alt="Be The One hood decal on the Explorer" /></span>
+              <span class="case-thumb"><img data-img="legion_explorer_front3q.jpg" alt="Front three-quarter view of the Explorer" /></span>
+            </div>
+            <a class="btn case-cta" href="#case/sign-legion-explorer">Read the whole blog post &rarr;</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="case-card" data-cat="signs" id="post-sign-legion-van">
+        <a class="case-photo" href="#case/sign-legion-van" aria-label="Read the American Legion Membership Van case study">
+          <img data-img="legion_van_hero.jpg" alt="American Legion membership van, full vehicle wrap" />
+        </a>
+        <div class="case-body">
+          <div>
+            <span class="label case-kicker">Case Study &middot; Vehicle Graphics &middot; March 2024</span>
+            <h3 class="case-title">American Legion Membership Van</h3>
+          </div>
+          <p class="case-blurb">A full vehicle wrap for the American Legion, Department of Michigan &mdash; organizational branding, program logos, and military branch seals, with QR codes built in for on-the-spot membership and donations.</p>
+          <div class="case-foot">
+            <div class="case-thumbs">
+              <span class="case-thumb"><img data-img="legion_van_front.jpg" alt="Front of the American Legion van" /></span>
+              <span class="case-thumb"><img data-img="legion_van_rear.jpg" alt="Rear QR-code panels on the van" /></span>
+            </div>
+            <a class="btn case-cta" href="#case/sign-legion-van">Read the whole blog post &rarr;</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="case-card" data-cat="brand">
         <a class="case-photo" href="#case/pulpitaside" aria-label="Read the Pulpit Aside case study">
           <img data-img="pulpit_cover.png" alt="Pulpit Aside podcast cover art" />
         </a>
@@ -1294,30 +1496,14 @@
           </div>
         </div>
       </article>
-    </div>
-    <p class="case-more-note">More case studies coming soon.</p>
-  </section>
-
-  <section class="view" data-view="case">
-    <span class="back-link" data-nav="design">&larr; Design</span>
-    <div class="page-head">
-      <span class="label" id="caseKicker">Case Study</span>
-      <h2 id="caseTitle">&nbsp;</h2>
-    </div>
-    <div class="case-hero" id="caseHero"><img id="caseHeroImg" src="" alt="" /></div>
-    <div class="case-detail-body" id="caseBody"></div>
-    <div class="gallery" id="caseGallery"></div>
-  </section>
-
-  <section class="view" data-view="signs">
-    <span class="back-link" data-nav="home">&larr; Home</span>
-    <div class="page-head">
-      <span class="label">02 &middot; Sign Design</span>
-      <h2>Physical Sign Design</h2>
-      <p>Vehicle graphics, truck lettering, and exterior dimensional signage &mdash; designed and laid out for full-scale production.</p>
-    </div>
-
-    <div class="mi-map-wrap">
+      </div>
+      <div class="design-map" id="designMap" data-cat="signs">
+        <div class="design-map-head">
+          <span class="label">Signage &middot; Michigan</span>
+          <h3>Sign work across the state</h3>
+          <p>Tap a pin to jump to the project.</p>
+        </div>
+        <div class="mi-map-wrap">
       <svg class="mi-map-svg" viewBox="0 0 603.1 434.4" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
         <g class="mi-map-neighbors">
           <path d="M226,433.9h-111.8c.6-1.8-1-2.5-2.2-3.4l-9.9-7.2-14.5-15.5c-3.5-5.3-8.7-23.5-3.9-27.7s4.1-5.3,3.6-9.4,5.1-3.9,6.6-5.1-1.8-9.1,6.4-13c2.5-14.4-4.7-14.3-4.6-17s1.2-5.5,2.6-7.1c7.3-2.8,18.3-4.2,20.9-10.9l4.8-12.4c6.3-16.1-6.7-16.8-8.8-23-2.7-7.9-7.4-5.8-7.4-8s.5-1.6,1.6-1.6l16-.2,20.6-1.3c20-1.2,39.2-2.1,59.7-4.8-1.8,8.9,1.1,14.8,6.2,20.9l5.4,13.5c1.4,3.6,2.7,6,3,10l8,101.7c.3,4.4-2,8.7-1.2,13.2s-.2,5.6-1.2,7.9Z" />
@@ -1343,75 +1529,22 @@
       <button class="mi-pin" style="left:50.89%; top:57.02%;" data-target="sign-legion-explorer" title="Lansing, MI &mdash; Michigan State Commander Vehicle" aria-label="Lansing, MI &mdash; Michigan State Commander Vehicle"></button>
       <button class="mi-pin" style="left:50.17%; top:57.53%;" data-target="sign-legion-van" title="Lansing, MI &mdash; American Legion Membership Van" aria-label="Lansing, MI &mdash; American Legion Membership Van"></button>
     </div>
-
-    <div class="signs-recent-head">
-      <span class="label">Most Recent</span>
+      </div>
     </div>
-
-    <div class="case-grid">
-      <article class="case-card" id="post-sign-dewitt">
-        <a class="case-photo" href="#case/sign-dewitt" aria-label="Read the DeWitt Schools Yard Signs case study">
-          <img data-img="dewitt_swim.jpg" alt="DeWitt Swim and Dive yard sign design" />
-        </a>
-        <div class="case-body">
-          <div>
-            <span class="label case-kicker">Case Study &middot; Yard Signs &middot; 2023&ndash;2026</span>
-            <h3 class="case-title">DeWitt Schools Yard Signs</h3>
-          </div>
-          <p class="case-blurb">Recurring personalized athlete yard signs for DeWitt Public Schools &mdash; roughly ten new sport designs a year, thousands of signs printed over the run of the program.</p>
-          <div class="case-foot">
-            <div class="case-thumbs">
-              <span class="case-thumb"><img data-img="dewitt_baseball.jpg" alt="DeWitt Baseball yard sign" /></span>
-              <span class="case-thumb"><img data-img="dewitt_cheer.jpg" alt="DeWitt Cheer yard sign" /></span>
-            </div>
-            <a class="btn case-cta" href="#case/sign-dewitt">Read the whole blog post &rarr;</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="case-card" id="post-sign-legion-explorer">
-        <a class="case-photo" href="#case/sign-legion-explorer" aria-label="Read the Michigan State Commander Vehicle case study">
-          <img data-img="legion_explorer_hero.jpg" alt="Ford Explorer with Michigan State Commander vehicle graphics" />
-        </a>
-        <div class="case-body">
-          <div>
-            <span class="label case-kicker">Case Study &middot; Vehicle Graphics &middot; June 2024</span>
-            <h3 class="case-title">Michigan State Commander Vehicle</h3>
-          </div>
-          <p class="case-blurb">Official vehicle graphics for the American Legion&rsquo;s elected Michigan State Commander &mdash; flag graphics, military seals, and a veterans-crisis-awareness decal, designed to read as dignified as the role itself.</p>
-          <div class="case-foot">
-            <div class="case-thumbs">
-              <span class="case-thumb"><img data-img="legion_explorer_side.jpg" alt="Rear flag graphic and seals on the Explorer" /></span>
-              <span class="case-thumb"><img data-img="legion_explorer_front.jpg" alt="Be The One hood decal on the Explorer" /></span>
-              <span class="case-thumb"><img data-img="legion_explorer_front3q.jpg" alt="Front three-quarter view of the Explorer" /></span>
-            </div>
-            <a class="btn case-cta" href="#case/sign-legion-explorer">Read the whole blog post &rarr;</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="case-card" id="post-sign-legion-van">
-        <a class="case-photo" href="#case/sign-legion-van" aria-label="Read the American Legion Membership Van case study">
-          <img data-img="legion_van_hero.jpg" alt="American Legion membership van, full vehicle wrap" />
-        </a>
-        <div class="case-body">
-          <div>
-            <span class="label case-kicker">Case Study &middot; Vehicle Graphics &middot; March 2024</span>
-            <h3 class="case-title">American Legion Membership Van</h3>
-          </div>
-          <p class="case-blurb">A full vehicle wrap for the American Legion, Department of Michigan &mdash; organizational branding, program logos, and military branch seals, with QR codes built in for on-the-spot membership and donations.</p>
-          <div class="case-foot">
-            <div class="case-thumbs">
-              <span class="case-thumb"><img data-img="legion_van_front.jpg" alt="Front of the American Legion van" /></span>
-              <span class="case-thumb"><img data-img="legion_van_rear.jpg" alt="Rear QR-code panels on the van" /></span>
-            </div>
-            <a class="btn case-cta" href="#case/sign-legion-van">Read the whole blog post &rarr;</a>
-          </div>
-        </div>
-      </article>
-    </div>
-    <p class="case-more-note">More sign work coming soon.</p>
+    <p class="case-more-note">More work coming soon.</p>
   </section>
+
+  <section class="view" data-view="case">
+    <span class="back-link" data-nav="design">&larr; Design</span>
+    <div class="page-head">
+      <span class="label" id="caseKicker">Case Study</span>
+      <h2 id="caseTitle">&nbsp;</h2>
+    </div>
+    <div class="case-hero" id="caseHero"><img id="caseHeroImg" src="" alt="" /></div>
+    <div class="case-detail-body" id="caseBody"></div>
+    <div class="gallery" id="caseGallery"></div>
+  </section>
+
 
   <section class="view" data-view="about">
     <span class="back-link" data-nav="home">&larr; Home</span>
@@ -1460,7 +1593,7 @@
   <section class="view" data-view="development">
     <span class="back-link" data-nav="home">&larr; Home</span>
     <div class="page-head">
-      <span class="label">04 &middot; Dev</span>
+      <span class="label">02 &middot; Dev</span>
       <h2>Dev</h2>
       <p>Software written to solve real, specific problems &mdash; in my own video workflow, around the house, and for a pitch or two. Mostly small, self-hosted tools rather than polished products. A few live in private repositories, so those are shown with screenshots instead of a link.</p>
     </div>
@@ -1788,7 +1921,7 @@
   document.documentElement.style.setProperty('--img-wix-work-artboard-f-png', 'url(' + IMG['wix_work_artboard_f.png'] + ')');
   var views = document.querySelectorAll('.view');
   var navEls = document.querySelectorAll('[data-nav]');
-  var valid = ['home', 'design', 'signs', 'about', 'case', 'resumes', 'development'];
+  var valid = ['home', 'design', 'about', 'case', 'resumes', 'development'];
 
   var CASE_STUDIES = {
     'sign-dewitt': {
@@ -2033,6 +2166,7 @@
     var parts = raw.split('/');
     var name = parts[0];
     var slug = parts[1];
+    if (name === 'signs') { name = 'design'; setDesignFilter('signs'); }
     if (valid.indexOf(name) === -1) name = 'home';
     if (name === 'case' && !renderCase(slug)) name = 'design';
     views.forEach(function (v) {
@@ -2148,9 +2282,44 @@
   document.querySelectorAll('.mi-pin').forEach(function (pin) {
     pin.addEventListener('click', function () {
       var target = document.getElementById('post-' + pin.getAttribute('data-target'));
-      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (!target) return;
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      target.classList.remove('flash');
+      void target.offsetWidth;
+      target.classList.add('flash');
+      setTimeout(function () { target.classList.remove('flash'); }, 1600);
     });
   });
+
+  // ---- merged Design page: All / Brand & Print / Signage chips + map jump ----
+  function setDesignFilter(f) {
+    var body = document.getElementById('designBody');
+    if (!body) return;
+    body.setAttribute('data-filter', f);
+    document.querySelectorAll('.design-chip[data-filter]').forEach(function (c) {
+      var on = c.getAttribute('data-filter') === f;
+      c.classList.toggle('active', on);
+      c.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+  }
+  document.querySelectorAll('.design-chip[data-filter]').forEach(function (c) {
+    c.addEventListener('click', function () { setDesignFilter(c.getAttribute('data-filter')); });
+  });
+  var mapJump = document.getElementById('designMapJump');
+  if (mapJump) {
+    mapJump.addEventListener('click', function () {
+      var body = document.getElementById('designBody');
+      if (body && body.getAttribute('data-filter') === 'brand') setDesignFilter('all');
+      var m = document.getElementById('designMap');
+      if (m) m.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
+
+  // About card's watermark reuses the top-bar logo mark rather than embedding it twice
+  (function () {
+    var src = document.querySelector('.wordmark-logo');
+    document.querySelectorAll('.js-logo-clone').forEach(function (i) { if (src) i.src = src.src; });
+  })();
 
   var bioText = document.getElementById('bioText');
   var bioBox = bioText ? bioText.closest('.cat-bio') : null;
