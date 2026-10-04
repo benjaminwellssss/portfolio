@@ -1102,6 +1102,25 @@
     cursor: zoom-in;
   }
   .dev-shot span { font-size: 0.78rem; color: var(--slate); }
+  .dev-post-media.dev-video { padding-bottom: clamp(1rem, 2.5vw, 1.5rem); }
+  .dev-clip {
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .dev-clip video {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    display: block;
+    background: #000;
+    border: 1px solid var(--slate-line-soft);
+    cursor: pointer;
+  }
+  .dev-clip span { font-size: 0.78rem; color: var(--slate); }
   .dev-links {
     display: flex;
     flex-wrap: wrap;
@@ -1641,6 +1660,12 @@
     </div>
     <div class="dev-posts">
       <article class="dev-post">
+        <div class="dev-post-media dev-video">
+          <div class="dev-clip">
+            <video muted loop playsinline preload="none" poster="video/wellsdone.webp" data-src="video/wellsdone.mp4" aria-label="WellsDone in use: signing in with the parent PIN, quick-adding a to-do, assigning a chore, and planning a meal whose ingredients land on the grocery list"></video>
+            <span>Screen recording of the running app &mdash; demo data.</span>
+          </div>
+        </div>
         <div class="dev-post-media shots">
           <div class="dev-shot">
             <img data-img="wellsdone_chores.jpg" alt="WellsDone chores page: one card per family member with repeating chores, plus a this-week grid" />
@@ -1666,6 +1691,12 @@
       </article>
 
       <article class="dev-post">
+        <div class="dev-post-media dev-video">
+          <div class="dev-clip">
+            <video muted loop playsinline preload="none" poster="video/journeylive.webp" data-src="video/journeylive.mp4" aria-label="The JourneyLive demo: clocking in, opening a project board, quick-adding a task, then the calendar and requests"></video>
+            <span>Screen recording of the running app &mdash; demo data.</span>
+          </div>
+        </div>
         <div class="dev-post-media shots">
           <div class="dev-shot wide">
             <img data-img="journeylive_board.jpg" alt="JourneyLive task board mockup: project sections as columns, priority shown as a colored ring, and an On fire status on an urgent card" />
@@ -1734,6 +1765,12 @@
       </article>
 
       <article class="dev-post">
+        <div class="dev-post-media dev-video">
+          <div class="dev-clip">
+            <video muted loop playsinline preload="none" poster="video/hub.webp" data-src="video/hub.mp4" aria-label="The Overlay Control Hub control panel beside live overlays: the pushup counter, sub alerts firing, and the overlay design switching between Windows 95, XP and Minimal"></video>
+            <span>Screen recording of the running app &mdash; demo data.</span>
+          </div>
+        </div>
         <div class="dev-post-media gif-pair">
           <div class="dev-media-item">
             <img data-img="hub_theme_switch_handles.gif" alt="Live theme switch demoed on the handles overlay, switching visual styles instantly without touching OBS" />
@@ -1755,32 +1792,11 @@
       </article>
 
       <article class="dev-post">
-        <div class="dev-post-media">
-          <svg viewBox="0 0 560 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Caption Speaker Editor app screenshot: file pickers for video, captions, and speakers config, with a Load button">
-            <rect width="560" height="360" fill="#141517" />
-            <text x="32" y="52" fill="#f2f1ee" font-family="Archivo, Arial, sans-serif" font-size="22" font-weight="700">Caption Speaker Editor</text>
-            <text x="32" y="78" fill="#9aa0aa" font-family="Archivo, Arial, sans-serif" font-size="12">Pick a video file and its caption cards (and optionally an</text>
-            <text x="32" y="94" fill="#9aa0aa" font-family="Archivo, Arial, sans-serif" font-size="12">existing speakers config to reuse names/keys/colors across jobs).</text>
-            <g font-family="Archivo, Arial, sans-serif">
-              <text x="32" y="146" fill="#e7e6e2" font-size="13" font-weight="700">Video file</text>
-              <text x="32" y="164" fill="#6b7078" font-size="11" font-style="italic">no file chosen</text>
-              <rect x="428" y="128" width="100" height="34" rx="6" fill="#26282d" stroke="#34373d" />
-              <text x="478" y="150" fill="#f2f1ee" font-size="12" text-anchor="middle">Choose&#8230;</text>
-
-              <text x="32" y="200" fill="#e7e6e2" font-size="13" font-weight="700">Captions (cards.json)</text>
-              <text x="32" y="218" fill="#6b7078" font-size="11" font-style="italic">no file chosen</text>
-              <rect x="428" y="182" width="100" height="34" rx="6" fill="#26282d" stroke="#34373d" />
-              <text x="478" y="204" fill="#f2f1ee" font-size="12" text-anchor="middle">Choose&#8230;</text>
-
-              <text x="32" y="254" fill="#e7e6e2" font-size="13" font-weight="700">Speakers config (optional)</text>
-              <text x="32" y="272" fill="#6b7078" font-size="11" font-style="italic">none &mdash; will prompt to create on first save</text>
-              <rect x="428" y="236" width="100" height="34" rx="6" fill="#26282d" stroke="#34373d" />
-              <text x="478" y="258" fill="#f2f1ee" font-size="12" text-anchor="middle">Choose&#8230;</text>
-
-              <rect x="32" y="300" width="90" height="38" rx="8" fill="#3b6df0" />
-              <text x="77" y="324" fill="#ffffff" font-size="14" font-weight="700" text-anchor="middle">Load</text>
-            </g>
-          </svg>
+        <div class="dev-post-media dev-video">
+          <div class="dev-clip">
+            <video muted loop playsinline preload="none" poster="video/captioneditor.webp" data-src="video/captioneditor.mp4" aria-label="The Caption Speaker Editor: loading a video and its captions, playing from a caption, fixing a caption's text on a second timeline, and saving"></video>
+            <span>Screen recording of the running app &mdash; demo data.</span>
+          </div>
         </div>
         <div class="dev-post-body">
           <span class="label">Local Tool &middot; Python + JS</span>
@@ -2480,6 +2496,29 @@
       if (m) m.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   }
+
+  // Dev page recordings: fetch and play a clip only while it is on screen
+  (function () {
+    var clips = document.querySelectorAll('video[data-src]');
+    if (!clips.length) return;
+    function load(v) { if (!v.getAttribute('src')) v.src = v.getAttribute('data-src'); }
+    var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce || !('IntersectionObserver' in window)) {
+      clips.forEach(function (v) { v.controls = true; v.preload = 'metadata'; load(v); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        var v = e.target;
+        if (e.isIntersecting) { load(v); var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+        else v.pause();
+      });
+    }, { threshold: 0.35 });
+    clips.forEach(function (v) {
+      io.observe(v);
+      v.addEventListener('click', function () { if (v.paused) v.play(); else v.pause(); });
+    });
+  })();
 
   // About card's watermark reuses the top-bar logo mark rather than embedding it twice
   (function () {

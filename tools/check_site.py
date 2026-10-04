@@ -54,7 +54,7 @@ unused = set(img) - data_img - thumbs - heroes
 print("IMG keys never referenced:", sorted(unused) or "none")
 
 # 4. every static path in the html exists
-paths = set(re.findall(r"""(?:href|src|content|data)=['"]((?:img|resumes)/[^'"]+)['"]""", html))
+paths = set(re.findall(r"""(?:href|src|content|data|data-src|poster)=['"]((?:img|resumes|video)/[^'"]+)['"]""", html))
 paths |= set(re.findall(r"""'((?:img|resumes)/[^']+)'""", html))
 miss = [p for p in paths if not os.path.exists(os.path.join(D, p))]
 print("static path refs:", len(paths), "| missing on disk:", miss or "none")
