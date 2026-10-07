@@ -11,6 +11,7 @@
     tick = false;
     var y = window.pageYOffset || document.documentElement.scrollTop || 0;
     if (bar) bar.classList.toggle('scrolled', y > 8);
+    var pf = document.querySelector('.pfx'); if (pf) pf.style.setProperty('--pfy', (-Math.min(y * 0.18, 220)) + 'px');
     for (var i = 0; i < bands.length; i++) bands[i].style.setProperty('--py', Math.min(Math.max(y, 0) * 0.35, 150) + 'px');
   }
   window.addEventListener('scroll', function () { if (!tick) { tick = true; requestAnimationFrame(update); } }, { passive: true });
