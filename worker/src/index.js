@@ -117,6 +117,11 @@ export default {
     if (origin && !cors(env, req)['Access-Control-Allow-Origin']) return json(env, req, { error: 'origin not allowed' }, 403);
 
     try {
+      if (url.pathname === '/api/health') {
+        // which secrets this Worker can see (true/false only, never the values)
+        return json(env, req, { ADMIN_PASSWORD: !!env.ADMIN_PASSWORD, SESSION_SECRET: !!env.SESSION_SECRET, GITHUB_TOKEN: !!env.GITHUB_TOKEN });
+      }
+
       if (url.pathname === '/api/login' && req.method === 'POST') {
         const ip = req.headers.get('CF-Connecting-IP') || 'x';
         const f = failures.get(ip) || { n: 0, until: 0 };
