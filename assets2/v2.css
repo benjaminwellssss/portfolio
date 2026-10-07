@@ -262,6 +262,29 @@
   .ract { display:flex; align-items:center; gap:22px; flex-wrap:wrap; } .ract a.v { color:var(--text); font-weight:700; }
 
   .post.flash { animation:flash 1.5s ease; } @keyframes flash { 0%,100%{border-color:var(--line-soft);box-shadow:none} 25%,75%{border-color:var(--red);box-shadow:0 0 0 3px rgba(229,23,31,.25)} }
+
+  /* dev page: each project reads like a store page. Big main video, the text right under it, then a small auto-scrolling strip. */
+  .dp { margin-bottom:72px; max-width:1080px; }
+  .dp-main { background:#000; border-radius:var(--shape); overflow:hidden; aspect-ratio:16 / 9; display:flex; align-items:center; justify-content:center; }
+  .dp-main video, .dp-main img { width:100%; height:100%; object-fit:contain; display:block; }
+  .dp-main a { display:block; width:100%; height:100%; }
+  .dp-svgmain { width:100%; height:100%; display:flex; align-items:center; justify-content:center; padding:24px; background:#0e0f11; }
+  .dp-svgmain svg { max-width:100%; max-height:100%; height:auto; }
+  .dp-body { padding:24px 2px 0; }
+  .dp-body h2 { font-size:38px; font-weight:700; letter-spacing:-1px; margin:6px 0 16px; }
+  .dp-body p { color:#c9ccd2; font-size:17px; line-height:1.6; margin-bottom:16px; max-width:900px; }
+  .dp-body code { background:var(--raised2); padding:1px 6px; font-size:.9em; }
+  .dp-actions { margin-top:6px; }
+  .dp-strip { overflow:hidden; margin-top:26px; -webkit-mask-image:linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image:linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+  .dp-track { display:flex; gap:8px; width:max-content; animation:dp-scroll var(--dur,60s) linear infinite; }
+  .dp-strip:hover .dp-track, .dp-strip:focus-within .dp-track { animation-play-state:paused; }
+  .dp-loop { display:contents; }
+  .dp-t { flex:0 0 auto; height:120px; position:relative; display:block; overflow:hidden; background:#0e0f11; border:1px solid var(--line-soft); }
+  .dp-t img { width:100%; height:100%; object-fit:cover; display:block; }
+  .dp-svg svg { width:100%; height:100%; display:block; }
+  .dp-play .dp-ic { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:38px; height:38px; border-radius:50%; background:rgba(14,16,20,.75); color:#fff; display:flex; align-items:center; justify-content:center; font-size:14px; padding-left:3px; }
+  @keyframes dp-scroll { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+  @media (max-width:900px) { .dp-body h2 { font-size:30px; } .dp-t { height:90px; } }
   .lb { position:fixed; inset:0; background:rgba(14,15,17,.94); z-index:100; display:none; align-items:center; justify-content:center; padding:30px; }
   .lb.open { display:flex; } .lb img { max-width:100%; max-height:100%; object-fit:contain; }
   .lb button { position:absolute; background:var(--raised); color:var(--ink); border:1px solid var(--line); font-size:28px; width:46px; height:60px; cursor:pointer; }
