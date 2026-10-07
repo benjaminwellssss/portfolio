@@ -683,6 +683,51 @@
   }
 
 
+
+  /* ---- client logo carousel: neutral band, logos drift across and fade out at the edges ---- */
+  .clients {
+    background: #efefef;
+    color: #202020;
+    margin: clamp(2rem, 5vw, 3.5rem) 0;
+    padding: clamp(1.6rem, 3.5vw, 2.4rem) 0;
+    overflow: hidden;
+  }
+  .clients[hidden] { display: none; }
+  .clients-title {
+    margin: 0 0 clamp(1rem, 2.5vw, 1.5rem);
+    text-align: center;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #626161;
+  }
+  .clients-viewport {
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 12%, #000 88%, transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 12%, #000 88%, transparent 100%);
+  }
+  .clients-track {
+    display: flex;
+    width: max-content;
+    align-items: center;
+    animation: clients-scroll var(--clients-dur, 30s) linear infinite;
+  }
+  .clients:hover .clients-track { animation-play-state: paused; }
+  .clients-item {
+    flex: 0 0 auto;
+    height: clamp(44px, 7vw, 64px);
+    margin: 0 clamp(1.6rem, 4.5vw, 3.25rem);
+    display: flex;
+    align-items: center;
+  }
+  .clients-item img { height: 100%; width: auto; max-width: 220px; object-fit: contain; display: block; }
+  @keyframes clients-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) {
+    .clients-track { animation: none; flex-wrap: wrap; justify-content: center; width: auto; }
+    .clients-viewport { -webkit-mask-image: none; mask-image: none; }
+  }
+
   /* ---- map + gallery side by side, tags, gallery page ---- */
   .design-lower {
     display: grid;
@@ -1300,6 +1345,11 @@
           <span class="stat-label">Concept-to-Production Ownership</span>
         </div>
       </div>
+
+      <section class="clients" id="clients" aria-label="Companies I have designed for" hidden>
+        <h2 class="clients-title">Companies I&rsquo;ve Designed For</h2>
+        <div class="clients-viewport"><div class="clients-track" id="clientsTrack"></div></div>
+      </section>
 
       <div class="process-section">
         <div class="section-head">
@@ -2061,6 +2111,27 @@
       });
     }
   }
+
+  function renderClients(list) {
+    var box = document.getElementById('clients'), track = document.getElementById('clientsTrack');
+    if (!box || !track || !list.length) return;
+    function item(c) {
+      var d = el('div', 'clients-item');
+      var i = document.createElement('img');
+      i.src = imgFull(c.logo); i.alt = c.name; i.loading = 'lazy'; i.decoding = 'async';
+      d.appendChild(i);
+      return d;
+    }
+    track.innerHTML = '';
+    // repeat the list until one pass is wider than the screen, then double it so the loop has no gap
+    var reps = Math.max(2, Math.ceil(12 / list.length)), set = [];
+    for (var r = 0; r < reps; r++) list.forEach(function (c) { set.push(c); });
+    set.concat(set).forEach(function (c) { track.appendChild(item(c)); });
+    track.setAttribute('aria-hidden', 'false');
+    track.style.setProperty('--clients-dur', Math.max(18, set.length * 3.2) + 's');
+    box.hidden = false;
+  }
+
   var contentLoaded = false, contentWaiters = [];
   function whenContent(fn) { if (contentLoaded) fn(); else contentWaiters.push(fn); }
   (function loadContent() {
@@ -2074,6 +2145,8 @@
     }).then(function () {
       contentLoaded = true;
       renderPosts(); renderTeaser();
+      fetch('content/clients.json', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : { clients: [] }; })
+        .then(function (j) { renderClients(j.clients || []); }).catch(function () {});
       var w = contentWaiters; contentWaiters = [];
       w.forEach(function (fn) { fn(); });
     });

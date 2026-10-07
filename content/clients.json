@@ -1,0 +1,16 @@
+{
+ "clients": [
+  {
+   "name": "Mythic Foundry",
+   "logo": "img/mythic_lockup_color.webp"
+  },
+  {
+   "name": "onebynine.ai",
+   "logo": "img/onebynine_wordmark_black.png"
+  },
+  {
+   "name": "Pulpit Aside",
+   "logo": "img/pulpit_cover.webp"
+  }
+ ]
+}
