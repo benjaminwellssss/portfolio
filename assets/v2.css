@@ -129,7 +129,7 @@
 
   @media (max-width:900px) {
     :root { --gut:24px; --r:18px; }
-    .hero { padding:110px 0 50px; } .hero h1 { font-size:46px; } .hero-top h1 { font-size:27px; }
+    .hero { padding:110px 0 50px; } .hero h1 { font-size:46px; }
     .hero-top, .cards, .svc-cards, .steps, .row, .cta .wrap { grid-template-columns:1fr; }
     .row.flip .shot { order:0; } .row { gap:24px; }
     .stat-card b { font-size:40px; min-width:110px; }
@@ -160,9 +160,14 @@
   .hero-top .rows { height:auto; }
   .hero-top .rows .row-btn, .hero-top .rows .dl { flex:none; box-sizing:border-box; height:54px; min-width:0; width:100%; padding:0 26px; display:flex; align-items:center; }
   .hero-top .rows .dl { justify-content:space-between; font-size:20px; font-weight:600; letter-spacing:0; border:1px solid transparent; border-radius:var(--shape); }
-  .hero-top { margin-bottom:56px; align-items:center; }
-  .hero-top h1 { font-size:32px; line-height:1.05; letter-spacing:0 !important; text-align:center; width:fit-content; margin-left:auto; margin-right:auto; max-width:none; }
-  .hero-top h1 .build-word { font-size:3.28em; line-height:.95; margin:2px auto 0; }
+  .hero-top { margin-bottom:56px; align-items:stretch; }
+  .hero-top > div:first-child { display:flex; flex-direction:column; }
+  .hero-top h1 { font-size:30px; line-height:1.05; letter-spacing:0 !important; text-align:center; width:fit-content; margin:0 auto; max-width:none; }
+  .hero-top h1 .build-word { font-size:3.28em; line-height:.95; margin:4px auto 0; }
+  @media (min-width:901px) {
+  .hero-top h1 { font-size:56px; line-height:.69; letter-spacing:0 !important; text-align:center; width:fit-content; margin-left:auto; margin-right:auto; max-width:none; flex:1; display:flex; flex-direction:column; justify-content:space-between; gap:14px; }
+  .hero-top h1 .build-word { font-size:3.28em; line-height:.69; margin:0 auto; }
+  }
   @media (max-width:900px) { .hero-top .rows { margin-top:26px; } }
 
   /* built. extrude: hover lifts the word up-left, a dark-red extrusion fills back to where it started, one quick sheen */
