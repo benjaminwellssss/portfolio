@@ -368,6 +368,333 @@
    ],
    "w": 1600,
    "h": 1200
+  },
+  {
+   "id": "mmd-branding-1",
+   "src": "img/mmd-branding-1.webp",
+   "caption": "Branding 1 (MMD Signs)",
+   "tags": [
+    "signs",
+    "mmd-signs",
+    "branding"
+   ],
+   "w": 1600,
+   "h": 1200
+  },
+  {
+   "id": "mmd-channel-letter-1",
+   "src": "img/mmd-channel-letter-1.webp",
+   "caption": "Channel letters 1 (MMD Signs)",
+   "tags": [
+    "signs",
+    "mmd-signs",
+    "channel-letters",
+    "illuminated"
+   ],
+   "w": 540,
+   "h": 304
+  },
+  {
+   "id": "mmd-channel-letter-hero",
+   "src": "img/mmd-channel-letter-hero.webp",
+   "caption": "Channel letter hero (MMD Signs)",
+   "tags": [
+    "signs",
+    "mmd-signs"
+   ],
+   "w": 1600,
+   "h": 1600
+  },
+  {
+   "id": "mmd-exterior-1",
+   "src": "img/mmd-exterior-1.webp",
+   "caption": "Exterior sign 1 (MMD Signs)",
+   "tags": [
+    "signs",
+    "mmd-signs",
+    "exterior-signs"
+   ],
+   "w": 1600,
+   "h": 900
+  },
+  {
+   "id": "mmd-exterior-4",
+   "src": "img/mmd-exterior-4.webp",
+   "caption": "Exterior sign 4 (MMD Signs)",
+   "tags": [
+    "signs",
+    "mmd-signs",
+    "exterior-signs"
+   ],
+   "w": 1600,
+   "h": 1465
+  },
+  {
+   "id": "mmd-exterior-6",
+   "src": "img/mmd-exterior-6.webp",
+   "caption": "Exterior sign 6 (MMD Signs)",
+   "tags": [
+    "signs",
+    "mmd-signs",
+    "exterior-signs"
+   ],
+   "w": 1600,
+   "h": 1200
+  },
+  {
+   "id": "mmd-exterior-8",
+   "src": "img/mmd-exterior-8.webp",
+   "caption": "Exterior sign 8 (MMD Signs)",
+   "tags": [
+    "signs",
+    "mmd-signs",
+    "exterior-signs"
+   ],
+   "w": 1600,
+   "h": 900
+  },
+  {
+   "id": "mmd-farmers-insurance-1",
+   "src": "img/mmd-farmers-insurance-1.webp",
+   "caption": "Farmers Insurance 1 (MMD Signs)",
+   "tags": [
+    "signs",
+    "mmd-signs",
+    "farmers-insurance",
+    "interior-signs"
+   ],
+   "w": 1600,
+   "h": 1200
+  },
+  {
+   "id": "mmd-farmers-insurance-2",
+   "src": "img/mmd-farmers-insurance-2.webp",
+   "caption": "Farmers Insurance 2 (MMD Signs)",
+   "tags": [
+    "signs",
+    "mmd-signs",
+    "farmers-insurance",
+    "interior-signs"
+   ],
+   "w": 1600,
+   "h": 1368
+  },
+  {
+   "id": "mmd-farmers-insurance-3",
+   "src": "img/mmd-farmers-insurance-3.webp",
+   "caption": "Farmers Insurance 3 (MMD Signs)",
+   "tags": [
+    "signs",
+    "mmd-signs",
+    "farmers-insurance",
+    "interior-signs"
+   ],
+   "w": 1600,
+   "h": 1200
+  },
+  {
+   "id": "mmd-farmers-insurance-4",
+   "src": "img/mmd-farmers-insurance-4.webp",
+   "caption": "Farmers Insurance 4 (MMD Signs)",
+   "tags": [
+    "signs",
+    "mmd-signs",
+    "farmers-insurance",
+    "interior-signs"
+   ],
+   "w": 1600,
+   "h": 777
+  },
+  {
+   "id": "mmd-farmers-insurance-5",
+   "src": "img/mmd-farmers-insurance-5.webp",
+   "caption": "Farmers Insurance 5 (MMD Signs)",
+   "tags": [
+    "signs",
+    "mmd-signs",
+    "farmers-insurance",
+    "interior-signs"
+   ],
+   "w": 1600,
+   "h": 900
+  },
+  {
+   "id": "mmd-farmers-insurance-6",
+   "src": "img/mmd-farmers-insurance-6.webp",
+   "caption": "Farmers Insurance 6 (MMD Signs)",
+   "tags": [
+    "signs",
+    "mmd-signs",
+    "farmers-insurance",
+    "interior-signs"
+   ],
+   "w": 1600,
+   "h": 777
+  },
+  {
+   "id": "mmd-ground-signs-1",
+   "src": "img/mmd-ground-signs-1.webp",
+   "caption": "Ground sign 1 (MMD Signs)",
+   "tags": [
+    "signs",
+    "mmd-signs",
+    "ground-signs"
+   ],
+   "w": 1600,
+   "h": 1200
+  },
+  {
+   "id": "mmd-hero",
+   "src": "img/mmd-hero.webp",
+   "caption": "Storefront sign (MMD Signs)",
+   "tags": [
+    "signs",
+    "mmd-signs",
+    "exterior-signs"
+   ],
+   "w": 1600,
+   "h": 1200
+  },
+  {
+   "id": "mmd-illuminated-hero",
+   "src": "img/mmd-illuminated-hero.webp",
+   "caption": "Illuminated sign (MMD Signs)",
+   "tags": [
+    "signs",
+    "mmd-signs",
+    "illuminated"
+   ],
+   "w": 1600,
+   "h": 1200
+  },
+  {
+   "id": "mmd-image-11",
+   "src": "img/mmd-image-11.webp",
+   "caption": "Sign (MMD Signs)",
+   "tags": [
+    "signs",
+    "mmd-signs"
+   ],
+   "w": 166,
+   "h": 221
+  },
+  {
+   "id": "mmd-image-13",
+   "src": "img/mmd-image-13.webp",
+   "caption": "Sign (MMD Signs)",
+   "tags": [
+    "signs",
+    "mmd-signs"
+   ],
+   "w": 166,
+   "h": 221
+  },
+  {
+   "id": "mmd-image-9",
+   "src": "img/mmd-image-9.webp",
+   "caption": "Sign (MMD Signs)",
+   "tags": [
+    "signs",
+    "mmd-signs"
+   ],
+   "w": 166,
+   "h": 221
+  },
+  {
+   "id": "mmd-interior-1",
+   "src": "img/mmd-interior-1.webp",
+   "caption": "Interior sign 1 (MMD Signs)",
+   "tags": [
+    "signs",
+    "mmd-signs",
+    "interior-signs"
+   ],
+   "w": 1600,
+   "h": 900
+  },
+  {
+   "id": "mmd-interior-4",
+   "src": "img/mmd-interior-4.webp",
+   "caption": "Interior sign 4 (MMD Signs)",
+   "tags": [
+    "signs",
+    "mmd-signs",
+    "interior-signs"
+   ],
+   "w": 1600,
+   "h": 900
+  },
+  {
+   "id": "mmd-interior-5",
+   "src": "img/mmd-interior-5.webp",
+   "caption": "Interior sign 5 (MMD Signs)",
+   "tags": [
+    "signs",
+    "mmd-signs",
+    "interior-signs"
+   ],
+   "w": 1600,
+   "h": 777
+  },
+  {
+   "id": "mmd-interior-7",
+   "src": "img/mmd-interior-7.webp",
+   "caption": "Interior sign 7 (MMD Signs)",
+   "tags": [
+    "signs",
+    "mmd-signs",
+    "interior-signs"
+   ],
+   "w": 1070,
+   "h": 877
+  },
+  {
+   "id": "mmd-marquee-2",
+   "src": "img/mmd-marquee-2.webp",
+   "caption": "Marquee sign 2 (MMD Signs)",
+   "tags": [
+    "signs",
+    "mmd-signs",
+    "marquee"
+   ],
+   "w": 1600,
+   "h": 900
+  },
+  {
+   "id": "mmd-suite-signs-2",
+   "src": "img/mmd-suite-signs-2.webp",
+   "caption": "Suite sign 2 (MMD Signs)",
+   "tags": [
+    "signs",
+    "mmd-signs",
+    "interior-signs"
+   ],
+   "w": 756,
+   "h": 1008
+  },
+  {
+   "id": "mmd-vehicle-wrap",
+   "src": "img/mmd-vehicle-wrap.webp",
+   "caption": "Vehicle wrap (MMD Signs)",
+   "tags": [
+    "signs",
+    "mmd-signs",
+    "vehicle-graphics"
+   ],
+   "w": 1600,
+   "h": 1200
+  },
+  {
+   "id": "mmd-window-vinyl-1",
+   "src": "img/mmd-window-vinyl-1.webp",
+   "caption": "Window vinyl 1 (MMD Signs)",
+   "tags": [
+    "signs",
+    "mmd-signs",
+    "window-vinyl"
+   ],
+   "w": 1600,
+   "h": 1200
   }
  ]
 }
