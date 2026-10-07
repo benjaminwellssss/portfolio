@@ -291,12 +291,15 @@
   /* full-width map panel + one-row endless gallery strip */
   .design-top { display:block; margin-bottom:44px; }
   .map-box { width:100%; }
-  .mapwrap { width:50%; max-width:none; aspect-ratio:603.1 / 434.4; margin:8px auto 0; overflow:hidden; }
-  /* same frame as before; the map inside is zoomed in and cropped to it (pins live inside the zoomed layer and keep their size) */
-  .mapzoom { position:absolute; inset:0; transform:scale(1.75); transform-origin:50% 56%; }
-  .mapzoom .pin { scale:.5714; }
-  @media (max-width:900px) { .mapwrap { width:100%; } }
-  .mapwrap svg { position:absolute; inset:0; width:100%; height:100%; }
+  /* the map fills the whole panel, proportionally: it covers the frame and is cropped where it overflows; the heading sits on top */
+  .map-box { position:relative; overflow:hidden; container-type:size; height:clamp(340px, 42vw, 520px); padding:0; border:0; outline:1px solid var(--line-soft); outline-offset:-1px; }
+  .map-box > .label, .map-box > h3, .map-box > p { position:relative; z-index:2; margin-left:24px; margin-right:24px; }
+  .map-box > .label { display:block; padding-top:22px; }
+  .map-box::after { content:""; position:absolute; inset:0; z-index:1; pointer-events:none; background:linear-gradient(90deg, rgba(21,25,32,.9) 0%, rgba(21,25,32,.5) 30%, rgba(21,25,32,0) 55%); }
+  .mapwrap { position:absolute; inset:0; margin:0; width:auto; aspect-ratio:auto; overflow:visible; z-index:0; }
+  .mapzoom { position:absolute; left:50%; top:50%; width:max(100cqw, calc(100cqh * 1.3884)); aspect-ratio:603.1 / 434.4; transform:translate(-50%, -50%); }
+  .mapzoom svg { position:absolute; inset:0; width:100%; height:100%; }
+  .pin { z-index:3; }
   .gal-head { display:flex; justify-content:space-between; align-items:flex-end; gap:20px; flex-wrap:wrap; margin-bottom:18px; }
   .gal-head h3 { font-size:26px; font-weight:700; letter-spacing:-.5px; margin:4px 0 6px; } .gal-head p { color:var(--slate); font-size:14px; }
   .gal-strip { overflow:hidden; margin-bottom:56px; -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent); mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent); }
