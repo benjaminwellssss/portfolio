@@ -11,15 +11,15 @@
    "cardThumbs": [
     {
      "src": "img/mythic_lockup_white.png",
-     "alt": "Mythic Foundry emblem, reversed white"
+     "alt": "Mythic Foundry emblem in reversed white, for dark backgrounds"
     },
     {
      "src": "img/mythic_wordmark.webp",
-     "alt": "Mythic Foundry wordmark only"
+     "alt": "Mythic Foundry wordmark only, no emblem"
     },
     {
-     "src": "img/mythic_ai_reference.webp",
-     "alt": "Original AI-generated reference logo"
+     "src": "img/mythic_guide_finalization.webp",
+     "alt": "Logo finalization page comparing the AI-generated reference against the hand-redrawn line art, with grid and clear-space guides"
     }
    ],
    "hero": "img/mythic_lockup_color.webp",
@@ -50,11 +50,6 @@
      "src": "img/mythic_guide_cover.webp",
      "alt": "Mythic Foundry brand guide cover, white emblem on a dark textured background",
      "caption": "Brand guide cover"
-    },
-    {
-     "src": "img/mythic_guide_title.webp",
-     "alt": "Mythic Foundry brand guidelines section title page",
-     "caption": "Brand guidelines title page"
     },
     {
      "src": "img/mythic_ai_reference.webp",
