@@ -6,6 +6,18 @@
 })();
 
 (function () {
+  var bar = document.querySelector('.bar'), bands = document.querySelectorAll('.hero, .pagehead'), tick = false;
+  function update() {
+    tick = false;
+    var y = window.pageYOffset || document.documentElement.scrollTop || 0;
+    if (bar) bar.classList.toggle('scrolled', y > 8);
+    for (var i = 0; i < bands.length; i++) bands[i].style.setProperty('--py', Math.min(Math.max(y, 0) * 0.35, 150) + 'px');
+  }
+  window.addEventListener('scroll', function () { if (!tick) { tick = true; requestAnimationFrame(update); } }, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+})();
+(function () {
   var bar = document.querySelector('.bar'), btn = document.querySelector('.burger');
   if (!bar || !btn) return;
   var seen = false;
