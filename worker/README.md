@@ -27,7 +27,7 @@ Nothing secret lives in the repo. Three secrets are stored in the Worker:
    npx wrangler deploy
    ```
 
-4. Copy the `https://portfolio-admin.<account>.workers.dev` address that `deploy` prints into `admin/config.js`
+4. Copy the `https://portfolio.<account>.workers.dev` address that `deploy` prints into `admin/config.js`
    (`window.ADMIN_API = '...'`), commit and push. Then open `/admin/` on the live site.
 
 ## Changing the password

@@ -1,4 +1,4 @@
-name = "portfolio-admin"
+name = "portfolio"
 main = "src/index.js"
 compatibility_date = "2025-01-01"
 
