@@ -531,15 +531,6 @@
     .cat-wrap:hover .cat-arrow { background: none; color: var(--ink); }
   }
 
-  .home-footer-note {
-    text-align: center;
-    color: var(--slate-dim);
-    font-size: 0.85rem;
-    padding: clamp(1.75rem, 4vw, 2.5rem) 0 clamp(1.5rem, 4vw, 2rem);
-  }
-  @media (max-width: 640px) {
-    .home-footer-note { padding: 0.5rem 0 1.25rem; }
-  }
 
   /* ---- home: stats strip ---- */
   .stats-row {
@@ -547,7 +538,6 @@
     grid-template-columns: repeat(4, 1fr);
     gap: clamp(1rem, 3vw, 2rem);
     padding: clamp(2rem, 5vw, 3rem) 0;
-    border-top: 1px solid var(--slate-line-soft);
     border-bottom: 1px solid var(--slate-line-soft);
   }
   @media (max-width: 700px) {
@@ -1154,97 +1144,6 @@
   }
   .dev-repo-link:hover { border-color: var(--ink); }
 
-  /* ---- resume access terminal ---- */
-  .terminal-wrap {
-    max-width: 640px;
-    margin: 0 auto clamp(2.5rem, 6vw, 4rem);
-  }
-  .terminal-box {
-    background: #0c0d0e;
-    border: 1px solid var(--slate-line);
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.4);
-    transition: border-color .15s ease, box-shadow .15s ease;
-  }
-  .terminal-box.granted {
-    border-color: var(--red);
-    box-shadow: 0 0 0 1px var(--red), 0 20px 50px rgba(229,23,31,0.15);
-  }
-  @keyframes terminal-shake {
-    10%, 90% { transform: translateX(-1px); }
-    20%, 80% { transform: translateX(2px); }
-    30%, 50%, 70% { transform: translateX(-4px); }
-    40%, 60% { transform: translateX(4px); }
-  }
-  .terminal-box.shake { animation: terminal-shake .4s ease; border-color: var(--red); }
-  .terminal-head {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    padding: 0.6rem 0.8rem;
-    background: #17181a;
-    border-bottom: 1px solid var(--slate-line-soft);
-  }
-  .terminal-dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
-  .dot-r { background: #ff5f56; }
-  .dot-y { background: #ffbd2e; }
-  .dot-g { background: #27c93f; }
-  .terminal-title {
-    margin-left: 0.5rem;
-    font-size: 0.72rem;
-    color: var(--slate-dim);
-    font-family: 'Courier New', ui-monospace, monospace;
-  }
-  .terminal-body {
-    padding: 1.1rem 1.2rem 1.3rem;
-    font-family: 'Courier New', ui-monospace, monospace;
-    font-size: 0.88rem;
-    line-height: 1.6;
-    min-height: 140px;
-  }
-  .terminal-line {
-    color: #8fe38f;
-    white-space: pre-wrap;
-    word-break: break-word;
-  }
-  .terminal-line.success { color: #8fe38f; }
-  .terminal-line.error { color: #ff6b6b; }
-  .terminal-line.pending { color: #ffbd2e; }
-  .terminal-log { margin: 0.4rem 0; display: flex; flex-direction: column; gap: 0.15rem; }
-  .terminal-prompt-row {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-top: 0.5rem;
-  }
-  .terminal-prompt { color: #8fe38f; }
-  .terminal-input {
-    flex: 1 1 auto;
-    background: transparent;
-    border: none;
-    outline: none;
-    color: #f2f1ee;
-    font-family: 'Courier New', ui-monospace, monospace;
-    font-size: 0.88rem;
-    caret-color: #8fe38f;
-  }
-  .terminal-input::placeholder { color: #4d5158; }
-  .terminal-hint {
-    text-align: center;
-    color: var(--slate-dim);
-    font-size: 0.8rem;
-    margin-top: 0.9rem;
-  }
-  .terminal-hint code {
-    color: var(--slate);
-    background: var(--charcoal-raised);
-    border: 1px solid var(--slate-line-soft);
-    border-radius: 4px;
-    padding: 0.05rem 0.35rem;
-    font-family: 'Courier New', ui-monospace, monospace;
-  }
-
   footer {
     padding: 1.75rem 0 2.5rem;
     color: var(--slate-dim);
@@ -1338,8 +1237,6 @@
     </div>
 
     <div>
-      <p class="home-footer-note">Based in the Lansing, MI area &mdash; open to remote work.</p>
-
       <div class="stats-row">
         <div class="stat-item">
           <span class="stat-num">5+</span>
@@ -1856,7 +1753,7 @@
     <div class="page-head">
       <span class="label">Resume</span>
       <h2>Get My Resume</h2>
-      <p>Grab the resume built for the role you're hiring for &mdash; or type a keyword into the terminal below.</p>
+      <p>Grab the resume built for the role you're hiring for.</p>
     </div>
     <div class="resume-grid">
       <div class="resume-card">
@@ -1877,25 +1774,6 @@
           <a class="resume-view" href="resumes/Benjamin_Wells_Sales_Resume.pdf" target="_blank" rel="noopener">View online &#8599;</a>
         </div>
       </div>
-    </div>
-    <div class="terminal-wrap">
-      <div class="terminal-box" id="terminalBox">
-        <div class="terminal-head">
-          <span class="terminal-dot dot-r"></span><span class="terminal-dot dot-y"></span><span class="terminal-dot dot-g"></span>
-          <span class="terminal-title">resume_access</span>
-        </div>
-        <div class="terminal-body">
-          <div class="terminal-line">&gt; BENJAMIN WELLS // RESUME ACCESS SYSTEM</div>
-          <div class="terminal-line">&gt; Enter access keyword to continue.</div>
-          <div class="terminal-log" id="terminalLog"></div>
-          <div class="terminal-prompt-row">
-            <span class="terminal-prompt">&gt;</span>
-            <input type="text" id="resumeInput" class="terminal-input" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="access keyword" />
-            <span class="terminal-cursor" aria-hidden="true"></span>
-          </div>
-        </div>
-      </div>
-      <p class="terminal-hint">Hint: type the discipline you're hiring for &mdash; e.g. <code>design</code> or <code>sales</code>.</p>
     </div>
   </section>
 
@@ -2393,59 +2271,6 @@
   window.addEventListener('hashchange', function () {
     show(location.hash.replace('#', '') || 'home');
   });
-
-  // ---- resume access terminal ----
-  var RESUME_FILES = {
-    design: { name: 'Benjamin_Wells_Design_Resume.pdf', data: 'resumes/Benjamin_Wells_Design_Resume.pdf' },
-    sales: { name: 'Benjamin_Wells_Sales_Resume.pdf', data: 'resumes/Benjamin_Wells_Sales_Resume.pdf' }
-  };
-  (function () {
-    var input = document.getElementById('resumeInput');
-    var log = document.getElementById('terminalLog');
-    var box = document.getElementById('terminalBox');
-    if (!input || !log || !box) return;
-
-    function logLine(text, cls) {
-      var line = document.createElement('div');
-      line.className = 'terminal-line' + (cls ? ' ' + cls : '');
-      line.textContent = text;
-      log.appendChild(line);
-      log.scrollTop = log.scrollHeight;
-    }
-
-    function triggerDownload(file) {
-      var a = document.createElement('a');
-      a.href = file.data;
-      a.download = file.name;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-    }
-
-    function handleSubmit() {
-      var raw = input.value || '';
-      var val = raw.trim().toLowerCase();
-      if (!val) return;
-      logLine('> ' + raw.trim());
-      if (val === 'signage') {
-        logLine('ACCESS GRANTED \u2014 but the Signage archive is still being compiled. Check back soon.', 'pending');
-      } else if (RESUME_FILES[val]) {
-        logLine('ACCESS GRANTED \u2014 downloading ' + RESUME_FILES[val].name + ' ...', 'success');
-        box.classList.add('granted');
-        setTimeout(function () { triggerDownload(RESUME_FILES[val]); }, 450);
-      } else {
-        logLine('ACCESS DENIED \u2014 keyword not recognized.', 'error');
-        box.classList.remove('granted');
-        box.classList.add('shake');
-        setTimeout(function () { box.classList.remove('shake'); }, 400);
-      }
-      input.value = '';
-    }
-
-    input.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter') handleSubmit();
-    });
-  })();
 
   show(location.hash.replace('#', '') || 'home');
 
