@@ -6,6 +6,21 @@
 })();
 
 (function () {
+  var bar = document.querySelector('.bar'), btn = document.querySelector('.burger');
+  if (!bar || !btn) return;
+  var seen = false;
+  try { seen = !!localStorage.getItem('menu-seen'); } catch (e) {}
+  function set(open) {
+    if (open && !seen) { bar.classList.add('first'); seen = true; try { localStorage.setItem('menu-seen', '1'); } catch (e) {} }
+    else if (open) bar.classList.remove('first');
+    bar.classList.toggle('open', open); btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  btn.addEventListener('click', function (e) { e.stopPropagation(); set(!bar.classList.contains('open')); });
+  document.addEventListener('click', function (e) { if (bar.classList.contains('open') && !bar.querySelector('nav').contains(e.target)) set(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') set(false); });
+  window.addEventListener('resize', function () { if (innerWidth > 700) set(false); });
+})();
+(function () {
   // main videos play (muted, looping) while they are on screen and pause when they leave; swapped out of the viewer they pause too
   function start(v) { if (!v.src && v.dataset.src) v.src = v.dataset.src; var p = v.play(); if (p && p.catch) p.catch(function () {}); }
   var vids = [].slice.call(document.querySelectorAll('.dp-main video'));
