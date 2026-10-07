@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow, noarchive" />
+<title>Site admin</title>
+<style>
+  :root { --bg:#0e0f11; --panel:#17181b; --raised:#202226; --line:#34373D; --soft:#2A2C31; --ink:#F2F1EE; --mute:#9AA0AA; --red:#E5171F; --ok:#3fb27f; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  button, input, select, textarea { font:inherit; color:inherit; }
+  input, select, textarea { background:var(--raised); border:1px solid var(--line); padding:.5rem .65rem; width:100%; border-radius:0; }
+  textarea { min-height:7rem; resize:vertical; }
+  label { display:block; font-size:.78rem; letter-spacing:.06em; text-transform:uppercase; color:var(--mute); margin:.9rem 0 .3rem; }
+  button { background:var(--raised); border:1px solid var(--line); padding:.45rem .9rem; cursor:pointer; }
+  button:hover { border-color:var(--mute); }
+  button.primary { background:var(--red); border-color:var(--red); font-weight:600; }
+  button.danger:hover { border-color:var(--red); color:var(--red); }
+  button:disabled { opacity:.45; cursor:default; }
+  .wrap { max-width:1200px; margin:0 auto; padding:1rem; }
+  .bar { position:sticky; top:0; z-index:5; background:var(--bg); border-bottom:1px solid var(--soft); padding:.7rem 0; display:flex; gap:.6rem; align-items:center; flex-wrap:wrap; }
+  .bar h1 { font-size:1rem; margin:0 .6rem 0 0; }
+  .tab.active { background:var(--ink); color:var(--bg); border-color:var(--ink); }
+  .spacer { flex:1; }
+  #status { font-size:.85rem; color:var(--mute); }
+  #status.ok { color:var(--ok); } #status.err { color:var(--red); }
+  .login { max-width:340px; margin:18vh auto; padding:1.4rem; background:var(--panel); border:1px solid var(--line); }
+  .login h1 { margin:0 0 .4rem; font-size:1.2rem; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(230px,1fr)); gap:.8rem; margin-top:1rem; }
+  .item { background:var(--panel); border:1px solid var(--soft); padding:.6rem; display:flex; flex-direction:column; gap:.4rem; }
+  .item img { width:100%; aspect-ratio:4/3; object-fit:contain; background:#000; }
+  .row { display:flex; gap:.4rem; flex-wrap:wrap; }
+  .row button { padding:.25rem .55rem; font-size:.85rem; }
+  .drop { margin-top:1rem; border:2px dashed var(--line); padding:1.1rem; text-align:center; color:var(--mute); }
+  .drop.over { border-color:var(--red); color:var(--ink); }
+  .cols { display:grid; grid-template-columns:minmax(0,300px) minmax(0,1fr); gap:1.2rem; margin-top:1rem; }
+  @media (max-width:800px) { .cols { grid-template-columns:1fr; } }
+  .plist { display:flex; flex-direction:column; gap:.4rem; }
+  .pitem { display:flex; gap:.4rem; align-items:center; background:var(--panel); border:1px solid var(--soft); padding:.4rem .5rem; }
+  .pitem.sel { border-color:var(--red); }
+  .pitem .t { flex:1; text-align:left; background:none; border:0; padding:.2rem; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .editor { background:var(--panel); border:1px solid var(--soft); padding:1rem 1.2rem 1.4rem; }
+  .thumbs { display:flex; gap:.4rem; flex-wrap:wrap; margin-top:.3rem; }
+  .thumbs figure { margin:0; width:90px; position:relative; }
+  .thumbs img { width:90px; height:68px; object-fit:cover; display:block; background:#000; }
+  .thumbs button { position:absolute; top:2px; right:2px; padding:0 .35rem; line-height:1.3; }
+  .modal { position:fixed; inset:0; background:rgba(0,0,0,.8); z-index:20; display:flex; align-items:center; justify-content:center; padding:1rem; }
+  .modal > div { background:var(--panel); border:1px solid var(--line); max-width:900px; width:100%; max-height:88vh; overflow:auto; padding:1rem; }
+  .modal .pick { display:grid; grid-template-columns:repeat(auto-fill, minmax(110px,1fr)); gap:.4rem; margin:.8rem 0; }
+  .modal .pick button { padding:0; position:relative; }
+  .modal .pick button.on { outline:2px solid var(--red); }
+  .modal .pick img { width:100%; aspect-ratio:1; object-fit:cover; display:block; }
+  .hint { color:var(--mute); font-size:.85rem; }
+  [hidden] { display:none !important; }
+</style>
+</head>
+<body>
+
+<div id="loginView" class="login" hidden>
+  <h1>Site admin</h1>
+  <p class="hint">Enter the admin password.</p>
+  <input id="pw" type="password" autocomplete="current-password" aria-label="Password" />
+  <p id="loginErr" class="hint" style="color:var(--red)" role="alert"></p>
+  <button id="loginBtn" class="primary">Sign in</button>
+</div>
+
+<div id="app" class="wrap" hidden>
+  <div class="bar">
+    <h1>Site admin</h1>
+    <button class="tab active" data-tab="gallery">Gallery</button>
+    <button class="tab" data-tab="posts">Posts</button>
+    <span class="spacer"></span>
+    <span id="status" role="status"></span>
+    <button id="publish" class="primary" disabled>Publish changes</button>
+    <button id="logout">Sign out</button>
+  </div>
+
+  <section id="tabGallery">
+    <div class="drop" id="drop">
+      <p style="margin:0 0 .5rem">Drop photos here or <button id="pickFiles">choose files</button></p>
+      <input id="files" type="file" accept="image/*" multiple hidden />
+      <label style="margin:.4rem 0 .2rem">Tags for these uploads (#signs #vehicles ...)</label>
+      <input id="upTags" placeholder="#signs #yard-signs" style="max-width:420px" />
+    </div>
+    <div style="margin-top:1rem;max-width:420px"><input id="gFilter" placeholder="Filter by tag or caption" aria-label="Filter" /></div>
+    <div id="gGrid" class="grid"></div>
+  </section>
+
+  <section id="tabPosts" hidden>
+    <div class="cols">
+      <div>
+        <button id="newPost" class="primary" style="width:100%;margin-bottom:.6rem">New post</button>
+        <div id="pList" class="plist"></div>
+      </div>
+      <div id="pEditor"></div>
+    </div>
+  </section>
+</div>
+
+<div id="modal" class="modal" hidden><div id="modalBody"></div></div>
+
+<script src="config.js"></script>
+<script>
+(function () {
+  var API = (window.ADMIN_API || '').replace(/\/$/, '');
+  var $ = function (id) { return document.getElementById(id); };
+  var token = '';
+  try { token = sessionStorage.getItem('adm') || ''; } catch (e) {}
+  var data = { posts: [], images: [] };
+  var dirty = { posts: false, gallery: false };
+  var sel = -1; // selected post index
+
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  function status(msg, kind) { var s = $('status'); s.textContent = msg || ''; s.className = kind || ''; }
+  function slugify(s) { return String(s).toLowerCase().replace(/^#+/, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, ''); }
+  function parseTags(s) { var out = []; String(s).split(/[\s,]+/).forEach(function (t) { t = slugify(t); if (t && out.indexOf(t) < 0) out.push(t); }); return out; }
+  function tagText(a) { return (a || []).map(function (t) { return '#' + t; }).join(' '); }
+  function thumbOf(p) { return '../' + (/^img\/[^/]+$/.test(p) ? 'img/t/' + p.slice(4).replace(/\.\w+$/, '.webp') : p); }
+  function mark(which) { dirty[which] = true; $('publish').disabled = false; status('Unpublished changes'); }
+
+  function api(path, opts) {
+    opts = opts || {};
+    var headers = { 'Content-Type': 'application/json' };
+    if (token) headers.Authorization = 'Bearer ' + token;
+    return fetch(API + path, { method: opts.method || 'GET', headers: headers, body: opts.body ? JSON.stringify(opts.body) : undefined })
+      .then(function (r) {
+        return r.json().catch(function () { return {}; }).then(function (j) {
+          if (r.status === 401 && path !== '/api/login') { signOut(); throw new Error('Session ended. Sign in again.'); }
+          if (!r.ok) throw new Error(j.error || ('Request failed (' + r.status + ')'));
+          return j;
+        });
+      });
+  }
+
+  // ---- auth ----
+  function showLogin(msg) { $('app').hidden = true; $('loginView').hidden = false; $('loginErr').textContent = msg || ''; $('pw').value = ''; $('pw').focus(); }
+  function signOut() { token = ''; try { sessionStorage.removeItem('adm'); } catch (e) {} showLogin(); }
+  function login() {
+    if (!API) { $('loginErr').textContent = 'The admin server isn’t connected yet (admin/config.js).'; return; }
+    $('loginBtn').disabled = true;
+    api('/api/login', { method: 'POST', body: { password: $('pw').value } }).then(function (j) {
+      token = j.token; try { sessionStorage.setItem('adm', token); } catch (e) {}
+      start();
+    }).catch(function (e) { $('loginErr').textContent = e.message; }).then(function () { $('loginBtn').disabled = false; });
+  }
+  $('loginBtn').onclick = login;
+  $('pw').addEventListener('keydown', function (e) { if (e.key === 'Enter') login(); });
+  $('logout').onclick = signOut;
+
+  function start() {
+    $('loginView').hidden = true; $('app').hidden = false; status('Loading…');
+    api('/api/content').then(function (c) {
+      data.posts = (c.posts && c.posts.posts) || [];
+      data.images = (c.gallery && c.gallery.images) || [];
+      dirty = { posts: false, gallery: false };
+      $('publish').disabled = true; status('');
+      renderGallery(); renderPosts();
+    }).catch(function (e) { if (token) status(e.message, 'err'); });
+  }
+
+  // ---- publish ----
+  $('publish').onclick = function () {
+    var jobs = [];
+    if (dirty.gallery) jobs.push(['gallery', { images: data.images }]);
+    if (dirty.posts) jobs.push(['posts', { posts: data.posts }]);
+    $('publish').disabled = true; status('Publishing…');
+    jobs.reduce(function (p, j) {
+      return p.then(function () { return api('/api/content/' + j[0], { method: 'PUT', body: { data: j[1] } }).then(function () { dirty[j[0]] = false; }); });
+    }, Promise.resolve()).then(function () { status('Published. The live site updates in about a minute.', 'ok'); })
+      .catch(function (e) { status(e.message, 'err'); $('publish').disabled = false; });
+  };
+  window.addEventListener('beforeunload', function (e) { if (dirty.posts || dirty.gallery) { e.preventDefault(); e.returnValue = ''; } });
+
+  // ---- tabs ----
+  document.querySelectorAll('.tab').forEach(function (b) {
+    b.onclick = function () {
+      document.querySelectorAll('.tab').forEach(function (x) { x.classList.toggle('active', x === b); });
+      $('tabGallery').hidden = b.dataset.tab !== 'gallery';
+      $('tabPosts').hidden = b.dataset.tab !== 'posts';
+    };
+  });
+
+  // ---- images: resize in the browser, upload as WebP ----
+  function toBlob(canvas, q) { return new Promise(function (res) { canvas.toBlob(res, 'image/webp', q); }); }
+  function blobB64(blob) { return new Promise(function (res) { var r = new FileReader(); r.onload = function () { res(String(r.result).split(',')[1]); }; r.readAsDataURL(blob); }); }
+  function scaled(bmp, max) {
+    var s = Math.min(1, max / Math.max(bmp.width, bmp.height));
+    var c = document.createElement('canvas'); c.width = Math.round(bmp.width * s); c.height = Math.round(bmp.height * s);
+    c.getContext('2d').drawImage(bmp, 0, 0, c.width, c.height); return c;
+  }
+  function uploadOne(file, tags) {
+    var base = slugify(file.name.replace(/\.\w+$/, '')) || 'photo';
+    var name = base + '-' + Math.random().toString(36).slice(2, 6) + '.webp';
+    return createImageBitmap(file).then(function (bmp) {
+      var full = scaled(bmp, 1600), th = scaled(bmp, 480);
+      return Promise.all([toBlob(full, 0.82), toBlob(th, 0.8)]).then(function (b) {
+        return Promise.all([blobB64(b[0]), blobB64(b[1])]).then(function (s) {
+          return api('/api/upload', { method: 'POST', body: { name: name, full: s[0], thumb: s[1] } }).then(function (r) {
+            data.images.unshift({ id: name.replace(/\.webp$/, ''), src: r.src, caption: '', tags: tags, w: full.width, h: full.height });
+          });
+        });
+      });
+    });
+  }
+  function uploadFiles(files) {
+    var list = Array.prototype.slice.call(files).filter(function (f) { return /^image\//.test(f.type); });
+    var tags = parseTags($('upTags').value), n = 0;
+    list.reduce(function (p, f) {
+      return p.then(function () { status('Uploading ' + (++n) + ' of ' + list.length + '…'); return uploadOne(f, tags); });
+    }, Promise.resolve()).then(function () { mark('gallery'); status('Uploaded ' + list.length + '. Add captions, then publish.', 'ok'); renderGallery(); })
+      .catch(function (e) { status(e.message, 'err'); renderGallery(); });
+  }
+  $('pickFiles').onclick = function () { $('files').click(); };
+  $('files').onchange = function () { uploadFiles(this.files); this.value = ''; };
+  ['dragenter', 'dragover'].forEach(function (ev) { $('drop').addEventListener(ev, function (e) { e.preventDefault(); $('drop').classList.add('over'); }); });
+  ['dragleave', 'drop'].forEach(function (ev) { $('drop').addEventListener(ev, function (e) { e.preventDefault(); $('drop').classList.remove('over'); }); });
+  $('drop').addEventListener('drop', function (e) { uploadFiles(e.dataTransfer.files); });
+
+  // ---- gallery tab ----
+  function renderGallery() {
+    var g = $('gGrid'), q = $('gFilter').value.trim().toLowerCase().replace(/^#/, '');
+    g.innerHTML = '';
+    data.images.forEach(function (it, i) {
+      if (q && (it.caption || '').toLowerCase().indexOf(q) < 0 && !(it.tags || []).some(function (t) { return t.indexOf(q) >= 0; })) return;
+      var box = el('div', 'item');
+      var im = el('img'); im.src = thumbOf(it.src); im.alt = it.caption || ''; im.loading = 'lazy'; box.appendChild(im);
+      var cap = el('input'); cap.value = it.caption || ''; cap.placeholder = 'Caption'; cap.setAttribute('aria-label', 'Caption');
+      cap.onchange = function () { it.caption = cap.value; mark('gallery'); };
+      var tg = el('input'); tg.value = tagText(it.tags); tg.placeholder = '#tags'; tg.setAttribute('aria-label', 'Tags');
+      tg.onchange = function () { it.tags = parseTags(tg.value); tg.value = tagText(it.tags); mark('gallery'); };
+      var row = el('div', 'row');
+      function btn(label, fn, cls) { var b = el('button', cls, label); b.onclick = fn; row.appendChild(b); }
+      btn('↑', function () { move(data.images, i, -1); mark('gallery'); renderGallery(); });
+      btn('↓', function () { move(data.images, i, 1); mark('gallery'); renderGallery(); });
+      btn('Top', function () { data.images.unshift(data.images.splice(i, 1)[0]); mark('gallery'); renderGallery(); });
+      btn('Remove', function () { if (confirm('Remove this photo from the gallery? (The file stays in the repo.)')) { data.images.splice(i, 1); mark('gallery'); renderGallery(); } }, 'danger');
+      box.appendChild(cap); box.appendChild(tg); box.appendChild(row); g.appendChild(box);
+    });
+    if (!g.children.length) g.appendChild(el('p', 'hint', 'No photos match.'));
+  }
+  $('gFilter').oninput = renderGallery;
+  function move(arr, i, d) { var j = i + d; if (j < 0 || j >= arr.length) return; var t = arr[i]; arr[i] = arr[j]; arr[j] = t; }
+
+  // ---- image picker modal ----
+  function pickImages(multi, chosen, done) {
+    var picked = chosen.slice();
+    var body = $('modalBody'); body.innerHTML = '';
+    body.appendChild(el('strong', null, multi ? 'Choose photos' : 'Choose a photo'));
+    body.appendChild(el('p', 'hint', 'Upload new photos on the Gallery tab first, then pick them here.'));
+    var grid = el('div', 'pick');
+    data.images.forEach(function (it) {
+      var b = el('button'); b.type = 'button'; var im = el('img'); im.src = thumbOf(it.src); im.alt = it.caption || ''; b.appendChild(im);
+      if (picked.indexOf(it.src) >= 0) b.className = 'on';
+      b.onclick = function () {
+        if (!multi) { close(); done([it.src]); return; }
+        var k = picked.indexOf(it.src); if (k >= 0) picked.splice(k, 1); else picked.push(it.src);
+        b.className = k >= 0 ? '' : 'on';
+      };
+      grid.appendChild(b);
+    });
+    body.appendChild(grid);
+    var row = el('div', 'row');
+    var cancel = el('button', null, 'Cancel'); cancel.onclick = close; row.appendChild(cancel);
+    if (multi) { var ok = el('button', 'primary', 'Done'); ok.onclick = function () { close(); done(picked); }; row.appendChild(ok); }
+    body.appendChild(row);
+    $('modal').hidden = false;
+    function close() { $('modal').hidden = true; }
+  }
+  function capFor(src) { var f = data.images.filter(function (i) { return i.src === src; })[0]; return f ? f.caption || '' : ''; }
+
+  // ---- posts tab ----
+  function renderPosts() {
+    var l = $('pList'); l.innerHTML = '';
+    data.posts.forEach(function (p, i) {
+      var r = el('div', 'pitem' + (i === sel ? ' sel' : ''));
+      var t = el('button', 't', p.title || '(untitled)'); t.onclick = function () { sel = i; renderPosts(); };
+      var up = el('button', null, '↑'); up.onclick = function () { move(data.posts, i, -1); if (sel === i) sel = Math.max(0, i - 1); mark('posts'); renderPosts(); };
+      var dn = el('button', null, '↓'); dn.onclick = function () { move(data.posts, i, 1); if (sel === i) sel = Math.min(data.posts.length - 1, i + 1); mark('posts'); renderPosts(); };
+      r.appendChild(t); r.appendChild(up); r.appendChild(dn); l.appendChild(r);
+    });
+    renderEditor();
+  }
+  $('newPost').onclick = function () {
+    data.posts.unshift({ slug: 'new-post-' + Math.random().toString(36).slice(2, 6), cat: 'brand', kicker: 'Case Study', title: 'New post', blurb: '', cardImg: '', cardAlt: '', cardThumbs: [], hero: '', heroAlt: '', city: '', body: [''], thumbs: [], tags: [] });
+    sel = 0; mark('posts'); renderPosts();
+  };
+  function field(parent, label, node) { var l = el('label', null, label); parent.appendChild(l); parent.appendChild(node); return node; }
+  function textInput(val, on) { var i = el('input'); i.value = val || ''; i.onchange = function () { on(i.value); mark('posts'); renderList(); }; return i; }
+  function renderList() { var rows = $('pList').querySelectorAll('.pitem .t'); data.posts.forEach(function (p, i) { if (rows[i]) rows[i].textContent = p.title || '(untitled)'; }); }
+  function thumbStrip(list, onRemove) {
+    var s = el('div', 'thumbs');
+    list.forEach(function (src, i) {
+      var f = el('figure'); var im = el('img'); im.src = thumbOf(src); f.appendChild(im);
+      var x = el('button', null, '×'); x.type = 'button'; x.onclick = function () { onRemove(i); }; f.appendChild(x); s.appendChild(f);
+    });
+    return s;
+  }
+  function renderEditor() {
+    var box = $('pEditor'); box.innerHTML = '';
+    var p = data.posts[sel]; if (!p) { box.appendChild(el('p', 'hint', 'Pick a post on the left, or start a new one.')); return; }
+    var ed = el('div', 'editor'); box.appendChild(ed);
+    field(ed, 'Title', textInput(p.title, function (v) { p.title = v; }));
+    field(ed, 'Kicker (small line above the title)', textInput(p.kicker, function (v) { p.kicker = v; }));
+    var cat = el('select'); [['brand', 'Brand & Print'], ['signs', 'Signage']].forEach(function (o) { var op = el('option', null, o[1]); op.value = o[0]; cat.appendChild(op); });
+    cat.value = p.cat; cat.onchange = function () { p.cat = cat.value; mark('posts'); }; field(ed, 'Category', cat);
+    field(ed, 'City (optional, shown with the kicker)', textInput(p.city, function (v) { p.city = v; }));
+    var bl = el('textarea'); bl.value = p.blurb || ''; bl.onchange = function () { p.blurb = bl.value; mark('posts'); }; field(ed, 'Card summary', bl);
+    var body = el('textarea'); body.style.minHeight = '16rem'; body.value = (p.body || []).join('\n\n');
+    body.onchange = function () { p.body = body.value.split(/\n\s*\n/).map(function (s) { return s.trim(); }).filter(Boolean); mark('posts'); };
+    field(ed, 'Post text (blank line between paragraphs)', body);
+    var tg = el('input'); tg.value = tagText(p.tags); tg.placeholder = '#signs #yard-signs';
+    tg.onchange = function () { p.tags = parseTags(tg.value); tg.value = tagText(p.tags); mark('posts'); }; field(ed, 'Hashtags', tg);
+
+    var heroRow = el('div'); ed.appendChild(el('label', null, 'Main photo'));
+    var hs = thumbStrip(p.hero ? [p.hero] : [], function () { p.hero = ''; mark('posts'); renderEditor(); }); heroRow.appendChild(hs);
+    var hb = el('button', null, p.hero ? 'Change main photo' : 'Choose main photo'); hb.type = 'button'; hb.style.marginTop = '.4rem';
+    hb.onclick = function () { pickImages(false, p.hero ? [p.hero] : [], function (s) { p.hero = s[0]; p.heroAlt = capFor(s[0]) || p.title; if (!p.cardImg) { p.cardImg = s[0]; p.cardAlt = p.heroAlt; } mark('posts'); renderEditor(); }); };
+    heroRow.appendChild(hb); ed.appendChild(heroRow);
+    var cb = el('button', null, p.cardImg ? 'Change list-card photo' : 'Choose list-card photo'); cb.type = 'button'; cb.style.marginTop = '.4rem';
+    cb.onclick = function () { pickImages(false, p.cardImg ? [p.cardImg] : [], function (s) { p.cardImg = s[0]; p.cardAlt = capFor(s[0]) || p.title; mark('posts'); renderEditor(); }); };
+    heroRow.appendChild(el('span', null, ' ')); heroRow.appendChild(cb);
+
+    ed.appendChild(el('label', null, 'More photos (shown at the bottom of the post)'));
+    var srcs = (p.thumbs || []).map(function (t) { return t.src; });
+    ed.appendChild(thumbStrip(srcs, function (i) { p.thumbs.splice(i, 1); p.cardThumbs = p.thumbs.slice(0, 3).map(function (t) { return { src: t.src, alt: t.alt }; }); mark('posts'); renderEditor(); }));
+    var mb = el('button', null, 'Add or remove photos'); mb.type = 'button'; mb.style.marginTop = '.4rem';
+    mb.onclick = function () {
+      pickImages(true, srcs, function (list) {
+        p.thumbs = list.map(function (s) { var old = (p.thumbs || []).filter(function (t) { return t.src === s; })[0]; return old || { src: s, alt: capFor(s) || p.title, caption: capFor(s) }; });
+        p.cardThumbs = p.thumbs.slice(0, 3).map(function (t) { return { src: t.src, alt: t.alt }; });
+        mark('posts'); renderEditor();
+      });
+    };
+    ed.appendChild(mb);
+
+    ed.appendChild(el('label', null, 'Web address'));
+    ed.appendChild(el('p', 'hint', 'bwells.online/#case/' + p.slug));
+    var slugIn = el('input'); slugIn.value = p.slug; slugIn.setAttribute('aria-label', 'Slug');
+    slugIn.onchange = function () { var v = slugify(slugIn.value); if (!v || data.posts.some(function (o) { return o !== p && o.slug === v; })) { slugIn.value = p.slug; return; } p.slug = v; slugIn.value = v; mark('posts'); renderEditor(); };
+    ed.appendChild(slugIn);
+    ed.appendChild(el('p', 'hint', 'Changing this breaks old links to the post and any map pin that points at it.'));
+    var del = el('button', 'danger', 'Delete post'); del.type = 'button'; del.style.marginTop = '1rem';
+    del.onclick = function () { if (confirm('Delete "' + p.title + '"?')) { data.posts.splice(sel, 1); sel = -1; mark('posts'); renderPosts(); } };
+    ed.appendChild(del);
+  }
+
+  if (token) start(); else showLogin();
+})();
+</script>
+</body>
+</html>

@@ -42,6 +42,16 @@ if missing_files:
     problems.append("IMG paths missing on disk: " + str(missing_files))
 
 # 3. references resolve
+content_refs = set()
+for _f in ("posts", "gallery"):
+    _p = os.path.join(D, "content", _f + ".json")
+    if os.path.exists(_p):
+        content_refs |= set(re.findall(r'"(?:src|hero|cardImg)":\s*"([^"]+)"', open(_p, encoding="utf-8").read()))
+miss_c = [x for x in content_refs if not os.path.exists(os.path.join(D, x))]
+miss_c += [x for x in content_refs if x.startswith("img/") and not os.path.exists(os.path.join(D, "img", "t", os.path.splitext(os.path.basename(x))[0] + ".webp"))]
+print("content image refs:", len(content_refs), "| missing file or thumbnail:", miss_c or "none")
+if miss_c:
+    problems.append("content refs missing: " + str(miss_c))
 data_img = set(re.findall(r'data-img="([^"]+)"', html))
 thumbs = set(re.findall(r"src:\s*'([^']+\.(?:jpg|png|gif|webp))'", html))
 heroes = set(re.findall(r"hero:\s*'([^']+\.(?:jpg|png|gif|webp))'", html))
@@ -50,7 +60,7 @@ for label, refs in (("data-img", data_img), ("thumb src", thumbs), ("hero", hero
     print(f"{label} refs: {len(refs)} | missing from IMG: {sorted(miss) or 'none'}")
     if miss:
         problems.append(f"{label} refs missing: {sorted(miss)}")
-unused = set(img) - data_img - thumbs - heroes
+unused = set(img) - data_img - thumbs - heroes - {k for k, v in img.items() if v in content_refs}
 print("IMG keys never referenced:", sorted(unused) or "none")
 
 # 4. every static path in the html exists

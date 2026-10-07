@@ -1,0 +1,9 @@
+name = "portfolio-admin"
+main = "src/index.js"
+compatibility_date = "2025-01-01"
+
+[vars]
+REPO = "benjaminwellssss/portfolio"
+BRANCH = "main"
+# Origins allowed to call the API (the live site; localhost is for local testing)
+ALLOWED_ORIGINS = "https://www.bwells.online,https://bwells.online,http://localhost:8792"

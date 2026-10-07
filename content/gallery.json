@@ -1,0 +1,373 @@
+{
+ "images": [
+  {
+   "id": "legion_exp_5169",
+   "src": "img/legion_exp_5169.webp",
+   "caption": "Legion Explorer graphics",
+   "tags": [
+    "signs",
+    "vehicle-graphics",
+    "legion"
+   ],
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "mythic_guide_cover",
+   "src": "img/mythic_guide_cover.webp",
+   "caption": "Mythic Foundry brand guide (cover)",
+   "tags": [
+    "branding",
+    "brand-guide"
+   ],
+   "w": 1225,
+   "h": 792
+  },
+  {
+   "id": "dewitt_baseball",
+   "src": "img/dewitt_baseball.webp",
+   "caption": "DeWitt baseball yard sign",
+   "tags": [
+    "signs",
+    "yard-signs",
+    "schools"
+   ],
+   "w": 1200,
+   "h": 800
+  },
+  {
+   "id": "pulpit_banner_full",
+   "src": "img/pulpit_banner_full.webp",
+   "caption": "Pulpit Aside banner (full)",
+   "tags": [
+    "branding",
+    "broadcast",
+    "podcast"
+   ],
+   "w": 1600,
+   "h": 900
+  },
+  {
+   "id": "legion_exp_5170",
+   "src": "img/legion_exp_5170.webp",
+   "caption": "Legion Explorer graphics",
+   "tags": [
+    "signs",
+    "vehicle-graphics",
+    "legion"
+   ],
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "mythic_guide_finalization",
+   "src": "img/mythic_guide_finalization.webp",
+   "caption": "Mythic Foundry brand guide (finalization page)",
+   "tags": [
+    "branding",
+    "brand-guide"
+   ],
+   "w": 1225,
+   "h": 792
+  },
+  {
+   "id": "dewitt_cheer",
+   "src": "img/dewitt_cheer.webp",
+   "caption": "DeWitt cheer yard sign",
+   "tags": [
+    "signs",
+    "yard-signs",
+    "schools"
+   ],
+   "w": 1200,
+   "h": 904
+  },
+  {
+   "id": "pulpit_banner_simple",
+   "src": "img/pulpit_banner_simple.webp",
+   "caption": "Pulpit Aside banner (simple)",
+   "tags": [
+    "branding",
+    "broadcast",
+    "podcast"
+   ],
+   "w": 1600,
+   "h": 900
+  },
+  {
+   "id": "legion_exp_5171",
+   "src": "img/legion_exp_5171.webp",
+   "caption": "Legion Explorer graphics",
+   "tags": [
+    "signs",
+    "vehicle-graphics",
+    "legion"
+   ],
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "mythic_guide_title",
+   "src": "img/mythic_guide_title.webp",
+   "caption": "Mythic Foundry brand guide (title page)",
+   "tags": [
+    "branding",
+    "brand-guide"
+   ],
+   "w": 1225,
+   "h": 792
+  },
+  {
+   "id": "dewitt_swim",
+   "src": "img/dewitt_swim.webp",
+   "caption": "DeWitt swim & dive yard sign",
+   "tags": [
+    "signs",
+    "yard-signs",
+    "schools"
+   ],
+   "w": 1200,
+   "h": 900
+  },
+  {
+   "id": "pulpit_cover",
+   "src": "img/pulpit_cover.webp",
+   "caption": "Pulpit Aside cover art",
+   "tags": [
+    "branding",
+    "broadcast",
+    "podcast"
+   ],
+   "w": 800,
+   "h": 800
+  },
+  {
+   "id": "legion_exp_5173",
+   "src": "img/legion_exp_5173.webp",
+   "caption": "Legion Explorer graphics",
+   "tags": [
+    "signs",
+    "vehicle-graphics",
+    "legion"
+   ],
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "pulpit_lower3rds",
+   "src": "img/pulpit_lower3rds.webp",
+   "caption": "Pulpit Aside lower thirds",
+   "tags": [
+    "branding",
+    "broadcast",
+    "podcast"
+   ],
+   "w": 1600,
+   "h": 900
+  },
+  {
+   "id": "legion_exp_5175",
+   "src": "img/legion_exp_5175.webp",
+   "caption": "Legion Explorer graphics",
+   "tags": [
+    "signs",
+    "vehicle-graphics",
+    "legion"
+   ],
+   "w": 1200,
+   "h": 1600
+  },
+  {
+   "id": "pulpit_titlecard",
+   "src": "img/pulpit_titlecard.webp",
+   "caption": "Pulpit Aside title card",
+   "tags": [
+    "branding",
+    "broadcast",
+    "podcast"
+   ],
+   "w": 1600,
+   "h": 900
+  },
+  {
+   "id": "legion_van_4625",
+   "src": "img/legion_van_4625.webp",
+   "caption": "Legion membership van",
+   "tags": [
+    "signs",
+    "vehicle-graphics",
+    "legion"
+   ],
+   "w": 1200,
+   "h": 1600
+  },
+  {
+   "id": "legion_van_4626",
+   "src": "img/legion_van_4626.webp",
+   "caption": "Legion membership van",
+   "tags": [
+    "signs",
+    "vehicle-graphics",
+    "legion"
+   ],
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "tee_model_back",
+   "src": "img/tee_model_back.webp",
+   "caption": "Jesus Loves MSU tee, worn",
+   "tags": [
+    "apparel",
+    "screen-print",
+    "church"
+   ],
+   "w": 1200,
+   "h": 1600
+  },
+  {
+   "id": "legion_van_4627",
+   "src": "img/legion_van_4627.webp",
+   "caption": "Legion membership van",
+   "tags": [
+    "signs",
+    "vehicle-graphics",
+    "legion"
+   ],
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "tee_model_front",
+   "src": "img/tee_model_front.webp",
+   "caption": "Jesus Loves MSU tee, worn",
+   "tags": [
+    "apparel",
+    "screen-print",
+    "church"
+   ],
+   "w": 1200,
+   "h": 1044
+  },
+  {
+   "id": "legion_van_4629",
+   "src": "img/legion_van_4629.webp",
+   "caption": "Legion membership van",
+   "tags": [
+    "signs",
+    "vehicle-graphics",
+    "legion"
+   ],
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "legion_van_4631",
+   "src": "img/legion_van_4631.webp",
+   "caption": "Legion membership van",
+   "tags": [
+    "signs",
+    "vehicle-graphics",
+    "legion"
+   ],
+   "w": 1200,
+   "h": 1600
+  },
+  {
+   "id": "legion_van_4632",
+   "src": "img/legion_van_4632.webp",
+   "caption": "Legion membership van",
+   "tags": [
+    "signs",
+    "vehicle-graphics",
+    "legion"
+   ],
+   "w": 1200,
+   "h": 1600
+  },
+  {
+   "id": "legion_explorer_front",
+   "src": "img/legion_explorer_front.webp",
+   "caption": "Legion Explorer graphics (front)",
+   "tags": [
+    "signs",
+    "vehicle-graphics",
+    "legion"
+   ],
+   "w": 1200,
+   "h": 1600
+  },
+  {
+   "id": "legion_explorer_front3q",
+   "src": "img/legion_explorer_front3q.webp",
+   "caption": "Legion Explorer graphics (three-quarter view)",
+   "tags": [
+    "signs",
+    "vehicle-graphics",
+    "legion"
+   ],
+   "w": 1600,
+   "h": 1200
+  },
+  {
+   "id": "legion_explorer_hero",
+   "src": "img/legion_explorer_hero.webp",
+   "caption": "Legion Explorer graphics (hero view)",
+   "tags": [
+    "signs",
+    "vehicle-graphics",
+    "legion"
+   ],
+   "w": 1600,
+   "h": 1200
+  },
+  {
+   "id": "legion_explorer_side",
+   "src": "img/legion_explorer_side.webp",
+   "caption": "Legion Explorer graphics (side)",
+   "tags": [
+    "signs",
+    "vehicle-graphics",
+    "legion"
+   ],
+   "w": 1600,
+   "h": 1200
+  },
+  {
+   "id": "legion_van_front",
+   "src": "img/legion_van_front.webp",
+   "caption": "Legion membership van (front)",
+   "tags": [
+    "signs",
+    "vehicle-graphics",
+    "legion"
+   ],
+   "w": 1200,
+   "h": 1600
+  },
+  {
+   "id": "legion_van_hero",
+   "src": "img/legion_van_hero.webp",
+   "caption": "Legion membership van (hero view)",
+   "tags": [
+    "signs",
+    "vehicle-graphics",
+    "legion"
+   ],
+   "w": 1600,
+   "h": 1200
+  },
+  {
+   "id": "legion_van_rear",
+   "src": "img/legion_van_rear.webp",
+   "caption": "Legion membership van (rear)",
+   "tags": [
+    "signs",
+    "vehicle-graphics",
+    "legion"
+   ],
+   "w": 1600,
+   "h": 1200
+  }
+ ]
+}

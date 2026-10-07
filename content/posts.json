@@ -1,0 +1,489 @@
+{
+ "posts": [
+  {
+   "slug": "mythicfoundry",
+   "cat": "brand",
+   "kicker": "Case Study · Logo Refinement & Brand System · September 2026",
+   "title": "Mythic Foundry",
+   "blurb": "Turning a rough AI-generated concept into a production-ready mark — clean vector redraw, grid and clear-space rules, and a full brand guide with color and type system.",
+   "cardImg": "img/mythic_lockup_color.webp",
+   "cardAlt": "Mythic Foundry emblem, full color",
+   "cardThumbs": [
+    {
+     "src": "img/mythic_lockup_white.png",
+     "alt": "Mythic Foundry emblem, reversed white"
+    },
+    {
+     "src": "img/mythic_wordmark.webp",
+     "alt": "Mythic Foundry wordmark only"
+    },
+    {
+     "src": "img/mythic_ai_reference.webp",
+     "alt": "Original AI-generated reference logo"
+    }
+   ],
+   "hero": "img/mythic_lockup_color.webp",
+   "heroAlt": "Finished Mythic Foundry emblem — a dragon coiled above a glowing anvil, with the \"Mythic Foundry\" wordmark below, full color",
+   "city": "",
+   "body": [
+    "The client came in with an AI-generated concept for a dragon-and-anvil emblem — a strong idea, but unusable as a production logo: rough edges, inconsistent linework, no defined proportions.",
+    "The job was to turn that concept into an actual usable mark: redrawing it as clean vector line art, defining clear-space and sizing rules against a strict grid, and building a full system around it — a \"forge glow\" full-color palette (warm amber, orange, and rust plus near-black and off-white, with exact hex/RGB/CMYK values) alongside a monochrome version for single-color use. Typography pairs BeaufortPro Heavy for the primary wordmark with Platypi Bold as a secondary face.",
+    "Deliverables were a complete brand guidelines document — the redrawn emblem in full color and monochrome, a transparent lockup, a small-format/favicon version, and explicit dos-and-don’ts for using the wordmark against different backgrounds."
+   ],
+   "thumbs": [
+    {
+     "src": "img/mythic_lockup_white.png",
+     "alt": "Mythic Foundry emblem in reversed white, for dark backgrounds",
+     "caption": "Reversed (white) lockup"
+    },
+    {
+     "src": "img/mythic_wordmark.webp",
+     "alt": "Mythic Foundry wordmark only, no emblem",
+     "caption": "Wordmark only"
+    },
+    {
+     "src": "img/mythic_guide_finalization.webp",
+     "alt": "Logo finalization page comparing the AI-generated reference against the hand-redrawn line art, with grid and clear-space guides",
+     "caption": "Logo cleanup & grid system"
+    },
+    {
+     "src": "img/mythic_guide_cover.webp",
+     "alt": "Mythic Foundry brand guide cover, white emblem on a dark textured background",
+     "caption": "Brand guide cover"
+    },
+    {
+     "src": "img/mythic_guide_title.webp",
+     "alt": "Mythic Foundry brand guidelines section title page",
+     "caption": "Brand guidelines title page"
+    },
+    {
+     "src": "img/mythic_ai_reference.webp",
+     "alt": "The original AI-generated reference logo supplied as a starting point, before cleanup",
+     "caption": "Starting reference (pre-cleanup)"
+    }
+   ],
+   "tags": [
+    "branding",
+    "logo",
+    "brand-guide"
+   ]
+  },
+  {
+   "slug": "onebynine",
+   "cat": "brand",
+   "kicker": "Case Study · Logo & Brand Mark · September 2026",
+   "title": "onebynine.ai (1x9 Systems)",
+   "blurb": "A grounded, people-first mark for an AI operations consultancy — a 3x3 grid icon that spells out \"1x9\" through its own construction, paired with a clean wordmark system.",
+   "cardImg": "img/onebynine_icon_green.png",
+   "cardAlt": "onebynine.ai 3x3 grid icon mark",
+   "cardThumbs": [
+    {
+     "src": "img/onebynine_wordmark_black.png",
+     "alt": "onebynine.ai wordmark lockup"
+    },
+    {
+     "src": "img/onebynine_icon_orange.png",
+     "alt": "onebynine.ai icon, orange colorway"
+    },
+    {
+     "src": "img/onebynine_wordmark_white.png",
+     "alt": "onebynine.ai reversed white lockup"
+    },
+    {
+     "src": "img/onebynine_icon_black.png",
+     "alt": "onebynine.ai icon, black colorway"
+    }
+   ],
+   "hero": "img/onebynine_icon_green.png",
+   "heroAlt": "3x3 grid icon mark in a green gradient, rounded square, with one cell shown as a white X shape",
+   "city": "",
+   "body": [
+    "onebynine.ai (internally called 1x9 Systems) is a technical consulting brand focused on operations modernization and practical, AI-driven workflow automation for small and midsize businesses — deliberately not a flashy \"AI toys\" pitch. The mark needed to hold that grounded, people-first tone rather than looking like a generic tech-startup logo.",
+    "The concept is a 3-by-3 grid — nine squares, reading as \"1 of 9\" / \"one by nine\" — with one cell replaced by an X shape, so the icon itself spells out the multiplication \"1x9\" instead of relying on a wordmark trick alone. It works as a standalone favicon-scale glyph or paired with the \"onebynine.ai\" wordmark as a full lockup. The palette is a rust orange and dark earthy green, chosen specifically to avoid a generic SaaS look.",
+    "The finished system covers full-color and reversed lockups, a standalone icon mark in multiple colorways, and a wordmark built to scale from a browser favicon up to a full site header."
+   ],
+   "thumbs": [
+    {
+     "src": "img/onebynine_wordmark_black.png",
+     "alt": "Full onebynine.ai wordmark lockup in black",
+     "caption": "Primary wordmark lockup"
+    },
+    {
+     "src": "img/onebynine_icon_orange.png",
+     "alt": "3x3 grid icon in solid rust orange",
+     "caption": "Icon mark, orange colorway"
+    },
+    {
+     "src": "img/onebynine_wordmark_white.png",
+     "alt": "All-white version of the grid icon and wordmark for dark backgrounds",
+     "caption": "Reversed (white) lockup"
+    },
+    {
+     "src": "img/onebynine_icon_black.png",
+     "alt": "Compact black version of the 3x3 grid icon mark alone",
+     "caption": "Icon mark, black colorway"
+    },
+    {
+     "src": "img/onebynine_icon_white.png",
+     "alt": "Compact white version of the 3x3 grid icon mark alone",
+     "caption": "Icon mark, white colorway"
+    },
+    {
+     "src": "img/onebynine_icon_green_black.png",
+     "alt": "Green icon with black wordmark text lockup",
+     "caption": "Green colorway, black text"
+    },
+    {
+     "src": "img/onebynine_icon_green_white.png",
+     "alt": "Green icon with white wordmark text lockup",
+     "caption": "Green colorway, white text"
+    },
+    {
+     "src": "img/onebynine_icon_orange_black.png",
+     "alt": "Orange icon with black wordmark text lockup",
+     "caption": "Orange colorway, black text"
+    },
+    {
+     "src": "img/onebynine_icon_orange_white.png",
+     "alt": "Orange icon with white wordmark text lockup",
+     "caption": "Orange colorway, white text"
+    }
+   ],
+   "tags": [
+    "branding",
+    "logo"
+   ]
+  },
+  {
+   "slug": "sign-dewitt",
+   "cat": "signs",
+   "kicker": "Case Study · Yard Signs · 2023–2026",
+   "title": "DeWitt Schools Yard Signs",
+   "blurb": "Recurring personalized athlete yard signs for DeWitt Public Schools — roughly ten new sport designs a year, thousands of signs printed over the run of the program.",
+   "cardImg": "img/dewitt_swim.webp",
+   "cardAlt": "DeWitt Swim and Dive yard sign design",
+   "cardThumbs": [
+    {
+     "src": "img/dewitt_baseball.webp",
+     "alt": "DeWitt Baseball yard sign"
+    },
+    {
+     "src": "img/dewitt_cheer.webp",
+     "alt": "DeWitt Cheer yard sign"
+    }
+   ],
+   "hero": "img/dewitt_swim.webp",
+   "heroAlt": "DeWitt Swim & Dive yard sign design with a custom swimmer illustration and Panthers mascot",
+   "city": "",
+   "body": [
+    "While at MMD Signs, DeWitt Public Schools became a recurring client for personalized athlete yard signs — the kind families put in the yard to celebrate a student’s season. Coroplast, 18\"x24\", built to survive a Michigan season outdoors.",
+    "Each sport got its own design: a custom swimmer illustration for swim & dive, a mascot-and-diamond layout for baseball, star-and-paw graphics for cheer, plus versions for football, softball, volleyball, archery, and more, across both the high school and middle school. Every design was templated with a \"Student Name\" field so the shop could personalize and output them fast, sport by sport, season after season.",
+    "This became one of the highest-volume recurring jobs on the floor — roughly ten new designs a year on top of reprints, amounting to thousands of signs printed and sold over the run of the program."
+   ],
+   "thumbs": [
+    {
+     "src": "img/dewitt_baseball.webp",
+     "alt": "DeWitt Baseball yard sign with player name, number, and Panthers mascot logo",
+     "caption": "Baseball"
+    },
+    {
+     "src": "img/dewitt_cheer.webp",
+     "alt": "DeWitt Competitive Youth Cheer yard sign with star and paw print graphics",
+     "caption": "Cheer"
+    }
+   ],
+   "tags": [
+    "signs",
+    "yard-signs",
+    "schools"
+   ]
+  },
+  {
+   "slug": "msutee",
+   "cat": "brand",
+   "kicker": "Case Study · Apparel & Screen Print · August 2024",
+   "title": "Jesus Loves MSU",
+   "blurb": "An outreach tee for Element Church’s table at MSU’s Sparticipation fair — a play on words up front, the real message on the back.",
+   "cardImg": "img/tee_front_mockup.png",
+   "cardAlt": "Jesus Loves MSU t-shirt front design",
+   "cardThumbs": [
+    {
+     "src": "img/tee_back_mockup.png",
+     "alt": "Back of the Jesus Loves MSU t-shirt"
+    },
+    {
+     "src": "img/tee_model_front.webp",
+     "alt": "Shirt worn in person, front design"
+    },
+    {
+     "src": "img/tee_model_back.webp",
+     "alt": "Shirt worn in person, back design"
+    }
+   ],
+   "hero": "img/tee_front_mockup.png",
+   "heroAlt": "Dark green t-shirt reading \"JESUS LOVES MSU\" in green and white lettering",
+   "city": "",
+   "body": [
+    "Designed while working at Element Church in East Lansing for their presence at Sparticipation 2024, Michigan State University’s annual student-organization fair. The shirt needed a hook strong enough to stop students walking a crowded row of tables — something that read as Spartan gear first and a church shirt second.",
+    "The front plays it straight: \"Jesus Loves MSU\" in Spartan green and white, readable at a glance and impossible not to reread once it lands. The back carries the actual message — \"Change the Backyard, Change the World\" wrapped around a globe graphic, with the church’s name and site tucked underneath so anyone who liked the shirt actually knew where it came from.",
+    "Produced and worn on-site at Sparticipation 2024, doing double duty as event swag and outreach in the same piece of cotton."
+   ],
+   "thumbs": [
+    {
+     "src": "img/tee_back_mockup.png",
+     "alt": "Back of the t-shirt with \"Change the Backyard, Change the World\" text wrapped around a globe graphic and Element Church branding",
+     "caption": "Back design"
+    },
+    {
+     "src": "img/tee_model_front.webp",
+     "alt": "Person wearing the shirt in person, front design visible, photographed from the neck down",
+     "caption": "Worn at Sparticipation 2024"
+    },
+    {
+     "src": "img/tee_model_back.webp",
+     "alt": "Person wearing the shirt in person, back design visible",
+     "caption": "Back, worn in person"
+    },
+    {
+     "src": "img/tee_color_front.png",
+     "alt": "Small color mockup swatch of the front design",
+     "caption": "Front, mockup swatch"
+    },
+    {
+     "src": "img/tee_color_back.png",
+     "alt": "Small color mockup swatch of the back design",
+     "caption": "Back, mockup swatch"
+    },
+    {
+     "src": "img/tee_bw_front.png",
+     "alt": "Black and white print-proof mockup of the front design",
+     "caption": "Front, print proof (B&W)"
+    },
+    {
+     "src": "img/tee_bw_back.png",
+     "alt": "Black and white print-proof mockup of the back design",
+     "caption": "Back, print proof (B&W)"
+    }
+   ],
+   "tags": [
+    "apparel",
+    "screen-print",
+    "church"
+   ]
+  },
+  {
+   "slug": "sign-legion-explorer",
+   "cat": "signs",
+   "kicker": "Case Study · Vehicle Graphics · June 2024",
+   "title": "Michigan State Commander Vehicle",
+   "blurb": "Official vehicle graphics for the American Legion’s elected Michigan State Commander — flag graphics, military seals, and a veterans-crisis-awareness decal, designed to read as dignified as the role itself.",
+   "cardImg": "img/legion_explorer_hero.webp",
+   "cardAlt": "Ford Explorer with Michigan State Commander vehicle graphics",
+   "cardThumbs": [
+    {
+     "src": "img/legion_explorer_side.webp",
+     "alt": "Rear flag graphic and seals on the Explorer"
+    },
+    {
+     "src": "img/legion_explorer_front.webp",
+     "alt": "Be The One hood decal on the Explorer"
+    },
+    {
+     "src": "img/legion_explorer_front3q.webp",
+     "alt": "Front three-quarter view of the Explorer"
+    }
+   ],
+   "hero": "img/legion_explorer_hero.webp",
+   "heroAlt": "White Ford Explorer with American Legion Department of Michigan graphics and \"Michigan State Commander\" lettering on the door",
+   "city": "",
+   "body": [
+    "This Ford Explorer is the official vehicle for the American Legion's Michigan State Commander — an elected position — so the graphics needed to read as dignified and official, not like standard fleet branding.",
+    "The design pairs the state organization's mark and \"Michigan State Commander\" title lettering with an American-flag graphic across the rear glass, a star-and-stripe rocker panel treatment, and a clean line of military branch seals along the front fender. A \"Be The One\" veterans-crisis-awareness decal on the hood ties the vehicle to the Legion's national suicide-prevention campaign.",
+    "Fully designed and installed in-house. The wrap now travels with the Commander to American Legion events statewide."
+   ],
+   "thumbs": [
+    {
+     "src": "img/legion_explorer_side.webp",
+     "alt": "Three-quarter side view of the Explorer showing the American flag graphic on the rear window and military seals",
+     "caption": "Rear flag graphic & seals"
+    },
+    {
+     "src": "img/legion_explorer_front.webp",
+     "alt": "Straight-on front view of the Explorer showing the \"Be The One\" veterans crisis line decal on the hood",
+     "caption": "\"Be The One\" hood decal"
+    },
+    {
+     "src": "img/legion_explorer_front3q.webp",
+     "alt": "Front three-quarter view of the Explorer showing windshield lettering and fender seals",
+     "caption": "Front three-quarter view"
+    },
+    {
+     "src": "img/legion_exp_5171.webp",
+     "alt": "Full side profile of the Explorer parked outside MMD Signs",
+     "caption": "Full side profile, outside the shop"
+    },
+    {
+     "src": "img/legion_exp_5169.webp",
+     "alt": "Side view of the Explorer showing scholarship, oratorical, and baseball program stars",
+     "caption": "Program stars detail"
+    },
+    {
+     "src": "img/legion_exp_5170.webp",
+     "alt": "Side view of the Explorer showing the Michigan State Commander lettering",
+     "caption": "Commander lettering detail"
+    },
+    {
+     "src": "img/legion_exp_5173.webp",
+     "alt": "Rear three-quarter view of the Explorer",
+     "caption": "Rear three-quarter view"
+    },
+    {
+     "src": "img/legion_exp_5175.webp",
+     "alt": "Front three-quarter view of the Explorer in the parking lot",
+     "caption": "Front three-quarter, parking lot"
+    }
+   ],
+   "tags": [
+    "signs",
+    "vehicle-graphics",
+    "legion"
+   ]
+  },
+  {
+   "slug": "sign-legion-van",
+   "cat": "signs",
+   "kicker": "Case Study · Vehicle Graphics · March 2024",
+   "title": "American Legion Membership Van",
+   "blurb": "A full vehicle wrap for the American Legion, Department of Michigan — organizational branding, program logos, and military branch seals, with QR codes built in for on-the-spot membership and donations.",
+   "cardImg": "img/legion_van_hero.webp",
+   "cardAlt": "American Legion membership van, full vehicle wrap",
+   "cardThumbs": [
+    {
+     "src": "img/legion_van_front.webp",
+     "alt": "Front of the American Legion van"
+    },
+    {
+     "src": "img/legion_van_rear.webp",
+     "alt": "Rear QR-code panels on the van"
+    }
+   ],
+   "hero": "img/legion_van_hero.webp",
+   "heroAlt": "White cargo van fully wrapped with American Legion, Department of Michigan branding, military branch seals, and program logos",
+   "city": "",
+   "body": [
+    "The American Legion, Department of Michigan needed a rolling recruitment and donation vehicle — something that could show up at events, ballgames, and community drives and make the case for membership on sight, not just carry cargo.",
+    "Full exterior coverage combines the primary American Legion mark and \"Veterans Strengthening America\" tagline with sub-program branding — American Legion Baseball, the Legion Riders — plus a full column of military branch seals down the side, laid out to read cleanly at a glance rather than as clutter. Scannable QR codes on the rear windows tie directly to \"join\" and \"donate\" actions, turning the van itself into a functional touchpoint instead of a rolling billboard.",
+    "Designed and installed personally, start to finish. The van now works as a mobile recruitment tool at Legion events across the state."
+   ],
+   "thumbs": [
+    {
+     "src": "img/legion_van_front.webp",
+     "alt": "Front of the American Legion van showing windshield lettering and program decal on the hood",
+     "caption": "Front & windshield lettering"
+    },
+    {
+     "src": "img/legion_van_rear.webp",
+     "alt": "Rear of the American Legion van with \"Scan to Join\" and \"Scan to Donate\" QR codes on the windows",
+     "caption": "Rear QR-code panels"
+    },
+    {
+     "src": "img/legion_van_4626.webp",
+     "alt": "Side of the van showing the full military branch seal lineup and Sons of the American Legion shield",
+     "caption": "Full branch seal lineup"
+    },
+    {
+     "src": "img/legion_van_4627.webp",
+     "alt": "Side of the van parked on the shop floor at MMD Signs",
+     "caption": "On the shop floor"
+    },
+    {
+     "src": "img/legion_van_4629.webp",
+     "alt": "Side of the van showing American Legion Baseball and Riders program logos",
+     "caption": "Baseball & Riders logos"
+    },
+    {
+     "src": "img/legion_van_4625.webp",
+     "alt": "Detail shot of the van wheel well and lower body graphics",
+     "caption": "Lower body detail"
+    },
+    {
+     "src": "img/legion_van_4631.webp",
+     "alt": "Rear view of the van with the doors closed",
+     "caption": "Rear, doors closed"
+    },
+    {
+     "src": "img/legion_van_4632.webp",
+     "alt": "Rear view of the van from a slightly different angle",
+     "caption": "Rear, alternate angle"
+    }
+   ],
+   "tags": [
+    "signs",
+    "vehicle-graphics",
+    "legion"
+   ]
+  },
+  {
+   "slug": "pulpitaside",
+   "cat": "brand",
+   "kicker": "Case Study · Podcast & Broadcast Branding · September 2022",
+   "title": "Pulpit Aside",
+   "blurb": "Competition-winning podcast identity for two pastors from different churches — illustrated face-card branding built out into a full broadcast package of lower thirds, title cards, and banners.",
+   "cardImg": "img/pulpit_cover.webp",
+   "cardAlt": "Pulpit Aside podcast cover art",
+   "cardThumbs": [
+    {
+     "src": "img/pulpit_titlecard.webp",
+     "alt": "Pulpit Aside video title card"
+    },
+    {
+     "src": "img/pulpit_lower3rds.webp",
+     "alt": "Pulpit Aside broadcast lower thirds"
+    },
+    {
+     "src": "img/pulpit_banner_full.webp",
+     "alt": "Pulpit Aside YouTube banner"
+    },
+    {
+     "src": "img/pulpit_banner_simple.webp",
+     "alt": "Pulpit Aside simplified banner variant"
+    }
+   ],
+   "hero": "img/pulpit_cover.webp",
+   "heroAlt": "Square podcast cover art — yellow gradient background with overlapping blue \"PULPIT\" and orange \"ASIDE\" text blocks",
+   "city": "",
+   "body": [
+    "In fall 2022 I entered a branding competition for a new podcast co-hosted by two pastors from different churches, built around a simple premise: set the pulpit aside and compare their church cultures on broader, everyday topics outside the traditional religious bubble. The identity needed to read as progressive and conversational, not churchy.",
+    "I benchmarked the top 100 podcasts on Spotify and YouTube and landed between two references: the face-card layout and bold type of Smartless, and the vector-traced character portraits of Pardon My Take. My first pass leaned on an icon combining a microphone, a pulpit, and a cross — conceptually sound but too rigid. I pivoted to illustrated portraits of the two hosts instead, built from reference photos in a bright blue/yellow/orange palette. Realistic eyes gave an uncanny-valley effect, so I abstracted the faces into featureless silhouettes — which read cleaner at thumbnail size and turned the hosts into a scalable, iconic mark rather than standard portraiture.",
+    "The face-card concept won the competition, and the client retained me to build it into a full broadcast package — lower thirds, animated title cards, and YouTube banners, all built on the same modular artwork. The identity is still in active use on the show today."
+   ],
+   "thumbs": [
+    {
+     "src": "img/pulpit_banner_full.webp",
+     "alt": "Pulpit Aside YouTube channel banner with layered color-block shapes framing the host illustrations and logo lockup",
+     "caption": "YouTube banner treatment"
+    },
+    {
+     "src": "img/pulpit_titlecard.webp",
+     "alt": "Widescreen title card with illustrated host portraits, the Pulpit Aside logo, and tagline \"An Uncommon Exchange\"",
+     "caption": "Video title card"
+    },
+    {
+     "src": "img/pulpit_lower3rds.webp",
+     "alt": "Lower-third graphic reading \"Pastor Jessie Still\" and \"Pastor Coye Bouyer\" flanking the Pulpit Aside logo",
+     "caption": "Broadcast lower thirds"
+    },
+    {
+     "src": "img/pulpit_banner_simple.webp",
+     "alt": "Simplified banner variant with the host illustrations and stacked wordmark on a solid yellow field",
+     "caption": "Simplified banner variant"
+    }
+   ],
+   "tags": [
+    "branding",
+    "broadcast",
+    "podcast"
+   ]
+  }
+ ]
+}

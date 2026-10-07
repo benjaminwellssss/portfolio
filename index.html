@@ -682,6 +682,52 @@
     cursor: pointer;
   }
 
+
+  /* ---- map + gallery side by side, tags, gallery page ---- */
+  .design-lower {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    gap: clamp(1.25rem, 3vw, 2.25rem);
+    align-items: start;
+  }
+  .design-lower .mi-map-wrap { max-width: none; }
+  @media (max-width: 899px) { .design-lower { grid-template-columns: minmax(0, 1fr); } }
+  .design-body[data-filter="signs"] .design-lower { order: -1; }
+  .dg-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .dg-grid button, .gal-item {
+    -webkit-appearance: none; appearance: none; padding: 0; border: 1px solid var(--slate-line-soft);
+    background: var(--charcoal-raised-2); cursor: zoom-in; overflow: hidden; display: block; position: relative;
+  }
+  .dg-grid button { aspect-ratio: 1 / 1; }
+  .dg-grid img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .25s ease; }
+  .dg-grid button:hover img { transform: scale(1.06); }
+  .dg-more { margin-top: 0.9rem; display: inline-block; }
+  .case-tags { display: flex; flex-wrap: wrap; gap: 0.35rem 0.6rem; margin: 0 0 0.75rem; }
+  .tag { font-size: 0.78rem; color: var(--slate); text-decoration: none; letter-spacing: 0.02em; }
+  .tag:hover { color: var(--red); }
+  .gal-grid { column-count: 4; column-gap: 8px; }
+  @media (max-width: 1000px) { .gal-grid { column-count: 3; } }
+  @media (max-width: 640px) { .gal-grid { column-count: 2; } }
+  .gal-item { width: 100%; margin: 0 0 8px; break-inside: avoid; }
+  .gal-item img { width: 100%; height: auto; display: block; }
+  .gal-item span {
+    position: absolute; left: 0; right: 0; bottom: 0; padding: 1.2rem 0.6rem 0.45rem; text-align: left;
+    font-size: 0.74rem; color: var(--ink); background: linear-gradient(transparent, rgba(10,10,11,0.85));
+    opacity: 0; transition: opacity .2s ease;
+  }
+  .gal-item:hover span, .gal-item:focus-visible span { opacity: 1; }
+  .gal-posts { margin-top: clamp(1.5rem, 4vw, 2.5rem); display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .gal-posts .label { flex-basis: 100%; }
+  .gal-empty { color: var(--slate); }
+  .lightbox-nav {
+    position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 64px; border: 1px solid var(--slate-line);
+    background: var(--charcoal-raised); color: var(--ink); font-size: 2rem; line-height: 1; cursor: pointer; display: none; z-index: 2;
+  }
+  .lightbox.set .lightbox-nav { display: block; }
+  .lb-prev { left: clamp(0.5rem, 2vw, 1.5rem); }
+  .lb-next { right: clamp(0.5rem, 2vw, 1.5rem); }
+  .lightbox-cap { position: absolute; left: 0; right: 0; bottom: 0.9rem; text-align: center; font-size: 0.85rem; color: var(--slate); padding: 0 4rem; pointer-events: none; }
+
   /* ---- case studies (design page) ---- */
   .case-grid {
     display: flex;
@@ -851,7 +897,6 @@
   }
   .design-body[data-filter="brand"] [data-cat="signs"] { display: none; }
   .design-body[data-filter="signs"] [data-cat="brand"] { display: none; }
-  .design-body[data-filter="signs"] .design-map { order: -1; }
   .design-map-head { text-align: center; margin-bottom: 1rem; }
   .design-map-head h3 { font-size: clamp(1.3rem, 3vw, 1.8rem); margin: 0.4rem 0; }
   .design-map-head p { color: var(--slate); font-size: 0.9rem; margin: 0; }
@@ -1304,189 +1349,65 @@
       <button type="button" class="design-chip design-chip-link" id="designMapJump">Map &darr;</button>
     </div>
     <div class="design-body" id="designBody" data-filter="all">
-      <div class="case-grid">
-      <article class="case-card" data-cat="brand">
-        <a class="case-photo" href="#case/mythicfoundry" aria-label="Read the Mythic Foundry case study">
-          <img data-img="mythic_lockup_color.png" alt="Mythic Foundry emblem, full color" />
-        </a>
-        <div class="case-body">
-          <div>
-            <span class="label case-kicker">Case Study &middot; Logo Refinement &amp; Brand System &middot; September 2026</span>
-            <h3 class="case-title">Mythic Foundry</h3>
+      <div class="case-grid" id="caseGrid"><p class="case-more-note">Loading work&hellip;</p></div>
+      <div class="design-lower">
+        <div class="design-map" id="designMap" data-cat="signs">
+          <div class="design-map-head">
+            <span class="label">Signage &middot; Michigan</span>
+            <h3>Sign work across the state</h3>
+            <p>Tap a pin to jump to the project.</p>
           </div>
-          <p class="case-blurb">Turning a rough AI-generated concept into a production-ready mark &mdash; clean vector redraw, grid and clear-space rules, and a full brand guide with color and type system.</p>
-          <div class="case-foot">
-            <div class="case-thumbs">
-              <span class="case-thumb"><img data-img="mythic_lockup_white.png" alt="Mythic Foundry emblem, reversed white" /></span>
-              <span class="case-thumb"><img data-img="mythic_wordmark.png" alt="Mythic Foundry wordmark only" /></span>
-              <span class="case-thumb"><img data-img="mythic_ai_reference.jpg" alt="Original AI-generated reference logo" /></span>
-            </div>
-            <a class="btn case-cta" href="#case/mythicfoundry">Read the whole blog post &rarr;</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="case-card" data-cat="brand">
-        <a class="case-photo" href="#case/onebynine" aria-label="Read the onebynine.ai case study">
-          <img data-img="onebynine_icon_green.png" alt="onebynine.ai 3x3 grid icon mark" />
-        </a>
-        <div class="case-body">
-          <div>
-            <span class="label case-kicker">Case Study &middot; Logo &amp; Brand Mark &middot; September 2026</span>
-            <h3 class="case-title">onebynine.ai (1x9 Systems)</h3>
-          </div>
-          <p class="case-blurb">A grounded, people-first mark for an AI operations consultancy &mdash; a 3x3 grid icon that spells out "1x9" through its own construction, paired with a clean wordmark system.</p>
-          <div class="case-foot">
-            <div class="case-thumbs">
-              <span class="case-thumb"><img data-img="onebynine_wordmark_black.png" alt="onebynine.ai wordmark lockup" /></span>
-              <span class="case-thumb"><img data-img="onebynine_icon_orange.png" alt="onebynine.ai icon, orange colorway" /></span>
-              <span class="case-thumb"><img data-img="onebynine_wordmark_white.png" alt="onebynine.ai reversed white lockup" /></span>
-              <span class="case-thumb"><img data-img="onebynine_icon_black.png" alt="onebynine.ai icon, black colorway" /></span>
-            </div>
-            <a class="btn case-cta" href="#case/onebynine">Read the whole blog post &rarr;</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="case-card" data-cat="signs" id="post-sign-dewitt">
-        <a class="case-photo" href="#case/sign-dewitt" aria-label="Read the DeWitt Schools Yard Signs case study">
-          <img data-img="dewitt_swim.jpg" alt="DeWitt Swim and Dive yard sign design" />
-        </a>
-        <div class="case-body">
-          <div>
-            <span class="label case-kicker">Case Study &middot; Yard Signs &middot; 2023&ndash;2026</span>
-            <h3 class="case-title">DeWitt Schools Yard Signs</h3>
-          </div>
-          <p class="case-blurb">Recurring personalized athlete yard signs for DeWitt Public Schools &mdash; roughly ten new sport designs a year, thousands of signs printed over the run of the program.</p>
-          <div class="case-foot">
-            <div class="case-thumbs">
-              <span class="case-thumb"><img data-img="dewitt_baseball.jpg" alt="DeWitt Baseball yard sign" /></span>
-              <span class="case-thumb"><img data-img="dewitt_cheer.jpg" alt="DeWitt Cheer yard sign" /></span>
-            </div>
-            <a class="btn case-cta" href="#case/sign-dewitt">Read the whole blog post &rarr;</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="case-card" data-cat="brand">
-        <a class="case-photo" href="#case/msutee" aria-label="Read the Jesus Loves MSU case study">
-          <img data-img="tee_front_mockup.png" alt="Jesus Loves MSU t-shirt front design" />
-        </a>
-        <div class="case-body">
-          <div>
-            <span class="label case-kicker">Case Study &middot; Apparel &amp; Screen Print &middot; August 2024</span>
-            <h3 class="case-title">Jesus Loves MSU</h3>
-          </div>
-          <p class="case-blurb">An outreach tee for Element Church&rsquo;s table at MSU&rsquo;s Sparticipation fair &mdash; a play on words up front, the real message on the back.</p>
-          <div class="case-foot">
-            <div class="case-thumbs">
-              <span class="case-thumb"><img data-img="tee_back_mockup.png" alt="Back of the Jesus Loves MSU t-shirt" /></span>
-              <span class="case-thumb"><img data-img="tee_model_front.jpg" alt="Shirt worn in person, front design" /></span>
-              <span class="case-thumb"><img data-img="tee_model_back.jpg" alt="Shirt worn in person, back design" /></span>
-            </div>
-            <a class="btn case-cta" href="#case/msutee">Read the whole blog post &rarr;</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="case-card" data-cat="signs" id="post-sign-legion-explorer">
-        <a class="case-photo" href="#case/sign-legion-explorer" aria-label="Read the Michigan State Commander Vehicle case study">
-          <img data-img="legion_explorer_hero.jpg" alt="Ford Explorer with Michigan State Commander vehicle graphics" />
-        </a>
-        <div class="case-body">
-          <div>
-            <span class="label case-kicker">Case Study &middot; Vehicle Graphics &middot; June 2024</span>
-            <h3 class="case-title">Michigan State Commander Vehicle</h3>
-          </div>
-          <p class="case-blurb">Official vehicle graphics for the American Legion&rsquo;s elected Michigan State Commander &mdash; flag graphics, military seals, and a veterans-crisis-awareness decal, designed to read as dignified as the role itself.</p>
-          <div class="case-foot">
-            <div class="case-thumbs">
-              <span class="case-thumb"><img data-img="legion_explorer_side.jpg" alt="Rear flag graphic and seals on the Explorer" /></span>
-              <span class="case-thumb"><img data-img="legion_explorer_front.jpg" alt="Be The One hood decal on the Explorer" /></span>
-              <span class="case-thumb"><img data-img="legion_explorer_front3q.jpg" alt="Front three-quarter view of the Explorer" /></span>
-            </div>
-            <a class="btn case-cta" href="#case/sign-legion-explorer">Read the whole blog post &rarr;</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="case-card" data-cat="signs" id="post-sign-legion-van">
-        <a class="case-photo" href="#case/sign-legion-van" aria-label="Read the American Legion Membership Van case study">
-          <img data-img="legion_van_hero.jpg" alt="American Legion membership van, full vehicle wrap" />
-        </a>
-        <div class="case-body">
-          <div>
-            <span class="label case-kicker">Case Study &middot; Vehicle Graphics &middot; March 2024</span>
-            <h3 class="case-title">American Legion Membership Van</h3>
-          </div>
-          <p class="case-blurb">A full vehicle wrap for the American Legion, Department of Michigan &mdash; organizational branding, program logos, and military branch seals, with QR codes built in for on-the-spot membership and donations.</p>
-          <div class="case-foot">
-            <div class="case-thumbs">
-              <span class="case-thumb"><img data-img="legion_van_front.jpg" alt="Front of the American Legion van" /></span>
-              <span class="case-thumb"><img data-img="legion_van_rear.jpg" alt="Rear QR-code panels on the van" /></span>
-            </div>
-            <a class="btn case-cta" href="#case/sign-legion-van">Read the whole blog post &rarr;</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="case-card" data-cat="brand">
-        <a class="case-photo" href="#case/pulpitaside" aria-label="Read the Pulpit Aside case study">
-          <img data-img="pulpit_cover.png" alt="Pulpit Aside podcast cover art" />
-        </a>
-        <div class="case-body">
-          <div>
-            <span class="label case-kicker">Case Study &middot; Podcast &amp; Broadcast Branding &middot; September 2022</span>
-            <h3 class="case-title">Pulpit Aside</h3>
-          </div>
-          <p class="case-blurb">Competition-winning podcast identity for two pastors from different churches &mdash; illustrated face-card branding built out into a full broadcast package of lower thirds, title cards, and banners.</p>
-          <div class="case-foot">
-            <div class="case-thumbs">
-              <span class="case-thumb"><img data-img="pulpit_titlecard.png" alt="Pulpit Aside video title card" /></span>
-              <span class="case-thumb"><img data-img="pulpit_lower3rds.png" alt="Pulpit Aside broadcast lower thirds" /></span>
-              <span class="case-thumb"><img data-img="pulpit_banner_full.png" alt="Pulpit Aside YouTube banner" /></span>
-              <span class="case-thumb"><img data-img="pulpit_banner_simple.png" alt="Pulpit Aside simplified banner variant" /></span>
-            </div>
-            <a class="btn case-cta" href="#case/pulpitaside">Read the whole blog post &rarr;</a>
-          </div>
-        </div>
-      </article>
+          <div class="mi-map-wrap">
+        <svg class="mi-map-svg" viewBox="0 0 603.1 434.4" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+          <g class="mi-map-neighbors">
+            <path d="M226,433.9h-111.8c.6-1.8-1-2.5-2.2-3.4l-9.9-7.2-14.5-15.5c-3.5-5.3-8.7-23.5-3.9-27.7s4.1-5.3,3.6-9.4,5.1-3.9,6.6-5.1-1.8-9.1,6.4-13c2.5-14.4-4.7-14.3-4.6-17s1.2-5.5,2.6-7.1c7.3-2.8,18.3-4.2,20.9-10.9l4.8-12.4c6.3-16.1-6.7-16.8-8.8-23-2.7-7.9-7.4-5.8-7.4-8s.5-1.6,1.6-1.6l16-.2,20.6-1.3c20-1.2,39.2-2.1,59.7-4.8-1.8,8.9,1.1,14.8,6.2,20.9l5.4,13.5c1.4,3.6,2.7,6,3,10l8,101.7c.3,4.4-2,8.7-1.2,13.2s-.2,5.6-1.2,7.9Z" />
+            <path d="M427.1,433.8h-19.6c.2-1.9-.3-4.5-2-5.4-3.4-1.9-7.7,1.3-10.4,5.5h-25.1c-2.5-4.9-10.6-1.4-13.4-3.5s-.5-7.7-6.2-10.9-9.8-.8-17.6.7l-5.5-52.3c-2.6-24.6-6.4-48.1-8-72.9l40.1-6.8c6.6-1.1,12.3,0,17.2,4.6,4,.8,7.7-.9,11.7-.6s5.8,5,8.6,6c4,1.4,8.2-1.8,11.8-2.9s3.8-1.2,3.6-3.5l3.1-1c.8,2,3.2.6,4.3.5,6.2-.4,9.6-2.6,13.5-6.6l10.8-11.2c1.6-1.7,4.5-1.6,6.4-3.6,4-4.6,10.7-7,16.5-9l9.5,56.2c.7,4.4.4,6.9-3.2,9.7s1,5.6,1.1,7.4c.5,11.7.7,23.2-2,34.6-1.8,7.6-8.1,13.6-14.1,18.2s-4.5-.1-5.6.2c-3.9,1.2-4.7,5.4-7,7.9-9,10.3,0,16.7-2.8,18.2s-2.4-3.6-6.1-4.1c-5.8-.8-6.6,9.9-6.9,19.3l-3,5.5Z" />
+            <path d="M.5,368.4v-138.7c5.1-.7,10.3-.8,16.1-.7,20.8.5,41.1-.8,61.9-1.5,7.1-.3,1.5,6,7.7,8.8s1.9,1.5,2.2,2.3c.6,2.2-9.8,9.6,0,22.4s7.8,5.6,13.5,7c2.8.9,3.7,6.8,3.8,9.5l5.9,2.6c2.1,10.5,16.3,11.5,10.3,24.1-5.7,12-3.7,17.7-21.4,20.3-4.3.6-4.9,2.8-6.4,5.8-2.4,4.7-1.1,9.5,3.3,11.9,3.6,9.2-6.2,10.5-5.6,21.6-2.7.2-4.7,1-5.8,2.1-3.3,3.3.3,9.1-3.3,11.1-4.4-2.4-6.7-6.7-9.4-11.2-24.6,1.9-48.6,3.6-72.7,2.6Z" />
+            <path d="M602.5,234.4v109.8s-75.6,15-75.6,15l-39.5,5.3-7.9-44.7-9.6-61,1.3-4.1c.4.3,1.1.4,1.4.3,2.1-.8,5.5-1.6,7.4-3.6,4-4.1,8.9-9.4,8.1-9.3.7-.1,2.4-.3,3.3,0l1.3,12.6,13.9-2.1,95.9-18.2Z" />
+            <path d="M332,433.9h-101.8c-2.7-6.1,1.4-12.6.9-19.3l-8.5-110c4.4,1.8,6.9,3.9,10.6,3.2l11-8.5,72.2-6.6c1.9,28.3,6,54.7,8.9,82.1l5,46.8-1.7,5.1c2.9,1.8,4.7,4.2,3.4,7.1Z" />
+            <path d="M111.8,1.1c0,2.5,2,5,4.3,6.3,2.5-2.8,5.1-2.9,8.5-2.5s1.2,1.7.8,2.4-1.2,1.1-2.2,1.5l-20,9c-1.3.6-2,.9-1.7,2.6-.7-.6-1.3-.2-1.8-.2-8.6.7-15.3,5.6-21.1,12s-4.8,8.3-7.9,12.3-10.7,8.5-13.7,15.2c-4.3-.1-11,6.4-11.4,7.2-1.3,2.9-3,5.9-5.3,7.8l-1.2,26-12.7,10.6c-3.4,2.8-4.2,10.1-5.9,14.5,3.1,2.2,6.2,4.5,7.1,7,1.6,4.5-1.5,6.5-2.5,9.9-1.9,6.4-.2,13.5-.2,20.2s4.1,11.1,9.4,12.4,4.6-.4,6.6.5c.7,5.4,4.1,8.1,9.7,7.1,1.8,2,4.2,4.3,5.3,6.7,5.3,11.1,22.4,13,23.7,22.3l1.8,13.4c-3.7-.5-6.6.3-10.2.4l-70.7,1.4V.7s54.8.1,54.8.1c5.3,6.5,12.8,4.5,18.7,1s11.1-.3,15.7-.4l22.1-.3Z" />
+            <path d="M522,433.9h-90.8s1.5-11,1.5-11c.4-4.2.6-8.3,3.6-11.5,2.5,1.7,2.6,3.9,3.5,6.5,3.5-.4,7.9-3.7,6.5-7.8-.9-2.6-3.5-5.9-1.3-8.8,4.3-5.7,7.4-11.6,8.3-11.4l4.4.8c7-4.6,14.8-11.6,17.2-20.1l2.7-27.7c.9-9.5-3.3-13.8-1.4-15.1s2.2-.3,2.4,1.1l6.9,39,37.2-5.2,4.4,22.4c.4,1,2.8.4,3.7-1l8.4-10.7,6.5-1.5,6.1-6.7,9.1-.9c4.1-3,7.1-6.2,11.9-8.5,6.5,2.6,12.8,6,16.9,11.9l-1.8,8.5c-7.4-4.6-14.3-7.9-22.4-9.7-.2,6.4,1,12.3-1.8,17.6l-4.8,9.1-6.5,5.5c-1.4,1.1-1.1,3.8-2.7,4.1s-3.1.5-5.4.2l-3.6,19.7c-5,.4-7.2-2.6-8.8-6.6s-6.7-2-6.9,0l-.8,8.4c-.3,3.4-2.2,6.2-2.2,9.3Z" />
+            <path d="M602.5,158.4v72.9s-26.5,4.6-26.5,4.6l-81.2,16c-.1-4.5-1.8-9.9,0-14,2-2.8,5.8-5.4,8.4-8.5,2.7-3.3,7.7-4.8,9.5-9.4s3.9-7,7.1-9.8l-3.3-9.1c-1.2-.5-3.2-.9-3.9-2-1.5-3-2.5-6.7-3.1-9.8,2.8-5.4,8-6.1,13-7.6,9.9-2.9,19.3-5.8,30-4.1s5,4.6,8,3.2,6.9-4.8,11.3-5.6l11.9-2.3c9-5.8,6.2-15.5,18.9-14.4Z" />
+            <path d="M109.5,433.9H.5v-62.3c23.2-.3,47.1-.8,71.1-3.4,3.1,8.8,11.2,8.6,6.9,15.7.8,9.4,3.2,17.8,6.8,26.2l12.9,13.2c6.4,6.5,11.9,7.7,11.4,10.6Z" />
+            <path d="M602.5,380.3v53.6s-78.3,0-78.3,0c2.8-5.3,1.9-10.5,4.1-17.5,3.2,7.3,7.7,10.6,14.7,8.6l3.4-18.8c2.9-.7,5-.7,7.8-.4-.4-5.7,3.1-7.7,7-10.4,1.5-2.5,4.4-6.5,5-9.6l3.1-15.5,19.9,9.6c2.8-2,1.4-6.3,2.8-8.7,1.5-1.9,7.5.7,7,3.5s-.4,3.7.6,4.7,2.1.6,3,1Z" />
+            <path d="M602.5,347.3v24c-3.3-1.5-7.4-2.5-10.2-5.2l-8.8-8.2c-2.4-2.2-6.2-1.9-8.6-5.7l27.6-5Z" />
+            <path d="M602.5,116.2v19.1c-2.2-1.5-4.8-2.1-7.5-1.9-.3-.4-1.1-1.2-1.6-1.3-.8-2.8-1.2-5.6-1.3-8.8,3.3-3.6,8.1-8.3,10.3-7.2Z" />
+            <path d="M208.8,184c-.8,1.2-1.4,3.3-3.3,3.7s-2.7,1.8-3,3.8-.3,3.6,2,3.5v2.9c-2.2,1.5,2,7.6-.6,12.4s-3.2,7.7-4.4,11.7-.3,5.8.3,9.7l2.3,14.8c2.1,5.8,4.7,11.1,3.1,17.5-14.3,2-28.4,2.8-42.9,3.8l-17.6,1.3c-12.6.9-26.1,1.1-38.5.7-2.4-8.2-9.5-1.6-16.4-11.3s2.6-14.5.2-22.4-3.4-2.1-4.3-3.7c-2.7-5.9-2.5-13.1-3.1-19.6-1.1-11.1-14.8-14.1-20.7-19.3l-9.3-12.8c-1.8-.6-5.7.7-6.9-1.1l-4.5-7.2c-4.3.4-8.2.2-10.9-2.7s-3.1-5.6-3-9.8-2.2-11,.1-15.7,3.9-6.8,2.9-11.4-3.2-5.7-6.8-8.6c1.7-3.9,2.4-8.6,5.3-11.5s10.6-5.4,12.2-10.8l1.9-26.1c1.2-4.6,7.3-4.2,10.4-3.5,4.7,1.1,8.6-2,12.5-3.5,7.2-2.8,13.7-5.7,19.8-10.4s3.4-.4,3.8.4c1.9,3.7-12.7,15.5-3.3,17.1,1.2.2,2.5-.6,3.5-1.2,4.3-2.6,7,1.2,10.2,2.8s4.8-1.2,11.3,9c1.8,1.5,5.9,1.9,8.4,2.2,11.3,1.4,21.9,3.6,32.5,7.8l28.7,7.2c1.7.4,2,4,3.5,4.6l7.9,3,2.9,20.3c.4,2.8,4.7,4.5,5.6,6.7,1.4,3.3-3.4,5-4.3,6.8l-8,16.2c-.7,1.4-.1,4.4.8,5.3s3.5.8,4.8.1,1.4-2.5,2.1-3.6c3-.9,3.7-3.5,5.3-5.7l7.6-10.4,11.5-16.7c1.4,6.2-3,10.8-4.8,16s-2.7,6.5-4.6,9.5c-3.9,6-6.3,22-2.6,28.4Z" />
+            <path d="M547.7,364.3c-2.1,5.1-5.3,5.2-9.2,6.9s-5.4,7.1-9.4,10.3l-3.7-19.2,46.4-9.2-8.9,6.3c-2.9,2.1-5.7,3.9-9.5,2.7s-4.9.3-5.7,2.2Z" />
+          </g>
+          <path class="mi-map-shape" d="M353.4,147.9v11.9c-.8,1.4-3.6,2.9-4.9,3-.4-.2-.8-1.3-1.5-.9s-.5,1.1-.7,1.7l-3.4,12.5-6.9,2.4c-1,4.3-2.5,9.8-.1,13.8s6.2,4.2,9.1,5.3l9-9.4c2.6-2.7,1.9-8.9,4.4-11.6,3-2.2,7.6-2.8,10.5-5.5,4.6-.3,10.6,9.4,11.5,14.7,3.3,17.4,11.1,29.8,11,39.9,0,4.2-.4,8.5.7,12.5-2,2.3-5.3-.3-7.6,0-5.7.6-2.9,11.5-10.5,17.4s1.3,8.9-1.6,15.3c-.3.3-.8.7-1.1.8-5.2,1.4-6.1,8.9-7.5,13.5-7,.8-14.8,1.6-21.9,3.2-6.9,1.5-13.6,1.4-20.6,3.9-4.4-3.3-9.2-2.8-14.2-1.6l-56.7,5.4c-1.5.1-2.4-1.2-2.3-2.2,1.4-1.1,2.2-3.6,4.4-3.9s2-.5,2.4-1.2,0-2,.1-3c.3-4.5,4.4-7.8,5.1-12.1l3.7-24.8c1.2-8-9.7-27.6-15.8-37.5s-.1-7.6.3-10.6c.8-7.1-3.4-13.5-1-19.8,2.2.4,4.4-5.8,3.2-8.2l1-7.7c1.8.2,2.3-.8,2.1-2.6s-.6-1.8-2.1-1.6l-.3-5.8c1-.4,1.4-1.2,1.4-2.1,1.1.2,3,.2,3.6-.7s0-3.4.3-4.1c3.4-1,.7-8.3,9.8-10.2,2.3-3.5,2.1-7.4,3.8-8,4.6-1.5-4.7,9.6-.5,18.2.9,1.8,6.7-1.1,5.6-3.4.2,0,.7-.2.9,0,9.6,4.1-1.9-22.8,7.8-25.2l10.5-2.6c-.1-4.2-3.4-4.7-7-5.1-4.2-5.3,2.1-10,10-14.2l8.3,5c1.7.2,5.3-2.3,7.5-.7,7.9,5.6,16.4,9.2,26.2,11.1,3.2,4.7,8.4,7.4,8,9.4s-2.5.9-3.1,1.6c-2.3,2.7-.4,7.6,2.4,9.6,7.5,5.5,2.1,14.2,6.7,14.4Z" />
+          <path class="mi-map-shape-secondary" d="M261.5,91.9c-.7-.3-2.2,0-2.9,0-.5-1.1-1.6-1.1-2.5-1.1s-2.3,0-2.5,1.3h-2.9c-2.8,0-7.2-.5-9,2.9s-1.5,5.8-4.2,5.7c-1.1-.5-3.1-3.1-4.7-2.2-2.7,1.3-6.5,4.8-9.9,4.4-1.1-1.4-4.2-4.4-5.4-1.9l-5.1,10.7c-.8,1.6-.6,3.2.3,4.3v2.2c-.2-.2-1.1-.2-1.5,0-.5.3-.4,1.8-.8,2.6l-7.1,14.1c-3.5.1-5.5-4.6-6-7.9l-2.4-19.1c-6.2.8-9.2-3.1-11.6-6.6l-25.2-6c-14.2-5.1-28.2-9-43.3-10.3-3.2-3.2-6.1-6.2-8.6-10.5,5.4-2.4,11.5-3.9,15.3-8.6s2.3-4.6,6.2-4,9.2-1.1,12.8-5.2,3.8-1.4,3.2-3.5h1.8c1.9,0,5-.1,6.1-2.1l5-8.9c2.7-2.3,4.9-3.3,7-6.2,4.4-6,9.5-6.1,8.8-9,.3,0,.9,0,1.2.3,7.3-1.9,15.1-2.1,14.7.4s-9.9-.8-10.4,8.7l-6.2,2.9c-.2,3.8-1.8,6.2-4.2,8.7s-4.4,9.4.1,12.5c2-3,4.9-5.1,7-7.1s3.4-.5,5.5,0c4.6,1.1,9.5.7,13.5,3.5s1.7,4.4,2.8,6.5,4.7,6.6,7.7,7.9,8.4-.9,12.2-1.5c6.1,7,16,.1,23.7-7s10.3-4.9,16.6-4.7c12.8.3,23.7-11.7,24-3.8l.3,8.7c3.3,3.4,8.9,3.2,13.5,2l13.3-3.5c.8-.2,2.7-2.8,4-1-.2,13.7-1.8,14.6,9.2,23-5.1-1.1-9,0-13.4.5s-7.6.2-11.5,2.7-27.2-9.2-31.7,2.4-2.9,2-2.7,3.1Z" />
+          <path class="mi-map-shape-secondary" d="M332.4,74.8c0,1,.2,2,1.1,2.7s1.8.6,2.8.3c.2.5.7,1.7,1.2,2.1-.8,2.3-2,4.3-3.8,4.7-3.3.6-4.9,0-6.3-2.6s-2.2-4.4,0-7h5.1Z" />
+        </svg>
+        <button class="mi-pin" style="left:49.45%; top:54.88%;" data-target="sign-dewitt" title="DeWitt, MI &mdash; DeWitt Schools Yard Signs" aria-label="DeWitt, MI &mdash; DeWitt Schools Yard Signs"></button>
+        <button class="mi-pin" style="left:50.89%; top:57.02%;" data-target="sign-legion-explorer" title="Lansing, MI &mdash; Michigan State Commander Vehicle" aria-label="Lansing, MI &mdash; Michigan State Commander Vehicle"></button>
+        <button class="mi-pin" style="left:50.17%; top:57.53%;" data-target="sign-legion-van" title="Lansing, MI &mdash; American Legion Membership Van" aria-label="Lansing, MI &mdash; American Legion Membership Van"></button>
       </div>
-      <div class="design-map" id="designMap" data-cat="signs">
-        <div class="design-map-head">
-          <span class="label">Signage &middot; Michigan</span>
-          <h3>Sign work across the state</h3>
-          <p>Tap a pin to jump to the project.</p>
         </div>
-        <div class="mi-map-wrap">
-      <svg class="mi-map-svg" viewBox="0 0 603.1 434.4" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-        <g class="mi-map-neighbors">
-          <path d="M226,433.9h-111.8c.6-1.8-1-2.5-2.2-3.4l-9.9-7.2-14.5-15.5c-3.5-5.3-8.7-23.5-3.9-27.7s4.1-5.3,3.6-9.4,5.1-3.9,6.6-5.1-1.8-9.1,6.4-13c2.5-14.4-4.7-14.3-4.6-17s1.2-5.5,2.6-7.1c7.3-2.8,18.3-4.2,20.9-10.9l4.8-12.4c6.3-16.1-6.7-16.8-8.8-23-2.7-7.9-7.4-5.8-7.4-8s.5-1.6,1.6-1.6l16-.2,20.6-1.3c20-1.2,39.2-2.1,59.7-4.8-1.8,8.9,1.1,14.8,6.2,20.9l5.4,13.5c1.4,3.6,2.7,6,3,10l8,101.7c.3,4.4-2,8.7-1.2,13.2s-.2,5.6-1.2,7.9Z" />
-          <path d="M427.1,433.8h-19.6c.2-1.9-.3-4.5-2-5.4-3.4-1.9-7.7,1.3-10.4,5.5h-25.1c-2.5-4.9-10.6-1.4-13.4-3.5s-.5-7.7-6.2-10.9-9.8-.8-17.6.7l-5.5-52.3c-2.6-24.6-6.4-48.1-8-72.9l40.1-6.8c6.6-1.1,12.3,0,17.2,4.6,4,.8,7.7-.9,11.7-.6s5.8,5,8.6,6c4,1.4,8.2-1.8,11.8-2.9s3.8-1.2,3.6-3.5l3.1-1c.8,2,3.2.6,4.3.5,6.2-.4,9.6-2.6,13.5-6.6l10.8-11.2c1.6-1.7,4.5-1.6,6.4-3.6,4-4.6,10.7-7,16.5-9l9.5,56.2c.7,4.4.4,6.9-3.2,9.7s1,5.6,1.1,7.4c.5,11.7.7,23.2-2,34.6-1.8,7.6-8.1,13.6-14.1,18.2s-4.5-.1-5.6.2c-3.9,1.2-4.7,5.4-7,7.9-9,10.3,0,16.7-2.8,18.2s-2.4-3.6-6.1-4.1c-5.8-.8-6.6,9.9-6.9,19.3l-3,5.5Z" />
-          <path d="M.5,368.4v-138.7c5.1-.7,10.3-.8,16.1-.7,20.8.5,41.1-.8,61.9-1.5,7.1-.3,1.5,6,7.7,8.8s1.9,1.5,2.2,2.3c.6,2.2-9.8,9.6,0,22.4s7.8,5.6,13.5,7c2.8.9,3.7,6.8,3.8,9.5l5.9,2.6c2.1,10.5,16.3,11.5,10.3,24.1-5.7,12-3.7,17.7-21.4,20.3-4.3.6-4.9,2.8-6.4,5.8-2.4,4.7-1.1,9.5,3.3,11.9,3.6,9.2-6.2,10.5-5.6,21.6-2.7.2-4.7,1-5.8,2.1-3.3,3.3.3,9.1-3.3,11.1-4.4-2.4-6.7-6.7-9.4-11.2-24.6,1.9-48.6,3.6-72.7,2.6Z" />
-          <path d="M602.5,234.4v109.8s-75.6,15-75.6,15l-39.5,5.3-7.9-44.7-9.6-61,1.3-4.1c.4.3,1.1.4,1.4.3,2.1-.8,5.5-1.6,7.4-3.6,4-4.1,8.9-9.4,8.1-9.3.7-.1,2.4-.3,3.3,0l1.3,12.6,13.9-2.1,95.9-18.2Z" />
-          <path d="M332,433.9h-101.8c-2.7-6.1,1.4-12.6.9-19.3l-8.5-110c4.4,1.8,6.9,3.9,10.6,3.2l11-8.5,72.2-6.6c1.9,28.3,6,54.7,8.9,82.1l5,46.8-1.7,5.1c2.9,1.8,4.7,4.2,3.4,7.1Z" />
-          <path d="M111.8,1.1c0,2.5,2,5,4.3,6.3,2.5-2.8,5.1-2.9,8.5-2.5s1.2,1.7.8,2.4-1.2,1.1-2.2,1.5l-20,9c-1.3.6-2,.9-1.7,2.6-.7-.6-1.3-.2-1.8-.2-8.6.7-15.3,5.6-21.1,12s-4.8,8.3-7.9,12.3-10.7,8.5-13.7,15.2c-4.3-.1-11,6.4-11.4,7.2-1.3,2.9-3,5.9-5.3,7.8l-1.2,26-12.7,10.6c-3.4,2.8-4.2,10.1-5.9,14.5,3.1,2.2,6.2,4.5,7.1,7,1.6,4.5-1.5,6.5-2.5,9.9-1.9,6.4-.2,13.5-.2,20.2s4.1,11.1,9.4,12.4,4.6-.4,6.6.5c.7,5.4,4.1,8.1,9.7,7.1,1.8,2,4.2,4.3,5.3,6.7,5.3,11.1,22.4,13,23.7,22.3l1.8,13.4c-3.7-.5-6.6.3-10.2.4l-70.7,1.4V.7s54.8.1,54.8.1c5.3,6.5,12.8,4.5,18.7,1s11.1-.3,15.7-.4l22.1-.3Z" />
-          <path d="M522,433.9h-90.8s1.5-11,1.5-11c.4-4.2.6-8.3,3.6-11.5,2.5,1.7,2.6,3.9,3.5,6.5,3.5-.4,7.9-3.7,6.5-7.8-.9-2.6-3.5-5.9-1.3-8.8,4.3-5.7,7.4-11.6,8.3-11.4l4.4.8c7-4.6,14.8-11.6,17.2-20.1l2.7-27.7c.9-9.5-3.3-13.8-1.4-15.1s2.2-.3,2.4,1.1l6.9,39,37.2-5.2,4.4,22.4c.4,1,2.8.4,3.7-1l8.4-10.7,6.5-1.5,6.1-6.7,9.1-.9c4.1-3,7.1-6.2,11.9-8.5,6.5,2.6,12.8,6,16.9,11.9l-1.8,8.5c-7.4-4.6-14.3-7.9-22.4-9.7-.2,6.4,1,12.3-1.8,17.6l-4.8,9.1-6.5,5.5c-1.4,1.1-1.1,3.8-2.7,4.1s-3.1.5-5.4.2l-3.6,19.7c-5,.4-7.2-2.6-8.8-6.6s-6.7-2-6.9,0l-.8,8.4c-.3,3.4-2.2,6.2-2.2,9.3Z" />
-          <path d="M602.5,158.4v72.9s-26.5,4.6-26.5,4.6l-81.2,16c-.1-4.5-1.8-9.9,0-14,2-2.8,5.8-5.4,8.4-8.5,2.7-3.3,7.7-4.8,9.5-9.4s3.9-7,7.1-9.8l-3.3-9.1c-1.2-.5-3.2-.9-3.9-2-1.5-3-2.5-6.7-3.1-9.8,2.8-5.4,8-6.1,13-7.6,9.9-2.9,19.3-5.8,30-4.1s5,4.6,8,3.2,6.9-4.8,11.3-5.6l11.9-2.3c9-5.8,6.2-15.5,18.9-14.4Z" />
-          <path d="M109.5,433.9H.5v-62.3c23.2-.3,47.1-.8,71.1-3.4,3.1,8.8,11.2,8.6,6.9,15.7.8,9.4,3.2,17.8,6.8,26.2l12.9,13.2c6.4,6.5,11.9,7.7,11.4,10.6Z" />
-          <path d="M602.5,380.3v53.6s-78.3,0-78.3,0c2.8-5.3,1.9-10.5,4.1-17.5,3.2,7.3,7.7,10.6,14.7,8.6l3.4-18.8c2.9-.7,5-.7,7.8-.4-.4-5.7,3.1-7.7,7-10.4,1.5-2.5,4.4-6.5,5-9.6l3.1-15.5,19.9,9.6c2.8-2,1.4-6.3,2.8-8.7,1.5-1.9,7.5.7,7,3.5s-.4,3.7.6,4.7,2.1.6,3,1Z" />
-          <path d="M602.5,347.3v24c-3.3-1.5-7.4-2.5-10.2-5.2l-8.8-8.2c-2.4-2.2-6.2-1.9-8.6-5.7l27.6-5Z" />
-          <path d="M602.5,116.2v19.1c-2.2-1.5-4.8-2.1-7.5-1.9-.3-.4-1.1-1.2-1.6-1.3-.8-2.8-1.2-5.6-1.3-8.8,3.3-3.6,8.1-8.3,10.3-7.2Z" />
-          <path d="M208.8,184c-.8,1.2-1.4,3.3-3.3,3.7s-2.7,1.8-3,3.8-.3,3.6,2,3.5v2.9c-2.2,1.5,2,7.6-.6,12.4s-3.2,7.7-4.4,11.7-.3,5.8.3,9.7l2.3,14.8c2.1,5.8,4.7,11.1,3.1,17.5-14.3,2-28.4,2.8-42.9,3.8l-17.6,1.3c-12.6.9-26.1,1.1-38.5.7-2.4-8.2-9.5-1.6-16.4-11.3s2.6-14.5.2-22.4-3.4-2.1-4.3-3.7c-2.7-5.9-2.5-13.1-3.1-19.6-1.1-11.1-14.8-14.1-20.7-19.3l-9.3-12.8c-1.8-.6-5.7.7-6.9-1.1l-4.5-7.2c-4.3.4-8.2.2-10.9-2.7s-3.1-5.6-3-9.8-2.2-11,.1-15.7,3.9-6.8,2.9-11.4-3.2-5.7-6.8-8.6c1.7-3.9,2.4-8.6,5.3-11.5s10.6-5.4,12.2-10.8l1.9-26.1c1.2-4.6,7.3-4.2,10.4-3.5,4.7,1.1,8.6-2,12.5-3.5,7.2-2.8,13.7-5.7,19.8-10.4s3.4-.4,3.8.4c1.9,3.7-12.7,15.5-3.3,17.1,1.2.2,2.5-.6,3.5-1.2,4.3-2.6,7,1.2,10.2,2.8s4.8-1.2,11.3,9c1.8,1.5,5.9,1.9,8.4,2.2,11.3,1.4,21.9,3.6,32.5,7.8l28.7,7.2c1.7.4,2,4,3.5,4.6l7.9,3,2.9,20.3c.4,2.8,4.7,4.5,5.6,6.7,1.4,3.3-3.4,5-4.3,6.8l-8,16.2c-.7,1.4-.1,4.4.8,5.3s3.5.8,4.8.1,1.4-2.5,2.1-3.6c3-.9,3.7-3.5,5.3-5.7l7.6-10.4,11.5-16.7c1.4,6.2-3,10.8-4.8,16s-2.7,6.5-4.6,9.5c-3.9,6-6.3,22-2.6,28.4Z" />
-          <path d="M547.7,364.3c-2.1,5.1-5.3,5.2-9.2,6.9s-5.4,7.1-9.4,10.3l-3.7-19.2,46.4-9.2-8.9,6.3c-2.9,2.1-5.7,3.9-9.5,2.7s-4.9.3-5.7,2.2Z" />
-        </g>
-        <path class="mi-map-shape" d="M353.4,147.9v11.9c-.8,1.4-3.6,2.9-4.9,3-.4-.2-.8-1.3-1.5-.9s-.5,1.1-.7,1.7l-3.4,12.5-6.9,2.4c-1,4.3-2.5,9.8-.1,13.8s6.2,4.2,9.1,5.3l9-9.4c2.6-2.7,1.9-8.9,4.4-11.6,3-2.2,7.6-2.8,10.5-5.5,4.6-.3,10.6,9.4,11.5,14.7,3.3,17.4,11.1,29.8,11,39.9,0,4.2-.4,8.5.7,12.5-2,2.3-5.3-.3-7.6,0-5.7.6-2.9,11.5-10.5,17.4s1.3,8.9-1.6,15.3c-.3.3-.8.7-1.1.8-5.2,1.4-6.1,8.9-7.5,13.5-7,.8-14.8,1.6-21.9,3.2-6.9,1.5-13.6,1.4-20.6,3.9-4.4-3.3-9.2-2.8-14.2-1.6l-56.7,5.4c-1.5.1-2.4-1.2-2.3-2.2,1.4-1.1,2.2-3.6,4.4-3.9s2-.5,2.4-1.2,0-2,.1-3c.3-4.5,4.4-7.8,5.1-12.1l3.7-24.8c1.2-8-9.7-27.6-15.8-37.5s-.1-7.6.3-10.6c.8-7.1-3.4-13.5-1-19.8,2.2.4,4.4-5.8,3.2-8.2l1-7.7c1.8.2,2.3-.8,2.1-2.6s-.6-1.8-2.1-1.6l-.3-5.8c1-.4,1.4-1.2,1.4-2.1,1.1.2,3,.2,3.6-.7s0-3.4.3-4.1c3.4-1,.7-8.3,9.8-10.2,2.3-3.5,2.1-7.4,3.8-8,4.6-1.5-4.7,9.6-.5,18.2.9,1.8,6.7-1.1,5.6-3.4.2,0,.7-.2.9,0,9.6,4.1-1.9-22.8,7.8-25.2l10.5-2.6c-.1-4.2-3.4-4.7-7-5.1-4.2-5.3,2.1-10,10-14.2l8.3,5c1.7.2,5.3-2.3,7.5-.7,7.9,5.6,16.4,9.2,26.2,11.1,3.2,4.7,8.4,7.4,8,9.4s-2.5.9-3.1,1.6c-2.3,2.7-.4,7.6,2.4,9.6,7.5,5.5,2.1,14.2,6.7,14.4Z" />
-        <path class="mi-map-shape-secondary" d="M261.5,91.9c-.7-.3-2.2,0-2.9,0-.5-1.1-1.6-1.1-2.5-1.1s-2.3,0-2.5,1.3h-2.9c-2.8,0-7.2-.5-9,2.9s-1.5,5.8-4.2,5.7c-1.1-.5-3.1-3.1-4.7-2.2-2.7,1.3-6.5,4.8-9.9,4.4-1.1-1.4-4.2-4.4-5.4-1.9l-5.1,10.7c-.8,1.6-.6,3.2.3,4.3v2.2c-.2-.2-1.1-.2-1.5,0-.5.3-.4,1.8-.8,2.6l-7.1,14.1c-3.5.1-5.5-4.6-6-7.9l-2.4-19.1c-6.2.8-9.2-3.1-11.6-6.6l-25.2-6c-14.2-5.1-28.2-9-43.3-10.3-3.2-3.2-6.1-6.2-8.6-10.5,5.4-2.4,11.5-3.9,15.3-8.6s2.3-4.6,6.2-4,9.2-1.1,12.8-5.2,3.8-1.4,3.2-3.5h1.8c1.9,0,5-.1,6.1-2.1l5-8.9c2.7-2.3,4.9-3.3,7-6.2,4.4-6,9.5-6.1,8.8-9,.3,0,.9,0,1.2.3,7.3-1.9,15.1-2.1,14.7.4s-9.9-.8-10.4,8.7l-6.2,2.9c-.2,3.8-1.8,6.2-4.2,8.7s-4.4,9.4.1,12.5c2-3,4.9-5.1,7-7.1s3.4-.5,5.5,0c4.6,1.1,9.5.7,13.5,3.5s1.7,4.4,2.8,6.5,4.7,6.6,7.7,7.9,8.4-.9,12.2-1.5c6.1,7,16,.1,23.7-7s10.3-4.9,16.6-4.7c12.8.3,23.7-11.7,24-3.8l.3,8.7c3.3,3.4,8.9,3.2,13.5,2l13.3-3.5c.8-.2,2.7-2.8,4-1-.2,13.7-1.8,14.6,9.2,23-5.1-1.1-9,0-13.4.5s-7.6.2-11.5,2.7-27.2-9.2-31.7,2.4-2.9,2-2.7,3.1Z" />
-        <path class="mi-map-shape-secondary" d="M332.4,74.8c0,1,.2,2,1.1,2.7s1.8.6,2.8.3c.2.5.7,1.7,1.2,2.1-.8,2.3-2,4.3-3.8,4.7-3.3.6-4.9,0-6.3-2.6s-2.2-4.4,0-7h5.1Z" />
-      </svg>
-      <button class="mi-pin" style="left:49.45%; top:54.88%;" data-target="sign-dewitt" title="DeWitt, MI &mdash; DeWitt Schools Yard Signs" aria-label="DeWitt, MI &mdash; DeWitt Schools Yard Signs"></button>
-      <button class="mi-pin" style="left:50.89%; top:57.02%;" data-target="sign-legion-explorer" title="Lansing, MI &mdash; Michigan State Commander Vehicle" aria-label="Lansing, MI &mdash; Michigan State Commander Vehicle"></button>
-      <button class="mi-pin" style="left:50.17%; top:57.53%;" data-target="sign-legion-van" title="Lansing, MI &mdash; American Legion Membership Van" aria-label="Lansing, MI &mdash; American Legion Membership Van"></button>
-    </div>
+        <aside class="design-gallery" id="designGallery" aria-label="Gallery">
+          <div class="design-map-head">
+            <span class="label">Gallery</span>
+            <h3>Photos &amp; proofs</h3>
+            <p>Tagged by project &mdash; tap any tag to see the group.</p>
+          </div>
+          <div class="dg-grid" id="dgGrid"></div>
+          <a class="btn dg-more" href="#gallery">View full gallery &rarr;</a>
+        </aside>
       </div>
     </div>
     <p class="case-more-note">More work coming soon.</p>
+  </section>
+
+  <section class="view" data-view="gallery">
+    <span class="back-link" data-nav="design">&larr; Back to Design</span>
+    <div class="page-head">
+      <span class="label">Design &middot; Gallery</span>
+      <h2>Gallery</h2>
+      <p id="galIntro">Every photo and proof, grouped by tag.</p>
+    </div>
+    <div class="design-filters" id="galTags" role="group" aria-label="Filter by tag"></div>
+    <div class="gal-grid" id="galGrid"></div>
+    <div class="gal-posts" id="galPosts"></div>
   </section>
 
   <section class="view" data-view="case">
@@ -1787,7 +1708,10 @@
 
 <div class="lightbox" id="lightbox">
   <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+  <button class="lightbox-nav lb-prev" id="lightboxPrev" aria-label="Previous photo">&lsaquo;</button>
+  <button class="lightbox-nav lb-next" id="lightboxNext" aria-label="Next photo">&rsaquo;</button>
   <img id="lightboxImg" src="" alt="" />
+  <div class="lightbox-cap" id="lightboxCap"></div>
 </div>
 
 <script>
@@ -1980,145 +1904,182 @@
   document.documentElement.style.setProperty('--img-wix-work-artboard-f-png', 'url(' + IMG['wix_work_artboard_f.png'] + ')');
   var views = document.querySelectorAll('.view');
   var navEls = document.querySelectorAll('[data-nav]');
-  var valid = ['home', 'design', 'about', 'case', 'resumes', 'development'];
+  var valid = ['home', 'design', 'gallery', 'about', 'case', 'resumes', 'development'];
 
-  var CASE_STUDIES = {
-    'sign-dewitt': {
-      kicker: 'Case Study &middot; Yard Signs &middot; 2023\u20132026',
-      title: 'DeWitt Schools Yard Signs',
-      hero: 'dewitt_swim.jpg',
-      heroAlt: 'DeWitt Swim & Dive yard sign design with a custom swimmer illustration and Panthers mascot',
-      body: [
-        'While at MMD Signs, DeWitt Public Schools became a recurring client for personalized athlete yard signs \u2014 the kind families put in the yard to celebrate a student\u2019s season. Coroplast, 18"x24", built to survive a Michigan season outdoors.',
-        'Each sport got its own design: a custom swimmer illustration for swim & dive, a mascot-and-diamond layout for baseball, star-and-paw graphics for cheer, plus versions for football, softball, volleyball, archery, and more, across both the high school and middle school. Every design was templated with a "Student Name" field so the shop could personalize and output them fast, sport by sport, season after season.',
-        'This became one of the highest-volume recurring jobs on the floor \u2014 roughly ten new designs a year on top of reprints, amounting to thousands of signs printed and sold over the run of the program.'
-      ],
-      thumbs: [
-        { src: 'dewitt_baseball.jpg', alt: 'DeWitt Baseball yard sign with player name, number, and Panthers mascot logo', caption: 'Baseball' },
-        { src: 'dewitt_cheer.jpg', alt: 'DeWitt Competitive Youth Cheer yard sign with star and paw print graphics', caption: 'Cheer' }
-      ]
-    },
-    msutee: {
-      kicker: 'Case Study &middot; Apparel &amp; Screen Print &middot; August 2024',
-      title: 'Jesus Loves MSU',
-      hero: 'tee_front_mockup.png',
-      heroAlt: 'Dark green t-shirt reading "JESUS LOVES MSU" in green and white lettering',
-      body: [
-        'Designed while working at Element Church in East Lansing for their presence at Sparticipation 2024, Michigan State University\u2019s annual student-organization fair. The shirt needed a hook strong enough to stop students walking a crowded row of tables \u2014 something that read as Spartan gear first and a church shirt second.',
-        'The front plays it straight: "Jesus Loves MSU" in Spartan green and white, readable at a glance and impossible not to reread once it lands. The back carries the actual message \u2014 "Change the Backyard, Change the World" wrapped around a globe graphic, with the church\u2019s name and site tucked underneath so anyone who liked the shirt actually knew where it came from.',
-        'Produced and worn on-site at Sparticipation 2024, doing double duty as event swag and outreach in the same piece of cotton.'
-      ],
-      thumbs: [
-        { src: 'tee_back_mockup.png', alt: 'Back of the t-shirt with "Change the Backyard, Change the World" text wrapped around a globe graphic and Element Church branding', caption: 'Back design' },
-        { src: 'tee_model_front.jpg', alt: 'Person wearing the shirt in person, front design visible, photographed from the neck down', caption: 'Worn at Sparticipation 2024' },
-        { src: 'tee_model_back.jpg', alt: 'Person wearing the shirt in person, back design visible', caption: 'Back, worn in person' },
-        { src: 'tee_color_front.png', alt: 'Small color mockup swatch of the front design', caption: 'Front, mockup swatch' },
-        { src: 'tee_color_back.png', alt: 'Small color mockup swatch of the back design', caption: 'Back, mockup swatch' },
-        { src: 'tee_bw_front.png', alt: 'Black and white print-proof mockup of the front design', caption: 'Front, print proof (B&W)' },
-        { src: 'tee_bw_back.png', alt: 'Black and white print-proof mockup of the back design', caption: 'Back, print proof (B&W)' }
-      ]
-    },
-    'sign-legion-van': {
-      kicker: 'Case Study &middot; Vehicle Graphics &middot; March 2024',
-      title: 'American Legion Membership Van',
-      hero: 'legion_van_hero.jpg',
-      heroAlt: 'White cargo van fully wrapped with American Legion, Department of Michigan branding, military branch seals, and program logos',
-      body: [
-        'The American Legion, Department of Michigan needed a rolling recruitment and donation vehicle — something that could show up at events, ballgames, and community drives and make the case for membership on sight, not just carry cargo.',
-        'Full exterior coverage combines the primary American Legion mark and "Veterans Strengthening America" tagline with sub-program branding — American Legion Baseball, the Legion Riders — plus a full column of military branch seals down the side, laid out to read cleanly at a glance rather than as clutter. Scannable QR codes on the rear windows tie directly to "join" and "donate" actions, turning the van itself into a functional touchpoint instead of a rolling billboard.',
-        'Designed and installed personally, start to finish. The van now works as a mobile recruitment tool at Legion events across the state.'
-      ],
-      thumbs: [
-        { src: 'legion_van_front.jpg', alt: 'Front of the American Legion van showing windshield lettering and program decal on the hood', caption: 'Front & windshield lettering' },
-        { src: 'legion_van_rear.jpg', alt: 'Rear of the American Legion van with "Scan to Join" and "Scan to Donate" QR codes on the windows', caption: 'Rear QR-code panels' },
-        { src: 'legion_van_4626.jpg', alt: 'Side of the van showing the full military branch seal lineup and Sons of the American Legion shield', caption: 'Full branch seal lineup' },
-        { src: 'legion_van_4627.jpg', alt: 'Side of the van parked on the shop floor at MMD Signs', caption: 'On the shop floor' },
-        { src: 'legion_van_4629.jpg', alt: 'Side of the van showing American Legion Baseball and Riders program logos', caption: 'Baseball & Riders logos' },
-        { src: 'legion_van_4625.jpg', alt: 'Detail shot of the van wheel well and lower body graphics', caption: 'Lower body detail' },
-        { src: 'legion_van_4631.jpg', alt: 'Rear view of the van with the doors closed', caption: 'Rear, doors closed' },
-        { src: 'legion_van_4632.jpg', alt: 'Rear view of the van from a slightly different angle', caption: 'Rear, alternate angle' }
-      ]
-    },
-    'sign-legion-explorer': {
-      kicker: 'Case Study &middot; Vehicle Graphics &middot; June 2024',
-      title: 'Michigan State Commander Vehicle',
-      hero: 'legion_explorer_hero.jpg',
-      heroAlt: 'White Ford Explorer with American Legion Department of Michigan graphics and "Michigan State Commander" lettering on the door',
-      body: [
-        'This Ford Explorer is the official vehicle for the American Legion\'s Michigan State Commander — an elected position — so the graphics needed to read as dignified and official, not like standard fleet branding.',
-        'The design pairs the state organization\'s mark and "Michigan State Commander" title lettering with an American-flag graphic across the rear glass, a star-and-stripe rocker panel treatment, and a clean line of military branch seals along the front fender. A "Be The One" veterans-crisis-awareness decal on the hood ties the vehicle to the Legion\'s national suicide-prevention campaign.',
-        'Fully designed and installed in-house. The wrap now travels with the Commander to American Legion events statewide.'
-      ],
-      thumbs: [
-        { src: 'legion_explorer_side.jpg', alt: 'Three-quarter side view of the Explorer showing the American flag graphic on the rear window and military seals', caption: 'Rear flag graphic & seals' },
-        { src: 'legion_explorer_front.jpg', alt: 'Straight-on front view of the Explorer showing the "Be The One" veterans crisis line decal on the hood', caption: '"Be The One" hood decal' },
-        { src: 'legion_explorer_front3q.jpg', alt: 'Front three-quarter view of the Explorer showing windshield lettering and fender seals', caption: 'Front three-quarter view' },
-        { src: 'legion_exp_5171.jpg', alt: 'Full side profile of the Explorer parked outside MMD Signs', caption: 'Full side profile, outside the shop' },
-        { src: 'legion_exp_5169.jpg', alt: 'Side view of the Explorer showing scholarship, oratorical, and baseball program stars', caption: 'Program stars detail' },
-        { src: 'legion_exp_5170.jpg', alt: 'Side view of the Explorer showing the Michigan State Commander lettering', caption: 'Commander lettering detail' },
-        { src: 'legion_exp_5173.jpg', alt: 'Rear three-quarter view of the Explorer', caption: 'Rear three-quarter view' },
-        { src: 'legion_exp_5175.jpg', alt: 'Front three-quarter view of the Explorer in the parking lot', caption: 'Front three-quarter, parking lot' }
-      ]
-    },
-    pulpitaside: {
-      kicker: 'Case Study &middot; Podcast & Broadcast Branding &middot; September 2022',
-      title: 'Pulpit Aside',
-      hero: 'pulpit_cover.png',
-      heroAlt: 'Square podcast cover art \u2014 yellow gradient background with overlapping blue "PULPIT" and orange "ASIDE" text blocks',
-      body: [
-        'In fall 2022 I entered a branding competition for a new podcast co-hosted by two pastors from different churches, built around a simple premise: set the pulpit aside and compare their church cultures on broader, everyday topics outside the traditional religious bubble. The identity needed to read as progressive and conversational, not churchy.',
-        'I benchmarked the top 100 podcasts on Spotify and YouTube and landed between two references: the face-card layout and bold type of Smartless, and the vector-traced character portraits of Pardon My Take. My first pass leaned on an icon combining a microphone, a pulpit, and a cross \u2014 conceptually sound but too rigid. I pivoted to illustrated portraits of the two hosts instead, built from reference photos in a bright blue/yellow/orange palette. Realistic eyes gave an uncanny-valley effect, so I abstracted the faces into featureless silhouettes \u2014 which read cleaner at thumbnail size and turned the hosts into a scalable, iconic mark rather than standard portraiture.',
-        'The face-card concept won the competition, and the client retained me to build it into a full broadcast package \u2014 lower thirds, animated title cards, and YouTube banners, all built on the same modular artwork. The identity is still in active use on the show today.'
-      ],
-      thumbs: [
-        { src: 'pulpit_banner_full.png', alt: 'Pulpit Aside YouTube channel banner with layered color-block shapes framing the host illustrations and logo lockup', caption: 'YouTube banner treatment' },
-        { src: 'pulpit_titlecard.png', alt: 'Widescreen title card with illustrated host portraits, the Pulpit Aside logo, and tagline "An Uncommon Exchange"', caption: 'Video title card' },
-        { src: 'pulpit_lower3rds.png', alt: 'Lower-third graphic reading "Pastor Jessie Still" and "Pastor Coye Bouyer" flanking the Pulpit Aside logo', caption: 'Broadcast lower thirds' },
-        { src: 'pulpit_banner_simple.png', alt: 'Simplified banner variant with the host illustrations and stacked wordmark on a solid yellow field', caption: 'Simplified banner variant' }
-      ]
-    },
-    mythicfoundry: {
-      kicker: 'Case Study &middot; Logo Refinement & Brand System &middot; September 2026',
-      title: 'Mythic Foundry',
-      hero: 'mythic_lockup_color.png',
-      heroAlt: 'Finished Mythic Foundry emblem \u2014 a dragon coiled above a glowing anvil, with the "Mythic Foundry" wordmark below, full color',
-      body: [
-        'The client came in with an AI-generated concept for a dragon-and-anvil emblem \u2014 a strong idea, but unusable as a production logo: rough edges, inconsistent linework, no defined proportions.',
-        'The job was to turn that concept into an actual usable mark: redrawing it as clean vector line art, defining clear-space and sizing rules against a strict grid, and building a full system around it \u2014 a "forge glow" full-color palette (warm amber, orange, and rust plus near-black and off-white, with exact hex/RGB/CMYK values) alongside a monochrome version for single-color use. Typography pairs BeaufortPro Heavy for the primary wordmark with Platypi Bold as a secondary face.',
-        'Deliverables were a complete brand guidelines document \u2014 the redrawn emblem in full color and monochrome, a transparent lockup, a small-format/favicon version, and explicit dos-and-don\u2019ts for using the wordmark against different backgrounds.'
-      ],
-      thumbs: [
-        { src: 'mythic_lockup_white.png', alt: 'Mythic Foundry emblem in reversed white, for dark backgrounds', caption: 'Reversed (white) lockup' },
-        { src: 'mythic_wordmark.png', alt: 'Mythic Foundry wordmark only, no emblem', caption: 'Wordmark only' },
-        { src: 'mythic_guide_finalization.jpg', alt: 'Logo finalization page comparing the AI-generated reference against the hand-redrawn line art, with grid and clear-space guides', caption: 'Logo cleanup & grid system' },
-        { src: 'mythic_guide_cover.jpg', alt: 'Mythic Foundry brand guide cover, white emblem on a dark textured background', caption: 'Brand guide cover' },
-        { src: 'mythic_guide_title.jpg', alt: 'Mythic Foundry brand guidelines section title page', caption: 'Brand guidelines title page' },
-        { src: 'mythic_ai_reference.jpg', alt: 'The original AI-generated reference logo supplied as a starting point, before cleanup', caption: 'Starting reference (pre-cleanup)' }
-      ]
-    },
-    onebynine: {
-      kicker: 'Case Study &middot; Logo & Brand Mark &middot; September 2026',
-      title: 'onebynine.ai (1x9 Systems)',
-      hero: 'onebynine_icon_green.png',
-      heroAlt: '3x3 grid icon mark in a green gradient, rounded square, with one cell shown as a white X shape',
-      body: [
-        'onebynine.ai (internally called 1x9 Systems) is a technical consulting brand focused on operations modernization and practical, AI-driven workflow automation for small and midsize businesses \u2014 deliberately not a flashy "AI toys" pitch. The mark needed to hold that grounded, people-first tone rather than looking like a generic tech-startup logo.',
-        'The concept is a 3-by-3 grid \u2014 nine squares, reading as "1 of 9" / "one by nine" \u2014 with one cell replaced by an X shape, so the icon itself spells out the multiplication "1x9" instead of relying on a wordmark trick alone. It works as a standalone favicon-scale glyph or paired with the "onebynine.ai" wordmark as a full lockup. The palette is a rust orange and dark earthy green, chosen specifically to avoid a generic SaaS look.',
-        'The finished system covers full-color and reversed lockups, a standalone icon mark in multiple colorways, and a wordmark built to scale from a browser favicon up to a full site header.'
-      ],
-      thumbs: [
-        { src: 'onebynine_wordmark_black.png', alt: 'Full onebynine.ai wordmark lockup in black', caption: 'Primary wordmark lockup' },
-        { src: 'onebynine_icon_orange.png', alt: '3x3 grid icon in solid rust orange', caption: 'Icon mark, orange colorway' },
-        { src: 'onebynine_wordmark_white.png', alt: 'All-white version of the grid icon and wordmark for dark backgrounds', caption: 'Reversed (white) lockup' },
-        { src: 'onebynine_icon_black.png', alt: 'Compact black version of the 3x3 grid icon mark alone', caption: 'Icon mark, black colorway' },
-        { src: 'onebynine_icon_white.png', alt: 'Compact white version of the 3x3 grid icon mark alone', caption: 'Icon mark, white colorway' },
-        { src: 'onebynine_icon_green_black.png', alt: 'Green icon with black wordmark text lockup', caption: 'Green colorway, black text' },
-        { src: 'onebynine_icon_green_white.png', alt: 'Green icon with white wordmark text lockup', caption: 'Green colorway, white text' },
-        { src: 'onebynine_icon_orange_black.png', alt: 'Orange icon with black wordmark text lockup', caption: 'Orange colorway, black text' },
-        { src: 'onebynine_icon_orange_white.png', alt: 'Orange icon with white wordmark text lockup', caption: 'Orange colorway, white text' }
-      ]
-    },
-  };
+  var CONTENT = { posts: [], images: [] };
+  var PATH_DIM = {};
+  Object.keys(IMG).forEach(function (k) { if (IMG_DIM[k]) PATH_DIM[IMG[k]] = IMG_DIM[k]; });
+  function imgFull(k) { return IMG[k] || k; }
+  // content images live at img/NAME.ext with a 480px WebP thumbnail at img/t/NAME.webp
+  function imgThumb(k) {
+    var p = IMG[k] || k;
+    return /^img\/[^/]+$/.test(p) ? 'img/t/' + p.slice(4).replace(/\.\w+$/, '.webp') : p;
+  }
+  function tagSlug(t) { return String(t).toLowerCase().replace(/^#+/, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, ''); }
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text != null) e.textContent = text;
+    return e;
+  }
+  function tagLinks(tags) {
+    var box = el('div', 'case-tags');
+    (tags || []).forEach(function (t) {
+      var a = el('a', 'tag', '#' + tagSlug(t));
+      a.href = '#gallery/' + tagSlug(t);
+      box.appendChild(a);
+    });
+    return box;
+  }
+  function plainImg(src, alt, thumb, w, h) {
+    var i = document.createElement('img');
+    i.loading = 'lazy'; i.decoding = 'async';
+    var d = w && h ? [w, h] : (!thumb && (IMG_DIM[src] || PATH_DIM[imgFull(src)]));
+    if (d) { i.width = d[0]; i.height = d[1]; }
+    i.src = thumb ? imgThumb(src) : imgFull(src);
+    if (thumb) i.onerror = function () { i.onerror = null; i.src = imgFull(src); };
+    i.alt = alt || '';
+    return i;
+  }
+  function buildCard(p) {
+    var art = el('article', 'case-card');
+    art.setAttribute('data-cat', p.cat || 'brand');
+    art.id = 'post-' + p.slug;
+    var photo = el('a', 'case-photo');
+    photo.href = '#case/' + p.slug;
+    photo.setAttribute('aria-label', 'Read the ' + p.title + ' case study');
+    var pi = plainImg(p.cardImg || p.hero, p.cardAlt || p.heroAlt, true);
+    photo.appendChild(pi); adaptBg(pi, photo);
+    art.appendChild(photo);
+    var body = el('div', 'case-body');
+    var head = el('div');
+    head.appendChild(el('span', 'label case-kicker', p.kicker));
+    head.appendChild(el('h3', 'case-title', p.title));
+    body.appendChild(head);
+    body.appendChild(el('p', 'case-blurb', p.blurb));
+    if (p.tags && p.tags.length) body.appendChild(tagLinks(p.tags));
+    var foot = el('div', 'case-foot');
+    var th = el('div', 'case-thumbs');
+    (p.cardThumbs || []).forEach(function (t) {
+      var s = el('span', 'case-thumb');
+      var ti = plainImg(t.src, t.alt, true);
+      s.appendChild(ti); adaptBg(ti, s);
+      th.appendChild(s);
+    });
+    foot.appendChild(th);
+    var cta = el('a', 'btn case-cta', 'Read the whole blog post →');
+    cta.href = '#case/' + p.slug;
+    foot.appendChild(cta);
+    body.appendChild(foot);
+    art.appendChild(body);
+    return art;
+  }
+  function renderPosts() {
+    var grid = document.getElementById('caseGrid');
+    if (!grid) return;
+    grid.innerHTML = '';
+    CONTENT.posts.forEach(function (p) { grid.appendChild(buildCard(p)); });
+    if (!CONTENT.posts.length) grid.appendChild(el('p', 'case-more-note', 'No posts yet.'));
+  }
+
+  // Lightbox with optional next/previous through a set of photos
+  var lbSet = [], lbIdx = 0;
+  function lbShow() {
+    var it = lbSet[lbIdx];
+    document.getElementById('lightboxImg').src = imgFull(it.src);
+    document.getElementById('lightboxImg').alt = it.caption || '';
+    document.getElementById('lightboxCap').textContent = it.caption || '';
+  }
+  function openSet(list, idx) {
+    lbSet = list; lbIdx = idx;
+    document.getElementById('lightbox').classList.add('open', 'set');
+    lbShow();
+  }
+  function lbStep(d) {
+    if (!lbSet.length) return;
+    lbIdx = (lbIdx + d + lbSet.length) % lbSet.length;
+    lbShow();
+  }
+  function galButton(list, i, cls) {
+    var it = list[i];
+    var b = el('button', cls);
+    b.type = 'button';
+    b.setAttribute('aria-label', 'Open photo: ' + (it.caption || 'untitled'));
+    b.appendChild(plainImg(it.src, it.caption, true, cls === 'gal-item' ? it.w : 0, cls === 'gal-item' ? it.h : 0));
+    if (cls === 'gal-item') b.appendChild(el('span', null, it.caption || ''));
+    b.addEventListener('click', function () { openSet(list, i); });
+    return b;
+  }
+  function renderTeaser() {
+    var g = document.getElementById('dgGrid');
+    if (!g) return;
+    g.innerHTML = '';
+    var list = CONTENT.images.slice(0, 9);
+    list.forEach(function (_, i) { g.appendChild(galButton(list, i, 'dg-btn')); });
+    var aside = document.getElementById('designGallery');
+    if (aside) aside.style.display = CONTENT.images.length ? '' : 'none';
+  }
+  function hasTag(x, tag) { return (x.tags || []).some(function (t) { return tagSlug(t) === tag; }); }
+  function renderGalleryPage(tag) {
+    tag = tag ? tagSlug(tag) : '';
+    var counts = {}, order = [];
+    CONTENT.images.concat(CONTENT.posts).forEach(function (x) {
+      (x.tags || []).forEach(function (t) {
+        var s = tagSlug(t);
+        if (!s) return;
+        if (!counts[s]) { counts[s] = 0; order.push(s); }
+        counts[s]++;
+      });
+    });
+    order.sort(function (a, b) { return counts[b] - counts[a] || (a < b ? -1 : 1); });
+    var bar = document.getElementById('galTags');
+    bar.innerHTML = '';
+    function chip(label, slug) {
+      var on = slug === tag;
+      var c = el('button', 'design-chip' + (on ? ' active' : ''), label);
+      c.type = 'button';
+      c.setAttribute('aria-pressed', on ? 'true' : 'false');
+      c.addEventListener('click', function () { location.hash = slug ? 'gallery/' + slug : 'gallery'; });
+      bar.appendChild(c);
+    }
+    chip('All', '');
+    order.forEach(function (s) { chip('#' + s + ' ' + counts[s], s); });
+    var list = CONTENT.images.filter(function (it) { return !tag || hasTag(it, tag); });
+    var grid = document.getElementById('galGrid');
+    grid.innerHTML = '';
+    list.forEach(function (_, i) { grid.appendChild(galButton(list, i, 'gal-item')); });
+    if (!list.length) grid.appendChild(el('p', 'gal-empty', 'No photos with that tag yet.'));
+    document.getElementById('galIntro').textContent = tag ? 'Everything tagged #' + tag + '.' : 'Every photo and proof, grouped by tag.';
+    var pbox = document.getElementById('galPosts');
+    pbox.innerHTML = '';
+    var posts = CONTENT.posts.filter(function (p) { return tag && hasTag(p, tag); });
+    if (posts.length) {
+      pbox.appendChild(el('span', 'label', 'Posts tagged #' + tag));
+      posts.forEach(function (p) {
+        var a = el('a', 'btn', p.title);
+        a.href = '#case/' + p.slug;
+        pbox.appendChild(a);
+      });
+    }
+  }
+  var contentLoaded = false, contentWaiters = [];
+  function whenContent(fn) { if (contentLoaded) fn(); else contentWaiters.push(fn); }
+  (function loadContent() {
+    function get(u) { return fetch(u, { cache: 'no-cache' }).then(function (r) { if (!r.ok) throw new Error(u); return r.json(); }); }
+    Promise.all([get('content/posts.json'), get('content/gallery.json')]).then(function (res) {
+      CONTENT.posts = res[0].posts || [];
+      CONTENT.images = res[1].images || [];
+    }).catch(function () {
+      var g = document.getElementById('caseGrid');
+      if (g) g.innerHTML = '<p class="case-more-note">Couldn’t load the work just now. Refresh to try again.</p>';
+    }).then(function () {
+      contentLoaded = true;
+      renderPosts(); renderTeaser();
+      var w = contentWaiters; contentWaiters = [];
+      w.forEach(function (fn) { fn(); });
+    });
+  })();
+
 
   function detectDarkTransparent(img, cb) {
     function run() {
@@ -2153,15 +2114,15 @@
   }
 
   function renderCase(slug) {
-    var cs = CASE_STUDIES[slug];
+    var cs = CONTENT.posts.filter(function (p) { return p.slug === slug; })[0];
     if (!cs) return false;
     var kickerEl = document.getElementById('caseKicker');
     var titleEl = document.getElementById('caseTitle');
     var heroImg = document.getElementById('caseHeroImg');
     var bodyEl = document.getElementById('caseBody');
     var galleryEl = document.getElementById('caseGallery');
-    if (kickerEl) kickerEl.innerHTML = cs.kicker + (cs.city ? ' — ' + cs.city : '');
-    if (titleEl) titleEl.innerHTML = cs.title;
+    if (kickerEl) kickerEl.textContent = cs.kicker + (cs.city ? ' \u2014 ' + cs.city : '');
+    if (titleEl) titleEl.textContent = cs.title;
     if (heroImg) {
       var heroContainer = document.getElementById('caseHero');
       if (heroContainer) heroContainer.classList.remove('light-bg');
@@ -2179,10 +2140,11 @@
         p.textContent = para;
         bodyEl.appendChild(p);
       });
+      if (cs.tags && cs.tags.length) bodyEl.appendChild(tagLinks(cs.tags));
     }
     if (galleryEl) {
       galleryEl.innerHTML = '';
-      cs.thumbs.forEach(function (t) {
+      (cs.thumbs || []).forEach(function (t) {
         var fig = document.createElement('figure');
         var frame = document.createElement('div');
         frame.className = 'frame';
@@ -2213,18 +2175,28 @@
     if (!lb || !img) return;
     img.src = src;
     img.alt = alt || '';
+    document.getElementById('lightboxCap').textContent = '';
+    lb.classList.remove('set');
     lb.classList.add('open');
   }
   function closeLightbox() {
     var lb = document.getElementById('lightbox');
-    if (lb) lb.classList.remove('open');
+    if (lb) lb.classList.remove('open', 'set');
   }
   (function () {
     var lb = document.getElementById('lightbox');
     var closeBtn = document.getElementById('lightboxClose');
     if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
     if (lb) lb.addEventListener('click', function (e) { if (e.target === lb) closeLightbox(); });
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLightbox(); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeLightbox();
+      if (lb && lb.classList.contains('set')) {
+        if (e.key === 'ArrowRight') lbStep(1);
+        if (e.key === 'ArrowLeft') lbStep(-1);
+      }
+    });
+    document.getElementById('lightboxPrev').addEventListener('click', function (e) { e.stopPropagation(); lbStep(-1); });
+    document.getElementById('lightboxNext').addEventListener('click', function (e) { e.stopPropagation(); lbStep(1); });
   })();
 
   function show(raw) {
@@ -2233,12 +2205,17 @@
     var slug = parts[1];
     if (name === 'signs') { name = 'design'; setDesignFilter('signs'); }
     if (valid.indexOf(name) === -1) name = 'home';
+    if ((name === 'case' || name === 'gallery') && !contentLoaded) {
+      whenContent(function () { show(raw); });
+      return;
+    }
+    if (name === 'gallery') renderGalleryPage(slug);
     if (name === 'case' && !renderCase(slug)) name = 'design';
     views.forEach(function (v) {
       v.classList.toggle('active', v.getAttribute('data-view') === name);
     });
     document.querySelectorAll('.topnav a').forEach(function (a) {
-      a.classList.toggle('active', a.getAttribute('data-nav') === name);
+      a.classList.toggle('active', a.getAttribute('data-nav') === (name === 'gallery' ? 'design' : name));
     });
     document.body.classList.toggle('is-home', name === 'home');
     window.scrollTo({ top: 0, behavior: 'auto' });
