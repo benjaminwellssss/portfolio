@@ -291,7 +291,8 @@
   /* full-width map panel + one-row endless gallery strip */
   .design-top { display:block; margin-bottom:44px; }
   .map-box { width:100%; }
-  .mapwrap { max-width:none; width:100%; aspect-ratio:603.1 / 434.4; margin:8px 0 0; }
+  .mapwrap { width:50%; max-width:none; aspect-ratio:603.1 / 434.4; margin:8px auto 0; }
+  @media (max-width:900px) { .mapwrap { width:100%; } }
   .mapwrap svg { position:absolute; inset:0; width:100%; height:100%; }
   .gal-head { display:flex; justify-content:space-between; align-items:flex-end; gap:20px; flex-wrap:wrap; margin-bottom:18px; }
   .gal-head h3 { font-size:26px; font-weight:700; letter-spacing:-.5px; margin:4px 0 6px; } .gal-head p { color:var(--slate); font-size:14px; }
