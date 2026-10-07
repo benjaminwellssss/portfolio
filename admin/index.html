@@ -335,7 +335,7 @@
     ed.appendChild(mb);
 
     ed.appendChild(el('label', null, 'Web address'));
-    ed.appendChild(el('p', 'hint', 'bwells.online/#case/' + p.slug));
+    ed.appendChild(el('p', 'hint', 'bwells.online/case/' + p.slug));
     var slugIn = el('input'); slugIn.value = p.slug; slugIn.setAttribute('aria-label', 'Slug');
     slugIn.onchange = function () { var v = slugify(slugIn.value); if (!v || data.posts.some(function (o) { return o !== p && o.slug === v; })) { slugIn.value = p.slug; return; } p.slug = v; slugIn.value = v; mark('posts'); renderEditor(); };
     ed.appendChild(slugIn);

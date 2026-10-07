@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html><head><script>(function(){var m=location.pathname.match(/^(.*?\/)(?:design|about|resumes|development|gallery|case)(?:\/.*)?$/);var r=m?m[1]:location.pathname.replace(/[^\/]*$/,'');window.__ROOT=r;if(m&&/^(www\.)?bwells\.online$|^localhost$|^127\.0\.0\.1$/.test(location.hostname))document.write('<base href="'+r+'">');})();</script><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>Benjamin Wells Design</title>
 <meta name="description" content="Graphic design portfolio &mdash; logos, brand systems, apparel graphics, and print work. Available for freelance and full-time work.">
 <link rel="icon" type="image/png" href="img/logo.png">
@@ -1925,7 +1925,7 @@
     var box = el('div', 'case-tags');
     (tags || []).forEach(function (t) {
       var a = el('a', 'tag', '#' + tagSlug(t));
-      a.href = '#gallery/' + tagSlug(t);
+      setRoute(a, 'gallery/' + tagSlug(t));
       box.appendChild(a);
     });
     return box;
@@ -1945,7 +1945,7 @@
     art.setAttribute('data-cat', p.cat || 'brand');
     art.id = 'post-' + p.slug;
     var photo = el('a', 'case-photo');
-    photo.href = '#case/' + p.slug;
+    setRoute(photo, 'case/' + p.slug);
     photo.setAttribute('aria-label', 'Read the ' + p.title + ' case study');
     var pi = plainImg(p.cardImg || p.hero, p.cardAlt || p.heroAlt, true);
     photo.appendChild(pi); adaptBg(pi, photo);
@@ -1967,7 +1967,7 @@
     });
     foot.appendChild(th);
     var cta = el('a', 'btn case-cta', 'Read the whole blog post →');
-    cta.href = '#case/' + p.slug;
+    setRoute(cta, 'case/' + p.slug);
     foot.appendChild(cta);
     body.appendChild(foot);
     art.appendChild(body);
@@ -2038,7 +2038,7 @@
       var c = el('button', 'design-chip' + (on ? ' active' : ''), label);
       c.type = 'button';
       c.setAttribute('aria-pressed', on ? 'true' : 'false');
-      c.addEventListener('click', function () { location.hash = slug ? 'gallery/' + slug : 'gallery'; });
+      c.addEventListener('click', function () { go(slug ? 'gallery/' + slug : 'gallery'); });
       bar.appendChild(c);
     }
     chip('All', '');
@@ -2056,7 +2056,7 @@
       pbox.appendChild(el('span', 'label', 'Posts tagged #' + tag));
       posts.forEach(function (p) {
         var a = el('a', 'btn', p.title);
-        a.href = '#case/' + p.slug;
+        setRoute(a, 'case/' + p.slug);
         pbox.appendChild(a);
       });
     }
@@ -2203,6 +2203,7 @@
     var name = parts[0];
     var slug = parts[1];
     if (name === 'signs') { name = 'design'; setDesignFilter('signs'); }
+    if (name === 'design' && slug === 'signs') setDesignFilter('signs');
     if (valid.indexOf(name) === -1) name = 'home';
     if ((name === 'case' || name === 'gallery') && !contentLoaded) {
       whenContent(function () { show(raw); });
@@ -2220,40 +2221,59 @@
     window.scrollTo({ top: 0, behavior: 'auto' });
   }
 
-  // Non-anchor nav triggers (buttons, back-link spans, the wordmark div): always
-  // handled in JS, since they have no native href to fall back on.
+  // ---- routing: clean addresses (/design, /case/slug, /gallery/tag) on the real site, hash addresses elsewhere ----
+  var CLEAN = /^(www\.)?bwells\.online$|^localhost$|^127\.0\.0\.1$/.test(location.hostname);
+  var ROOT = window.__ROOT || '/';
+  var ROUTE_RE = /^(home|design|gallery|about|case|resumes|development|signs)(\/|$)/;
+  function routeUrl(raw) { return CLEAN ? ROOT + (raw === 'home' ? '' : raw) : '#' + (raw === 'home' ? '' : raw); }
+  function setRoute(a, raw) { a.setAttribute('data-route', raw); a.setAttribute('href', routeUrl(raw)); }
+  function currentRoute() {
+    var hs = location.hash.replace(/^#/, '');
+    if (!CLEAN) return hs || 'home';
+    if (hs && ROUTE_RE.test(hs)) {          // old #links keep working: turn them into clean addresses
+      var fixed = hs === 'signs' ? 'design/signs' : hs;
+      history.replaceState(null, '', ROOT + fixed);
+      return fixed;
+    }
+    var p = location.pathname.slice(ROOT.length).replace(/\/+$/, '').replace(/^index\.html$/, '');
+    try { p = decodeURIComponent(p); } catch (e) {}
+    return p || 'home';
+  }
+  function go(raw) {
+    raw = raw || 'home';
+    if (!CLEAN) { location.hash = raw === 'home' ? '' : raw; return; }
+    var url = routeUrl(raw);
+    if (location.pathname + location.search !== url) history.pushState(null, '', url);
+    show(raw);
+  }
+
+  // Non-anchor nav triggers (buttons, back-link spans, the wordmark div) have no native href.
   navEls.forEach(function (el) {
     if (el.tagName === 'A') return;
     el.addEventListener('click', function (e) {
       e.preventDefault();
-      var name = el.getAttribute('data-nav');
-      location.hash = name === 'home' ? '' : name;
+      go(el.getAttribute('data-nav'));
     });
   });
 
-  // All internal <a href="#..."> links (topnav, case cards, map pins, etc.) are
-  // routed through here explicitly rather than relying on native anchor-click
-  // navigation, which some embedding/preview contexts intercept or swallow.
-  // Plain left-clicks are handled in JS; modified clicks (ctrl/cmd/shift/middle)
-  // are left alone so "open in new tab" still works natively.
+  // Internal links: static #links in the markup become clean addresses, and every link carrying a data-route is
+  // handled here. Plain left-clicks run in JS; ctrl/cmd/shift/middle clicks keep their native "open in new tab".
+  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    var raw = a.getAttribute('href').slice(1);
+    if (raw && ROUTE_RE.test(raw)) setRoute(a, raw);
+  });
   document.addEventListener('click', function (e) {
     if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-    var a = e.target && e.target.closest ? e.target.closest('a[href^="#"]') : null;
+    var a = e.target && e.target.closest ? e.target.closest('a[data-route]') : null;
     if (!a) return;
     e.preventDefault();
-    var hash = a.getAttribute('href').slice(1);
-    if (location.hash === '#' + hash) {
-      show(hash || 'home');
-    } else {
-      location.hash = hash;
-    }
+    go(a.getAttribute('data-route'));
   });
 
-  window.addEventListener('hashchange', function () {
-    show(location.hash.replace('#', '') || 'home');
-  });
+  window.addEventListener('popstate', function () { show(currentRoute()); });
+  window.addEventListener('hashchange', function () { show(currentRoute()); });
 
-  show(location.hash.replace('#', '') || 'home');
+  show(currentRoute());
 
   // ---- masked email: reversed string, assembled at runtime so it never
   // appears as a plain address in the page source for scrapers to harvest ----

@@ -9,15 +9,18 @@ with open(os.path.join(D, "index.html"), "r", encoding="utf-8") as f:
     html = f.read()
 problems = []
 
-# 1. inline script parses
-m = re.search(r"<script>([\s\S]*)</script>", html)
+# 1. every inline script parses
+scripts = re.findall(r"<script>([\s\S]*?)</script>", html)
 tmp = os.path.join(os.environ["TEMP"], "_chk_script.js")
-with open(tmp, "w", encoding="utf-8") as f:
-    f.write(m.group(1))
-r = subprocess.run(["node", "--check", tmp], capture_output=True, text=True)
-if r.returncode != 0:
-    problems.append("JS PARSE ERROR: " + r.stderr.strip()[:300])
-print("script parses:", r.returncode == 0, "| script chars:", len(m.group(1)))
+ok_all = True
+for i, code in enumerate(scripts):
+    with open(tmp, "w", encoding="utf-8") as f:
+        f.write(code)
+    r = subprocess.run(["node", "--check", tmp], capture_output=True, text=True)
+    if r.returncode != 0:
+        ok_all = False
+        problems.append("JS PARSE ERROR in script %d: %s" % (i, r.stderr.strip()[:300]))
+print("scripts parse:", ok_all, "| scripts:", len(scripts), "| chars:", sum(len(c) for c in scripts))
 
 # 2. IMG map + IMG_DIM
 a = html.index("  var IMG = {")
@@ -78,6 +81,14 @@ print("index.html KB:", os.path.getsize(os.path.join(D, "index.html")) // 1024, 
 files_on_disk = set("img/" + f for f in os.listdir(os.path.join(D, "img")))
 orphans = files_on_disk - set(img.values()) - paths
 print("orphan files in img/:", sorted(orphans) or "none")
+
+# route copies (clean addresses) must match index.html
+sys.path.insert(0, os.path.join(D, "tools"))
+import build_routes
+stale = [os.path.relpath(t, D) for t in build_routes.targets() if not os.path.exists(t) or open(t, encoding="utf-8").read() != html]
+print("route copies out of date:", stale or "none")
+if stale:
+    problems.append("run python tools/build_routes.py: " + str(stale))
 
 print("RESULT:", "OK" if not problems else "PROBLEMS")
 for p in problems:
