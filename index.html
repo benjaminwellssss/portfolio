@@ -1614,6 +1614,18 @@
       </article>
 
       <article class="dev-post">
+        <div class="dev-post-media dev-video">
+          <div class="dev-clip">
+            <video muted loop playsinline preload="none" poster="video/plantain.webp" data-src="video/plantain.mp4" aria-label="The Plantain mixer window in knob mode, then its settings panel with Style, Channels and Outputs tabs"></video>
+            <span>Screen recording of the running app &mdash; the mixer, then its settings.</span>
+          </div>
+        </div>
+        <div class="dev-post-media shots">
+          <div class="dev-shot">
+            <img data-img="plantain_mixer.png" alt="Plantain in knob mode: five channel strips (Mic, Guitar, Discord, General, Music) with gain knobs, Mono, Solo and Mute buttons, and reverb and delay toggles, on a dark acrylic-glass window" />
+            <span>Knob mode &mdash; one strip per channel</span>
+          </div>
+        </div>
         <div class="dev-post-media">
           <svg viewBox="0 0 560 230" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Architecture diagram: Voicemeeter's Remote API is loaded by a Rust and Tauri backend, which drives a React and TypeScript interface of faders, knobs, effects, and visualizers">
             <rect width="560" height="230" fill="#141517" />
@@ -1664,27 +1676,17 @@
       <article class="dev-post">
         <div class="dev-post-media dev-video">
           <div class="dev-clip">
-            <video muted loop playsinline preload="none" poster="video/hub.webp" data-src="video/hub.mp4" aria-label="The Overlay Control Hub control panel beside live overlays: the pushup counter, sub alerts firing, and the overlay design switching between Windows 95, XP and Minimal"></video>
+            <video muted loop playsinline preload="none" poster="video/hub.webp" data-src="video/hub.mp4" aria-label="The Overlay Control Hub control panel: the goal counter ticking up, a gold sub alert firing, and the example overlay switching between Retro Arcade, Terminal, Brutalist Sticker and other designs"></video>
             <span>Screen recording of the running app &mdash; demo data.</span>
-          </div>
-        </div>
-        <div class="dev-post-media gif-pair">
-          <div class="dev-media-item">
-            <img data-img="hub_theme_switch_handles.gif" alt="Live theme switch demoed on the handles overlay, switching visual styles instantly without touching OBS" />
-            <span>Live theme switch &mdash; handles overlay</span>
-          </div>
-          <div class="dev-media-item">
-            <img data-img="hub_theme_switch_alert.gif" alt="Live theme switch demoed on a new-subscriber alert, switching visual styles instantly without touching OBS" />
-            <span>Live theme switch &mdash; sub alert</span>
           </div>
         </div>
         <div class="dev-post-body">
           <span class="label">Local Tool &middot; Node.js + WebSocket</span>
           <h3>Overlay Control Hub</h3>
-          <p>The backend for the <code>beanjahmean</code> Twitch stream overlay kit &mdash; a local Node.js server (built-in <code>http</code> + <code>ws</code>, no framework) that runs on the streamer's own PC, serves a Windows-95-styled control panel, and pushes live state to every connected overlay over WebSocket.</p>
-          <p>It does two jobs. First, a Twitch watcher: an anonymous IRC connection flags first-time chatters with no auth needed, while Twitch EventSub (also over WebSocket) catches subs, resubs, and gift subs, each broadcast as an alert with tiered visual/sound effects &mdash; Blue/Silver/Gold by sub tier, full RainbowFX for resubs and gifts. Second, a control surface: a plugin-style module system (each module in its own file under <code>modules/</code>, auto-loaded at startup) owning one slice of state &mdash; a pushup counter, per-overlay visibility toggles, shared theme colors, four saveable presets, a sticky-note reminder field, and a live design switcher &mdash; all persisted to <code>state.json</code> so a restart never loses the pushup count.</p>
-          <p>The newest piece is that design switcher: the overlay kit ships three full alternate visual themes (Windows 95, Windows XP Luna, and a modern glassmorphism "Minimal" style) sharing the same CSS variable names, served at canonical <code>/overlay/&lt;name&gt;.html</code> URLs. Flipping themes in <code>design.exe</code> broadcasts a state change and every already-open OBS Browser Source reloads into the new look instantly &mdash; no re-editing OBS sources, and a fourth theme is just a new folder under <code>themes/</code> with matching filenames.</p>
-          <a class="dev-repo-link" href="https://github.com/benjaminwellssss/beanjahmean-overlay-control-hub" target="_blank" rel="noopener noreferrer">View repository &#8599;</a>
+          <p>The backend for a Twitch stream overlay kit &mdash; a small local Node.js server (built-in <code>http</code> + <code>ws</code>, no framework) that runs on the streamer's own PC, serves a control panel as a plain webpage, and pushes every change live over one WebSocket to the overlays running in OBS. State persists to disk, so a restart doesn't reset the goal counter.</p>
+          <p>It has two jobs. A Twitch watcher turns first-time chatters (anonymous IRC, no auth) and subs, resubs and gift subs (EventSub) into tiered alerts, and can optionally listen for Streamlabs donations; the panel works without any Twitch token. The control side owns the live state through small modules &mdash; goal counter, on/off switches per overlay, active design, per-design colors, saved color presets, handle name and photo, notes, and a demo-chat switch that resets itself on restart.</p>
+          <p>The panel has grown into a four-column dashboard: live controls and test alerts, overlay switches, color editing and presets, a design picker with Shuffle and an Auto timer (every 1, 5 or 10 minutes, with a countdown that runs in the hub so it keeps going with the panel closed), and an example overlay that shows the real alert, goal counter, handles, facecam and chat in the current design. There are now ten swappable designs, and new ones appear just by adding a folder. A soundboard mode plays clips through the alert overlay, and the tray app supervises the hub &mdash; it logs why a crash happened, restarts it, and gives up with a notification if it keeps failing.</p>
+          <span class="dev-private-note">Private repository</span>
         </div>
       </article>
 
@@ -1848,6 +1850,7 @@
     'pulpit_cover.png': 'img/pulpit_cover.webp',
     'pulpit_lower3rds.png': 'img/pulpit_lower3rds.webp',
     'pulpit_titlecard.png': 'img/pulpit_titlecard.webp',
+    'plantain_mixer.png': 'img/plantain_mixer.webp',
   };
   var IMG_T = {
     'journeylive_board.jpg': 'img/t/journeylive_board.webp',
@@ -1888,6 +1891,7 @@
     'pulpit_cover.png': 'img/t/pulpit_cover.webp',
     'pulpit_lower3rds.png': 'img/t/pulpit_lower3rds.webp',
     'pulpit_titlecard.png': 'img/t/pulpit_titlecard.webp',
+    'plantain_mixer.png': 'img/t/plantain_mixer.webp',
   };
   var IMG_DIM = {
     'journeylive_board.jpg': [1100, 768],
@@ -1947,6 +1951,7 @@
     'pulpit_cover.png': [800, 800],
     'pulpit_lower3rds.png': [1600, 900],
     'pulpit_titlecard.png': [1600, 900],
+    'plantain_mixer.png': [544, 436],
   };
   document.querySelectorAll('img[data-img]').forEach(function (img) {
     var key = img.getAttribute('data-img');
