@@ -1,6 +1,54 @@
 {
  "clients": [
   {
+   "name": "Farmers Insurance",
+   "logo": "img/client-farmers.webp"
+  },
+  {
+   "name": "Notre Dame",
+   "logo": "img/client-notre-dame.webp"
+  },
+  {
+   "name": "Consumers Credit Union",
+   "logo": "img/client-consumers-credit-union.webp"
+  },
+  {
+   "name": "AAA",
+   "logo": "img/client-aaa.webp"
+  },
+  {
+   "name": "Michigan Secretary of State",
+   "logo": "img/client-michigan-secretary-of-state.webp"
+  },
+  {
+   "name": "American Legion",
+   "logo": "img/client-american-legion.webp"
+  },
+  {
+   "name": "RE/MAX",
+   "logo": "img/client-remax.webp"
+  },
+  {
+   "name": "Acrisure",
+   "logo": "img/client-acrisure.webp"
+  },
+  {
+   "name": "Diversified Insurance Group",
+   "logo": "img/client-diversified-insurance-group.webp"
+  },
+  {
+   "name": "Corewell Health",
+   "logo": "img/client-corewell-health.webp"
+  },
+  {
+   "name": "ICON Sign Company",
+   "logo": "img/client-icon-sign-company.webp"
+  },
+  {
+   "name": "MMD Signs",
+   "logo": "img/client-mmd-signs.webp"
+  },
+  {
    "name": "Mythic Foundry",
    "logo": "img/mythic_lockup_color.webp"
   },

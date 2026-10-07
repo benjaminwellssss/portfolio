@@ -2124,7 +2124,7 @@
     }
     track.innerHTML = '';
     // repeat the list until one pass is wider than the screen, then double it so the loop has no gap
-    var reps = Math.max(2, Math.ceil(12 / list.length)), set = [];
+    var reps = Math.max(1, Math.ceil(10 / list.length)), set = [];
     for (var r = 0; r < reps; r++) list.forEach(function (c) { set.push(c); });
     set.concat(set).forEach(function (c) { track.appendChild(item(c)); });
     track.setAttribute('aria-hidden', 'false');
