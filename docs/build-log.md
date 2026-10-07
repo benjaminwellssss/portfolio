@@ -49,3 +49,16 @@ are not meant to be edited by hand.
 - `b1d8520` Test pages: extrude effect keeps the bright red face on top (sheen overlay no longer carries the dark shadow layers)
 
 (The list includes the earlier redesign attempt on the real pages and its revert, kept for history.)
+
+## Build 2: v2 goes live (2026-10-07)
+
+The v2 design replaced the original site. Rollback tags: `pre-v2-swap` (original site, last state before the swap),
+`pre-redesign` (older), `v2-test-final` (the test-page build).
+
+- Addresses: `/`, `/design/`, `/gallery/`, `/about/`, `/resumes/`, `/development/`, `/case/<post>/`; shared files in `/assets/`.
+- Unlisted test pages (`*2`) removed.
+- Hero: removed the eyebrow line and the paragraph, larger headline. Removed the small numbers on service and step cards.
+- `404.html` is a real not-found page and redirects old `/gallery/<tag>` and `/case` style addresses; old `#` links redirect to clean addresses.
+- Pages are generated, so changes made in `/admin/` (posts, gallery) are saved to `content/*.json` but only show on the
+  site after the pages are regenerated.
+- `tools/check_site.py` checks every generated page's links, images, styles and scripts.
