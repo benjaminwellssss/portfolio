@@ -692,7 +692,6 @@
   }
   .design-lower .mi-map-wrap { max-width: none; }
   @media (max-width: 899px) { .design-lower { grid-template-columns: minmax(0, 1fr); } }
-  .design-body[data-filter="signs"] .design-lower { order: -1; }
   .dg-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
   .dg-grid button, .gal-item {
     -webkit-appearance: none; appearance: none; padding: 0; border: 1px solid var(--slate-line-soft);
@@ -890,6 +889,7 @@
   .design-chip:hover { color: var(--ink); border-color: var(--slate); }
   .design-chip.active { background: var(--red); border-color: var(--red); color: var(--ink); }
   .design-chip-link { border-style: dashed; margin-left: auto; }
+  .design-body > .design-filters { margin-bottom: calc(-1 * clamp(0.5rem, 2vw, 1.25rem)); }
   .design-body {
     display: flex;
     flex-direction: column;
@@ -1342,14 +1342,7 @@
       <h2>Design &amp; Signage</h2>
       <p>Identity marks, brand systems, apparel, and print &mdash; plus vehicle graphics and physical signs built around Michigan.</p>
     </div>
-    <div class="design-filters" role="group" aria-label="Filter work">
-      <button type="button" class="design-chip active" data-filter="all" aria-pressed="true">All work</button>
-      <button type="button" class="design-chip" data-filter="brand" aria-pressed="false">Brand &amp; Print</button>
-      <button type="button" class="design-chip" data-filter="signs" aria-pressed="false">Signage</button>
-      <button type="button" class="design-chip design-chip-link" id="designMapJump">Map &darr;</button>
-    </div>
     <div class="design-body" id="designBody" data-filter="all">
-      <div class="case-grid" id="caseGrid"><p class="case-more-note">Loading work&hellip;</p></div>
       <div class="design-lower">
         <div class="design-map" id="designMap" data-cat="signs">
           <div class="design-map-head">
@@ -1394,6 +1387,12 @@
           <a class="btn dg-more" href="#gallery">View full gallery &rarr;</a>
         </aside>
       </div>
+      <div class="design-filters" role="group" aria-label="Filter work">
+        <button type="button" class="design-chip active" data-filter="all" aria-pressed="true">All work</button>
+        <button type="button" class="design-chip" data-filter="brand" aria-pressed="false">Brand &amp; Print</button>
+        <button type="button" class="design-chip" data-filter="signs" aria-pressed="false">Signage</button>
+        </div>
+      <div class="case-grid" id="caseGrid"><p class="case-more-note">Loading work&hellip;</p></div>
     </div>
     <p class="case-more-note">More work coming soon.</p>
   </section>
