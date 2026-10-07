@@ -14,6 +14,25 @@
     vids.forEach(function (v) { io.observe(v); });
   } else { vids.forEach(start); }
 
+  // lock each project's text panel to the height of the main video; "Read more" opens it to its full length when the text is longer
+  document.querySelectorAll('.dp').forEach(function (dp) {
+    var main = dp.querySelector('.dp-main'), text = dp.querySelector('.dp-text'), more = dp.querySelector('.dp-more');
+    if (!main || !text || !more) return;
+    function fit() {
+      dp.style.setProperty('--dp-h', main.getBoundingClientRect().height + 'px');
+      if (dp.classList.contains('open')) { more.hidden = false; return; }
+      var over = text.scrollHeight > text.clientHeight + 2;
+      text.classList.toggle('clamped', over); more.hidden = !over;
+    }
+    more.addEventListener('click', function () {
+      var open = dp.classList.toggle('open');
+      more.setAttribute('aria-expanded', open ? 'true' : 'false'); more.textContent = open ? 'Show less' : 'Read more';
+      if (!open) { fit(); dp.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); }
+    });
+    if ('ResizeObserver' in window) new ResizeObserver(fit).observe(main);
+    window.addEventListener('resize', fit); window.addEventListener('load', fit); fit();
+  });
+
   // Steam-style viewer: click a thumbnail to show it in the main view; arrows and the slider move the thumbnail row
   document.querySelectorAll('.dp-media').forEach(function (m) {
     var main = m.querySelector('.dp-main'), strip = m.querySelector('.dp-thumbs');

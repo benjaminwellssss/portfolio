@@ -285,11 +285,18 @@
   .dp-arrow:hover { background:#34414f; color:#fff; }
   .dp-slider { flex:1 1 auto; height:12px; background:#1a2230; position:relative; border-radius:2px; }
   .dp-knob { position:absolute; top:0; bottom:0; left:0; width:30%; background:#46576b; border-radius:2px; cursor:grab; }
-  .dp-info { background:var(--raised); border:1px solid var(--line-soft); border-radius:var(--shape); padding:22px 22px 24px; }
+  .dp-info { background:var(--raised); border:1px solid var(--line-soft); border-radius:var(--shape); padding:22px 22px 20px; display:flex; flex-direction:column; max-height:max(var(--dp-h, 9999px), 260px); }
+  .dp.open .dp-info { max-height:none; }
+  .dp-text { position:relative; overflow:hidden; flex:1 1 auto; min-height:0; }
+  .dp-text.clamped::after { content:""; position:absolute; left:0; right:0; bottom:0; height:56px; pointer-events:none; background:linear-gradient(transparent, var(--raised)); }
+  .dp.open .dp-text { overflow:visible; }
+  .dp.open .dp-text::after { display:none; }
+  .dp-more { align-self:flex-start; margin-top:12px; background:transparent; border:1px solid var(--line); color:var(--ink); font:inherit; font-size:13px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; padding:9px 16px; cursor:pointer; border-radius:var(--shape-sm); }
+  .dp-more:hover { background:var(--raised2); border-color:var(--slate); }
   .dp-info h2 { font-size:30px; font-weight:700; letter-spacing:-.6px; line-height:1.1; margin:6px 0 14px; }
   .dp-info p { color:#c9ccd2; font-size:15px; line-height:1.6; margin-bottom:14px; }
   .dp-info code { background:var(--raised2); padding:1px 6px; font-size:.9em; }
-  .dp-actions { margin-top:8px; display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
+  .dp-actions { flex:0 0 auto; margin-top:12px; display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
   @media (max-width:900px) { .dp { grid-template-columns:minmax(0,1fr); } .dp-tile { width:96px; height:54px; } .dp-info h2 { font-size:26px; } }
   .lb { position:fixed; inset:0; background:rgba(14,15,17,.94); z-index:100; display:none; align-items:center; justify-content:center; padding:30px; }
   .lb.open { display:flex; } .lb img { max-width:100%; max-height:100%; object-fit:contain; }
