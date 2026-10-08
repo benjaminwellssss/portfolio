@@ -1,6 +1,84 @@
 {
  "images": [
   {
+   "id": "csu_nametag",
+   "src": "img/csu_nametag.webp",
+   "caption": "CSU name tag sticker",
+   "tags": [
+    "church",
+    "schools",
+    "stickers",
+    "csu"
+   ],
+   "w": 1600,
+   "h": 1143
+  },
+  {
+   "id": "csu_flyer_quarter",
+   "src": "img/csu_flyer_quarter.webp",
+   "caption": "CSU quarter-page flyer",
+   "tags": [
+    "church",
+    "schools",
+    "flyers",
+    "csu"
+   ],
+   "w": 1236,
+   "h": 1600
+  },
+  {
+   "id": "csu_flyer_mms",
+   "src": "img/csu_flyer_mms.webp",
+   "caption": "CSU flyer, Macdonald Middle School",
+   "tags": [
+    "church",
+    "schools",
+    "flyers",
+    "csu"
+   ],
+   "w": 1236,
+   "h": 1600
+  },
+  {
+   "id": "csu_logo_mms",
+   "src": "img/csu_logo_mms.webp",
+   "caption": "CSU mark, Macdonald Middle School version",
+   "tags": [
+    "branding",
+    "church",
+    "schools",
+    "csu"
+   ],
+   "w": 815,
+   "h": 1038
+  },
+  {
+   "id": "csu_logo_blue",
+   "src": "img/csu_logo_blue.webp",
+   "caption": "CSU mark",
+   "tags": [
+    "branding",
+    "church",
+    "schools",
+    "csu"
+   ],
+   "w": 795,
+   "h": 990
+  },
+  {
+   "id": "csu_compare",
+   "src": "img/csu_compare.webp",
+   "caption": "CSU mark next to the Trojan helmet it came from",
+   "tags": [
+    "branding",
+    "church",
+    "schools",
+    "csu"
+   ],
+   "w": 1600,
+   "h": 900
+  },
+  {
    "id": "legion_exp_5169",
    "src": "img/legion_exp_5169.webp",
    "caption": "Legion Explorer graphics",

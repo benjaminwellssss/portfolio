@@ -420,6 +420,89 @@
    ]
   },
   {
+   "slug": "csu",
+   "cat": "brand",
+   "kicker": "Case Study · Logo & Print Collateral · October 2022",
+   "title": "Christian Student Union (CSU)",
+   "blurb": "A student faith group founded by Element Church in East Lansing, branded with a monogram built from a middle school's own Trojan helmet — then carried onto flyers, stickers, and tee shirts.",
+   "cardImg": "img/csu_compare.webp",
+   "cardAlt": "The Trojan helmet logo beside the CSU mark, with the shared ribbed crest outlined",
+   "cardThumbs": [
+    {
+     "src": "img/csu_logo_blue.webp",
+     "alt": "CSU monogram with a ribbed arc taken from the helmet crest, navy on white"
+    },
+    {
+     "src": "img/csu_flyer_mms.webp",
+     "alt": "Full-page Macdonald Middle School flyer with a tinted photo of the school lobby, the CSU mark, a sign-up QR code and the before and after school schedule"
+    },
+    {
+     "src": "img/csu_nametag.webp",
+     "alt": "Navy and white name tag sticker with the CSU mark"
+    }
+   ],
+   "hero": "img/csu_compare.webp",
+   "heroAlt": "Side by side: the Trojan helmet school logo and the CSU mark, with the ribbed crest outlined in red on both",
+   "city": "East Lansing, MI",
+   "body": [
+    "Christian Student Union — CSU — was a student faith group founded by my old church, Element Church in East Lansing, and led by the church. It was active in Macdonald Middle School and East Lansing Middle School, and in October 2022 I designed its identity.",
+    "The mark starts from Macdonald's own Trojan helmet. The helmet's ribbed crest is pulled out and bent into an arc that sweeps around a stacked, varsity-style C-S-U monogram. The side-by-side above shows where the arc comes from. The helmet itself shows up again in the center of the QR codes on the flyers.",
+    "The arc doubles as a label: on the Macdonald version it reads Macdonald Middle School, and on the general version it carries the name Christian Student Union. I also explored a few other directions — a round seal with a cross, an arc beside a stacked wordmark, and a horizontal lockup with an open book.",
+    "From there the identity went onto everything: full-page and quarter-page flyers for the before-school Bible study and prayer time and the after-school club, vinyl stickers and name tags, and tee shirts."
+   ],
+   "thumbs": [
+    {
+     "src": "img/csu_logo_blue.webp",
+     "alt": "CSU monogram with a ribbed arc taken from the helmet crest, navy on white",
+     "caption": "The CSU mark"
+    },
+    {
+     "src": "img/csu_logo_mms.webp",
+     "alt": "CSU monogram with the arc reading Macdonald Middle School",
+     "caption": "The Macdonald Middle School version: the school name rides the arc"
+    },
+    {
+     "src": "img/csu_flyer_mms.webp",
+     "alt": "Full-page Macdonald Middle School flyer with a tinted photo of the school lobby, the CSU mark, a sign-up QR code and the before and after school schedule",
+     "caption": "Full-page flyer for Macdonald Middle School"
+    },
+    {
+     "src": "img/csu_flyer_quarter.webp",
+     "alt": "Quarter-page flyer with the CSU mark over a repeating Christian Student Union pattern and a QR code with the Trojan helmet in its center",
+     "caption": "Quarter-page handout flyer"
+    },
+    {
+     "src": "img/csu_nametag.webp",
+     "alt": "Navy and white name tag sticker with the CSU mark",
+     "caption": "Name tag sticker"
+    },
+    {
+     "src": "img/csu_concept_seal.webp",
+     "alt": "Alternate concept: round navy seal with a cross and the words Christian Student Union and Macdonald Middle School",
+     "caption": "Alternate concept: round seal"
+    },
+    {
+     "src": "img/csu_concept_arc.webp",
+     "alt": "Alternate concept: curved ribbed arc beside a Christian Student Union wordmark",
+     "caption": "Alternate concept: arc and wordmark"
+    },
+    {
+     "src": "img/csu_concept_book.webp",
+     "alt": "Alternate concept: horizontal lockup with an open book and a ribbed arc",
+     "caption": "Alternate concept: open book lockup"
+    }
+   ],
+   "tags": [
+    "branding",
+    "church",
+    "schools",
+    "flyers",
+    "stickers",
+    "apparel",
+    "csu"
+   ]
+  },
+  {
    "slug": "pulpitaside",
    "cat": "brand",
    "kicker": "Case Study · Podcast & Broadcast Branding · September 2022",
