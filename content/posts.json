@@ -192,6 +192,11 @@
     "signs",
     "yard-signs",
     "schools"
+   ],
+   "place": "DeWitt, MI",
+   "geo": [
+    42.8403,
+    -84.5711
    ]
   },
   {
@@ -265,6 +270,11 @@
     "apparel",
     "screen-print",
     "church"
+   ],
+   "place": "East Lansing, MI",
+   "geo": [
+    42.73698,
+    -84.483864
    ]
   },
   {
@@ -343,6 +353,11 @@
     "signs",
     "vehicle-graphics",
     "legion"
+   ],
+   "place": "Lansing, MI",
+   "geo": [
+    42.7325,
+    -84.5555
    ]
   },
   {
@@ -417,6 +432,11 @@
     "signs",
     "vehicle-graphics",
     "legion"
+   ],
+   "place": "Lansing, MI",
+   "geo": [
+    42.7325,
+    -84.5555
    ]
   },
   {
@@ -500,6 +520,11 @@
     "stickers",
     "apparel",
     "csu"
+   ],
+   "place": "East Lansing, MI",
+   "geo": [
+    42.73698,
+    -84.483864
    ]
   },
   {
@@ -555,6 +580,11 @@
     "print",
     "ekids",
     "notebook"
+   ],
+   "place": "East Lansing, MI",
+   "geo": [
+    42.73698,
+    -84.483864
    ]
   },
   {
@@ -668,6 +698,11 @@
     "church",
     "apparel",
     "baptism"
+   ],
+   "place": "East Lansing, MI",
+   "geo": [
+    42.73698,
+    -84.483864
    ]
   }
  ]

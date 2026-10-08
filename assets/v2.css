@@ -384,7 +384,7 @@
   .map-box > .label { display:block; padding-top:22px; }
   .map-box::after { content:""; position:absolute; inset:0; z-index:1; pointer-events:none; background:linear-gradient(90deg, rgba(21,25,32,.9) 0%, rgba(21,25,32,.5) 30%, rgba(21,25,32,0) 55%); }
   .mapwrap { position:absolute; inset:0; margin:0; width:auto; aspect-ratio:auto; overflow:visible; z-index:0; }
-  .mapzoom { position:absolute; left:50%; top:50%; width:max(100cqw, calc(100cqh * 1.3884)); aspect-ratio:603.1 / 434.4; transform:translate(-50%, -50%); }
+  .mapzoom { position:absolute; left:50%; top:50%; width:calc(max(100cqw, 100cqh * 1.3884) * 1.45); aspect-ratio:603.1 / 434.4; transform:translate(-52%, -47%); }   /* zoomed in on Michigan; the frame stays the same size */
   .mapzoom svg { position:absolute; inset:0; width:100%; height:100%; }
   .pin { z-index:3; }
   .map-shade { position:absolute; inset:0; pointer-events:none; background:linear-gradient(90deg, rgba(21,25,32,.9) 0%, rgba(21,25,32,.5) 30%, rgba(21,25,32,0) 55%); }
