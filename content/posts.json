@@ -151,52 +151,119 @@
    "hidden": true
   },
   {
-   "slug": "sign-dewitt",
-   "cat": "signs",
-   "kicker": "Case Study · Yard Signs · 2023–2026",
-   "title": "DeWitt Schools Yard Signs",
-   "blurb": "Recurring personalized athlete yard signs for DeWitt Public Schools — roughly ten new sport designs a year, thousands of signs printed over the run of the program.",
-   "cardImg": "img/dewitt_swim.webp",
-   "cardAlt": "DeWitt Swim and Dive yard sign design",
+   "slug": "made-new",
+   "cat": "brand",
+   "kicker": "Case Study · Apparel Design · August 2022",
+   "title": "Made New Baptism Shirt",
+   "blurb": "A baptism tee for Element Church: “made new” stacked three times on the chest and, on the back, “Raised to Life · Made New” circling a palm branch.",
+   "cardImg": "img/madenew_mockup.webp",
+   "cardAlt": "Front and back of the Made New baptism shirt on a black tee mockup",
    "cardThumbs": [
     {
-     "src": "img/dewitt_baseball.webp",
-     "alt": "DeWitt Baseball yard sign"
+     "src": "img/madenew_front.webp",
+     "alt": "Made New front chest print"
     },
     {
-     "src": "img/dewitt_cheer.webp",
-     "alt": "DeWitt Cheer yard sign"
+     "src": "img/madenew_back.webp",
+     "alt": "Made New back print"
     }
    ],
-   "hero": "img/dewitt_swim.webp",
-   "heroAlt": "DeWitt Swim & Dive yard sign design with a custom swimmer illustration and Panthers mascot",
-   "city": "",
+   "hero": "img/madenew_mockup.webp",
+   "heroAlt": "Front and back of the Made New baptism shirt on a black tee mockup: small stacked made new text on the chest and a large oval palm-branch design on the back",
+   "city": "East Lansing, MI",
    "body": [
-    "While at MMD Signs, DeWitt Public Schools became a recurring client for personalized athlete yard signs — the kind families put in the yard to celebrate a student’s season. Coroplast, 18\"x24\", built to survive a Michigan season outdoors.",
-    "Each sport got its own design: a custom swimmer illustration for swim & dive, a mascot-and-diamond layout for baseball, star-and-paw graphics for cheer, plus versions for football, softball, volleyball, archery, and more, across both the high school and middle school. Every design was templated with a \"Student Name\" field so the shop could personalize and output them fast, sport by sport, season after season.",
-    "This became one of the highest-volume recurring jobs on the floor — roughly ten new designs a year on top of reprints, amounting to thousands of signs printed and sold over the run of the program."
+    "Made New is a shirt for baptisms at Element Church in East Lansing. I designed it in August 2022.",
+    "The front is simple: the words “made new” set three times in a stacked serif, with the Element Church wordmark underneath, printed small on the chest. The back carries the full design — “Raised to Life · Made New” set in a ring around a line-drawn palm branch, with a pair of map coordinates beside it.",
+    "The palm branch is the heart of the design. In the Gospels, the crowd welcoming Jesus into Jerusalem laid palm branches in His path and waved them as He came (Matthew 21:8; John 12:12–13), and the palm has been a sign of victory and triumph ever since — in Revelation 7:9 the great multitude before the throne holds palm branches in their hands. On a baptism shirt it carries the same welcome: a way opened for Christ to walk into a life, and the new life that follows when He does.",
+    "The coordinates are those of the Kellogg Center in East Lansing, where Element Church meets and where the baptisms take place. The shirt can be seen worn on camera in an Element Church video from October 2, 2022, filmed there. The designs are shown on a black tee mockup."
    ],
    "thumbs": [
     {
-     "src": "img/dewitt_baseball.webp",
-     "alt": "DeWitt Baseball yard sign with player name, number, and Panthers mascot logo",
-     "caption": "Baseball"
+     "src": "img/madenew_lifestyle.webp",
+     "alt": "The back of the Made New shirt on a person seated at a table in a coffee shop, with the Raised to Life, Made New ring and palm branch in white on black",
+     "caption": "The back print in a lifestyle mockup"
     },
     {
-     "src": "img/dewitt_cheer.webp",
-     "alt": "DeWitt Competitive Youth Cheer yard sign with star and paw print graphics",
-     "caption": "Cheer"
+     "src": "img/madenew_front.webp",
+     "alt": "The made new chest print, white on black, stacked three times above the Element Church wordmark",
+     "caption": "Front chest print"
+    },
+    {
+     "src": "img/madenew_back.webp",
+     "alt": "The back print: Raised to Life, Made New around a palm branch with the Kellogg Center coordinates",
+     "caption": "Back print"
     }
    ],
    "tags": [
-    "signs",
-    "yard-signs",
-    "schools"
+    "branding",
+    "church",
+    "apparel",
+    "baptism"
    ],
-   "place": "DeWitt, MI",
+   "place": "East Lansing, MI",
    "geo": [
-    42.8403,
-    -84.5711
+    42.73698,
+    -84.483864
+   ]
+  },
+  {
+   "slug": "ekids-notebook",
+   "cat": "brand",
+   "kicker": "Case Study · Print & Cover Design · September 2022",
+   "title": "EKids Notebook",
+   "blurb": "A devotional notebook for the families of EKids, the children's department of Element Church — a bright geometric cover and back cover, made as a gift for parents and kids.",
+   "cardImg": "img/ekids_front.webp",
+   "cardAlt": "EKids notebook front cover with a pattern of colorful shapes and the EKids logo",
+   "cardThumbs": [
+    {
+     "src": "img/ekids_front.webp",
+     "alt": "EKids notebook front cover: a grid of colorful rounded shapes in lime, green, teal, purple and orange with the EKids logo and a This Book Belongs to line"
+    },
+    {
+     "src": "img/ekids_back.webp",
+     "alt": "EKids notebook back cover: the same colorful shape pattern with a small pill at the bottom reading Element Church, East Lansing, and the web address"
+    },
+    {
+     "src": "img/ekids_mockup_ai.webp",
+     "alt": "AI-generated mockup of two EKids notebooks on a wooden table beside a mug and a pen"
+    }
+   ],
+   "hero": "img/ekids_spread.webp",
+   "heroAlt": "The EKids notebook cover artwork laid out as one spread: a colorful pattern of rounded squares, circles and quarter shapes with the EKids logo and a This Book Belongs to line",
+   "city": "East Lansing, MI",
+   "body": [
+    "EKids is the children's department of Element Church in East Lansing. This notebook was made as a gift for the parents and kids involved in EKids, and was meant to work as a devotional book for them to use together.",
+    "The cover is built from a grid of rounded squares, circles, and quarter shapes in a five-color palette — lime, green, teal, purple, and orange. The EKids logo sits on a clear panel in the pattern, with a “This Book Belongs to:” line underneath so every child can claim their copy. The back cover carries the same pattern and a small pill with the church name, the city, and the web address.",
+    "I laid out the first version of the covers on September 16, 2022, and had the final files by September 21, 2022. The notebook mockup shown below is AI-generated; it isn't a photo of the printed book."
+   ],
+   "thumbs": [
+    {
+     "src": "img/ekids_front.webp",
+     "alt": "EKids notebook front cover: a grid of colorful rounded shapes in lime, green, teal, purple and orange with the EKids logo and a This Book Belongs to line",
+     "caption": "Front cover"
+    },
+    {
+     "src": "img/ekids_back.webp",
+     "alt": "EKids notebook back cover: the same colorful shape pattern with a small pill at the bottom reading Element Church, East Lansing, and the web address",
+     "caption": "Back cover"
+    },
+    {
+     "src": "img/ekids_mockup_ai.webp",
+     "alt": "AI-generated mockup of two EKids notebooks on a wooden table beside a mug and a pen",
+     "caption": "AI-generated mockup (not a photo of the printed book)"
+    }
+   ],
+   "tags": [
+    "branding",
+    "church",
+    "print",
+    "ekids",
+    "notebook"
+   ],
+   "place": "East Lansing, MI",
+   "geo": [
+    42.73698,
+    -84.483864
    ]
   },
   {
@@ -285,6 +352,143 @@
    "geo": [
     42.73698,
     -84.483864
+   ]
+  },
+  {
+   "slug": "csu",
+   "cat": "brand",
+   "kicker": "Case Study · Logo & Print Collateral · October 2022",
+   "title": "Christian Student Union (CSU)",
+   "blurb": "A student faith group founded by Element Church in East Lansing, branded with a monogram built from a middle school's own Trojan helmet — then carried onto flyers, stickers, and tee shirts.",
+   "cardImg": "img/csu_compare.webp",
+   "cardAlt": "The Trojan helmet logo beside the CSU mark, with the shared ribbed crest outlined",
+   "cardThumbs": [
+    {
+     "src": "img/csu_logo_blue.webp",
+     "alt": "CSU monogram with a ribbed arc taken from the helmet crest, navy on white"
+    },
+    {
+     "src": "img/csu_flyer_mms.webp",
+     "alt": "Full-page Macdonald Middle School flyer with a tinted photo of the school lobby, the CSU mark, a sign-up QR code and the before and after school schedule"
+    },
+    {
+     "src": "img/csu_nametag.webp",
+     "alt": "Navy and white name tag sticker with the CSU mark"
+    }
+   ],
+   "hero": "img/csu_compare.webp",
+   "heroAlt": "Side by side: the Trojan helmet school logo and the CSU mark, with the ribbed crest outlined in red on both",
+   "city": "East Lansing, MI",
+   "body": [
+    "Christian Student Union — CSU — was a student faith group founded by my old church, Element Church in East Lansing, and led by the church. It was active in Macdonald Middle School and East Lansing Middle School, and in October 2022 I designed its identity.",
+    "The mark starts from Macdonald's own Trojan helmet. The helmet's ribbed crest is pulled out and bent into an arc that sweeps around a stacked, varsity-style C-S-U monogram. The side-by-side above shows where the arc comes from. The helmet itself shows up again in the center of the QR codes on the flyers.",
+    "The arc doubles as a label: on the Macdonald version it reads Macdonald Middle School, and on the general version it carries the name Christian Student Union. I also explored a few other directions — a round seal with a cross, an arc beside a stacked wordmark, and a horizontal lockup with an open book.",
+    "From there the identity went onto everything: full-page and quarter-page flyers for the before-school Bible study and prayer time and the after-school club, vinyl stickers and name tags, and tee shirts."
+   ],
+   "thumbs": [
+    {
+     "src": "img/csu_logo_blue.webp",
+     "alt": "CSU monogram with a ribbed arc taken from the helmet crest, navy on white",
+     "caption": "The CSU mark"
+    },
+    {
+     "src": "img/csu_logo_mms.webp",
+     "alt": "CSU monogram with the arc reading Macdonald Middle School",
+     "caption": "The Macdonald Middle School version: the school name rides the arc"
+    },
+    {
+     "src": "img/csu_flyer_mms.webp",
+     "alt": "Full-page Macdonald Middle School flyer with a tinted photo of the school lobby, the CSU mark, a sign-up QR code and the before and after school schedule",
+     "caption": "Full-page flyer for Macdonald Middle School"
+    },
+    {
+     "src": "img/csu_flyer_quarter.webp",
+     "alt": "Quarter-page flyer with the CSU mark over a repeating Christian Student Union pattern and a QR code with the Trojan helmet in its center",
+     "caption": "Quarter-page handout flyer"
+    },
+    {
+     "src": "img/csu_nametag.webp",
+     "alt": "Navy and white name tag sticker with the CSU mark",
+     "caption": "Name tag sticker"
+    },
+    {
+     "src": "img/csu_concept_seal.webp",
+     "alt": "Alternate concept: round navy seal with a cross and the words Christian Student Union and Macdonald Middle School",
+     "caption": "Alternate concept: round seal"
+    },
+    {
+     "src": "img/csu_concept_arc.webp",
+     "alt": "Alternate concept: curved ribbed arc beside a Christian Student Union wordmark",
+     "caption": "Alternate concept: arc and wordmark"
+    },
+    {
+     "src": "img/csu_concept_book.webp",
+     "alt": "Alternate concept: horizontal lockup with an open book and a ribbed arc",
+     "caption": "Alternate concept: open book lockup"
+    }
+   ],
+   "tags": [
+    "branding",
+    "church",
+    "schools",
+    "flyers",
+    "stickers",
+    "apparel",
+    "csu"
+   ],
+   "place": "East Lansing, MI",
+   "geo": [
+    42.73698,
+    -84.483864
+   ]
+  },
+  {
+   "slug": "sign-dewitt",
+   "cat": "signs",
+   "kicker": "Case Study · Yard Signs · 2023–2026",
+   "title": "DeWitt Schools Yard Signs",
+   "blurb": "Recurring personalized athlete yard signs for DeWitt Public Schools — roughly ten new sport designs a year, thousands of signs printed over the run of the program.",
+   "cardImg": "img/dewitt_swim.webp",
+   "cardAlt": "DeWitt Swim and Dive yard sign design",
+   "cardThumbs": [
+    {
+     "src": "img/dewitt_baseball.webp",
+     "alt": "DeWitt Baseball yard sign"
+    },
+    {
+     "src": "img/dewitt_cheer.webp",
+     "alt": "DeWitt Cheer yard sign"
+    }
+   ],
+   "hero": "img/dewitt_swim.webp",
+   "heroAlt": "DeWitt Swim & Dive yard sign design with a custom swimmer illustration and Panthers mascot",
+   "city": "",
+   "body": [
+    "While at MMD Signs, DeWitt Public Schools became a recurring client for personalized athlete yard signs — the kind families put in the yard to celebrate a student’s season. Coroplast, 18\"x24\", built to survive a Michigan season outdoors.",
+    "Each sport got its own design: a custom swimmer illustration for swim & dive, a mascot-and-diamond layout for baseball, star-and-paw graphics for cheer, plus versions for football, softball, volleyball, archery, and more, across both the high school and middle school. Every design was templated with a \"Student Name\" field so the shop could personalize and output them fast, sport by sport, season after season.",
+    "This became one of the highest-volume recurring jobs on the floor — roughly ten new designs a year on top of reprints, amounting to thousands of signs printed and sold over the run of the program."
+   ],
+   "thumbs": [
+    {
+     "src": "img/dewitt_baseball.webp",
+     "alt": "DeWitt Baseball yard sign with player name, number, and Panthers mascot logo",
+     "caption": "Baseball"
+    },
+    {
+     "src": "img/dewitt_cheer.webp",
+     "alt": "DeWitt Competitive Youth Cheer yard sign with star and paw print graphics",
+     "caption": "Cheer"
+    }
+   ],
+   "tags": [
+    "signs",
+    "yard-signs",
+    "schools"
+   ],
+   "place": "DeWitt, MI",
+   "geo": [
+    42.8403,
+    -84.5711
    ]
   },
   {
@@ -450,154 +654,6 @@
    ]
   },
   {
-   "slug": "csu",
-   "cat": "brand",
-   "kicker": "Case Study · Logo & Print Collateral · October 2022",
-   "title": "Christian Student Union (CSU)",
-   "blurb": "A student faith group founded by Element Church in East Lansing, branded with a monogram built from a middle school's own Trojan helmet — then carried onto flyers, stickers, and tee shirts.",
-   "cardImg": "img/csu_compare.webp",
-   "cardAlt": "The Trojan helmet logo beside the CSU mark, with the shared ribbed crest outlined",
-   "cardThumbs": [
-    {
-     "src": "img/csu_logo_blue.webp",
-     "alt": "CSU monogram with a ribbed arc taken from the helmet crest, navy on white"
-    },
-    {
-     "src": "img/csu_flyer_mms.webp",
-     "alt": "Full-page Macdonald Middle School flyer with a tinted photo of the school lobby, the CSU mark, a sign-up QR code and the before and after school schedule"
-    },
-    {
-     "src": "img/csu_nametag.webp",
-     "alt": "Navy and white name tag sticker with the CSU mark"
-    }
-   ],
-   "hero": "img/csu_compare.webp",
-   "heroAlt": "Side by side: the Trojan helmet school logo and the CSU mark, with the ribbed crest outlined in red on both",
-   "city": "East Lansing, MI",
-   "body": [
-    "Christian Student Union — CSU — was a student faith group founded by my old church, Element Church in East Lansing, and led by the church. It was active in Macdonald Middle School and East Lansing Middle School, and in October 2022 I designed its identity.",
-    "The mark starts from Macdonald's own Trojan helmet. The helmet's ribbed crest is pulled out and bent into an arc that sweeps around a stacked, varsity-style C-S-U monogram. The side-by-side above shows where the arc comes from. The helmet itself shows up again in the center of the QR codes on the flyers.",
-    "The arc doubles as a label: on the Macdonald version it reads Macdonald Middle School, and on the general version it carries the name Christian Student Union. I also explored a few other directions — a round seal with a cross, an arc beside a stacked wordmark, and a horizontal lockup with an open book.",
-    "From there the identity went onto everything: full-page and quarter-page flyers for the before-school Bible study and prayer time and the after-school club, vinyl stickers and name tags, and tee shirts."
-   ],
-   "thumbs": [
-    {
-     "src": "img/csu_logo_blue.webp",
-     "alt": "CSU monogram with a ribbed arc taken from the helmet crest, navy on white",
-     "caption": "The CSU mark"
-    },
-    {
-     "src": "img/csu_logo_mms.webp",
-     "alt": "CSU monogram with the arc reading Macdonald Middle School",
-     "caption": "The Macdonald Middle School version: the school name rides the arc"
-    },
-    {
-     "src": "img/csu_flyer_mms.webp",
-     "alt": "Full-page Macdonald Middle School flyer with a tinted photo of the school lobby, the CSU mark, a sign-up QR code and the before and after school schedule",
-     "caption": "Full-page flyer for Macdonald Middle School"
-    },
-    {
-     "src": "img/csu_flyer_quarter.webp",
-     "alt": "Quarter-page flyer with the CSU mark over a repeating Christian Student Union pattern and a QR code with the Trojan helmet in its center",
-     "caption": "Quarter-page handout flyer"
-    },
-    {
-     "src": "img/csu_nametag.webp",
-     "alt": "Navy and white name tag sticker with the CSU mark",
-     "caption": "Name tag sticker"
-    },
-    {
-     "src": "img/csu_concept_seal.webp",
-     "alt": "Alternate concept: round navy seal with a cross and the words Christian Student Union and Macdonald Middle School",
-     "caption": "Alternate concept: round seal"
-    },
-    {
-     "src": "img/csu_concept_arc.webp",
-     "alt": "Alternate concept: curved ribbed arc beside a Christian Student Union wordmark",
-     "caption": "Alternate concept: arc and wordmark"
-    },
-    {
-     "src": "img/csu_concept_book.webp",
-     "alt": "Alternate concept: horizontal lockup with an open book and a ribbed arc",
-     "caption": "Alternate concept: open book lockup"
-    }
-   ],
-   "tags": [
-    "branding",
-    "church",
-    "schools",
-    "flyers",
-    "stickers",
-    "apparel",
-    "csu"
-   ],
-   "place": "East Lansing, MI",
-   "geo": [
-    42.73698,
-    -84.483864
-   ]
-  },
-  {
-   "slug": "ekids-notebook",
-   "cat": "brand",
-   "kicker": "Case Study · Print & Cover Design · September 2022",
-   "title": "EKids Notebook",
-   "blurb": "A devotional notebook for the families of EKids, the children's department of Element Church — a bright geometric cover and back cover, made as a gift for parents and kids.",
-   "cardImg": "img/ekids_front.webp",
-   "cardAlt": "EKids notebook front cover with a pattern of colorful shapes and the EKids logo",
-   "cardThumbs": [
-    {
-     "src": "img/ekids_front.webp",
-     "alt": "EKids notebook front cover: a grid of colorful rounded shapes in lime, green, teal, purple and orange with the EKids logo and a This Book Belongs to line"
-    },
-    {
-     "src": "img/ekids_back.webp",
-     "alt": "EKids notebook back cover: the same colorful shape pattern with a small pill at the bottom reading Element Church, East Lansing, and the web address"
-    },
-    {
-     "src": "img/ekids_mockup_ai.webp",
-     "alt": "AI-generated mockup of two EKids notebooks on a wooden table beside a mug and a pen"
-    }
-   ],
-   "hero": "img/ekids_spread.webp",
-   "heroAlt": "The EKids notebook cover artwork laid out as one spread: a colorful pattern of rounded squares, circles and quarter shapes with the EKids logo and a This Book Belongs to line",
-   "city": "East Lansing, MI",
-   "body": [
-    "EKids is the children's department of Element Church in East Lansing. This notebook was made as a gift for the parents and kids involved in EKids, and was meant to work as a devotional book for them to use together.",
-    "The cover is built from a grid of rounded squares, circles, and quarter shapes in a five-color palette — lime, green, teal, purple, and orange. The EKids logo sits on a clear panel in the pattern, with a “This Book Belongs to:” line underneath so every child can claim their copy. The back cover carries the same pattern and a small pill with the church name, the city, and the web address.",
-    "I laid out the first version of the covers on September 16, 2022, and had the final files by September 21, 2022. The notebook mockup shown below is AI-generated; it isn't a photo of the printed book."
-   ],
-   "thumbs": [
-    {
-     "src": "img/ekids_front.webp",
-     "alt": "EKids notebook front cover: a grid of colorful rounded shapes in lime, green, teal, purple and orange with the EKids logo and a This Book Belongs to line",
-     "caption": "Front cover"
-    },
-    {
-     "src": "img/ekids_back.webp",
-     "alt": "EKids notebook back cover: the same colorful shape pattern with a small pill at the bottom reading Element Church, East Lansing, and the web address",
-     "caption": "Back cover"
-    },
-    {
-     "src": "img/ekids_mockup_ai.webp",
-     "alt": "AI-generated mockup of two EKids notebooks on a wooden table beside a mug and a pen",
-     "caption": "AI-generated mockup (not a photo of the printed book)"
-    }
-   ],
-   "tags": [
-    "branding",
-    "church",
-    "print",
-    "ekids",
-    "notebook"
-   ],
-   "place": "East Lansing, MI",
-   "geo": [
-    42.73698,
-    -84.483864
-   ]
-  },
-  {
    "slug": "pulpitaside",
    "cat": "brand",
    "kicker": "Case Study · Podcast & Broadcast Branding · September 2022",
@@ -718,62 +774,6 @@
     "stickers",
     "sparticipation",
     "outreach"
-   ]
-  },
-  {
-   "slug": "made-new",
-   "cat": "brand",
-   "kicker": "Case Study · Apparel Design · August 2022",
-   "title": "Made New Baptism Shirt",
-   "blurb": "A baptism tee for Element Church: “made new” stacked three times on the chest and, on the back, “Raised to Life · Made New” circling a palm branch.",
-   "cardImg": "img/madenew_mockup.webp",
-   "cardAlt": "Front and back of the Made New baptism shirt on a black tee mockup",
-   "cardThumbs": [
-    {
-     "src": "img/madenew_front.webp",
-     "alt": "Made New front chest print"
-    },
-    {
-     "src": "img/madenew_back.webp",
-     "alt": "Made New back print"
-    }
-   ],
-   "hero": "img/madenew_mockup.webp",
-   "heroAlt": "Front and back of the Made New baptism shirt on a black tee mockup: small stacked made new text on the chest and a large oval palm-branch design on the back",
-   "city": "East Lansing, MI",
-   "body": [
-    "Made New is a shirt for baptisms at Element Church in East Lansing. I designed it in August 2022.",
-    "The front is simple: the words “made new” set three times in a stacked serif, with the Element Church wordmark underneath, printed small on the chest. The back carries the full design — “Raised to Life · Made New” set in a ring around a line-drawn palm branch, with a pair of map coordinates beside it.",
-    "The palm branch is the heart of the design. In the Gospels, the crowd welcoming Jesus into Jerusalem laid palm branches in His path and waved them as He came (Matthew 21:8; John 12:12–13), and the palm has been a sign of victory and triumph ever since — in Revelation 7:9 the great multitude before the throne holds palm branches in their hands. On a baptism shirt it carries the same welcome: a way opened for Christ to walk into a life, and the new life that follows when He does.",
-    "The coordinates are those of the Kellogg Center in East Lansing, where Element Church meets and where the baptisms take place. The shirt can be seen worn on camera in an Element Church video from October 2, 2022, filmed there. The designs are shown on a black tee mockup."
-   ],
-   "thumbs": [
-    {
-     "src": "img/madenew_lifestyle.webp",
-     "alt": "The back of the Made New shirt on a person seated at a table in a coffee shop, with the Raised to Life, Made New ring and palm branch in white on black",
-     "caption": "The back print in a lifestyle mockup"
-    },
-    {
-     "src": "img/madenew_front.webp",
-     "alt": "The made new chest print, white on black, stacked three times above the Element Church wordmark",
-     "caption": "Front chest print"
-    },
-    {
-     "src": "img/madenew_back.webp",
-     "alt": "The back print: Raised to Life, Made New around a palm branch with the Kellogg Center coordinates",
-     "caption": "Back print"
-    }
-   ],
-   "tags": [
-    "branding",
-    "church",
-    "apparel",
-    "baptism"
-   ],
-   "place": "East Lansing, MI",
-   "geo": [
-    42.73698,
-    -84.483864
    ]
   }
  ]
