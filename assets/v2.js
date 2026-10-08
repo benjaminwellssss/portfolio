@@ -6,6 +6,40 @@
 })();
 
 (function () {
+  var box = document.querySelector('.map-box'), multi = document.querySelectorAll('.pin-multi');
+  if (!box || !multi.length) return;
+  var pop = document.createElement('div'), cur = null, timer = null;
+  pop.className = 'pin-pop'; pop.hidden = true; box.appendChild(pop);
+  function place(m) {
+    var b = box.getBoundingClientRect(), r = m.getBoundingClientRect(), w = pop.offsetWidth, h = pop.offsetHeight, gap = 16;
+    var x = r.right - b.left + gap;
+    if (x + w > b.width - 10) x = r.left - b.left - gap - w;          // not enough room on the right: open to the left
+    x = Math.max(10, Math.min(x, b.width - w - 10));
+    var y = (r.top + r.height / 2 - b.top) - h / 2;
+    y = Math.max(10, Math.min(y, b.height - h - 10));
+    pop.style.left = x + 'px'; pop.style.top = y + 'px';
+  }
+  function open(m) {
+    clearTimeout(timer);
+    if (cur && cur !== m) cur.classList.remove('open');
+    cur = m; m.classList.add('open');
+    pop.innerHTML = m.querySelector('.pin-list').innerHTML; pop.hidden = false; place(m);
+  }
+  function close() { if (cur) cur.classList.remove('open'); cur = null; pop.hidden = true; }
+  function later() { clearTimeout(timer); timer = setTimeout(close, 180); }
+  multi.forEach(function (m) {
+    m.addEventListener('mouseenter', function () { open(m); });
+    m.addEventListener('focus', function () { open(m); });
+    m.addEventListener('mouseleave', later);
+    m.addEventListener('click', function (e) { e.stopPropagation(); if (cur === m && !pop.hidden && e.detail > 0 && matchMedia('(hover: none)').matches) close(); else open(m); });
+  });
+  pop.addEventListener('mouseenter', function () { clearTimeout(timer); });
+  pop.addEventListener('mouseleave', later);
+  document.addEventListener('click', function (e) { if (cur && !pop.contains(e.target) && !cur.contains(e.target)) close(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+  window.addEventListener('resize', function () { if (cur) place(cur); });
+})();
+(function () {
   // posts switched off in the admin disappear straight away, even before the pages are rebuilt
   fetch('/content/posts.json?t=' + Date.now(), { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (d) {
     if (!d || !d.posts) return;
@@ -14,7 +48,7 @@
       var path = '/case/' + p.slug + '/';
       if (location.pathname.indexOf(path) === 0) { location.replace('/design/'); return; }
       document.querySelectorAll('a[href="' + path + '"]').forEach(function (a) {
-        var box = a.closest('article.post, .pin, .feat, .item, .card') || a; box.style.display = 'none';
+        var box = a.closest('article.post, .pin-list > a, a.pin, .feat, .item, .card') || a; box.style.display = 'none';
       });
     });
   }).catch(function () {});
