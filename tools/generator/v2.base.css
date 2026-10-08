@@ -1,0 +1,233 @@
+
+  /* v2: the reference layout's sizes and section rhythm, with the site's charcoal + red identity, the halftone hero image,
+     and every button/card/chip cut like the logo (square, top-right and bottom-left corners rounded). */
+  :root {
+    --charcoal:#17181A; --raised:#202226; --raised2:#26282D; --line:#34373D; --line-soft:#2A2C31;
+    --slate:#9AA0AA; --ink:#F2F1EE; --red:#E5171F; --red-deep:#B4121A;
+    --grey:#999b9e; --grey2:#a0a2a6; --card:#ffffff; --text:#1d1e20; --body:#2e2f31;
+    --r:22px;                      /* the logo corner */
+    --r-sm:12px;
+    --max:1200px; --gut:60px;
+    --shape:0 var(--r) 0 var(--r);          /* TL square, TR round, BR square, BL round */
+    --shape-sm:0 var(--r-sm) 0 var(--r-sm);
+  }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { margin:0; font-family:'Archivo', Arial, sans-serif; background:var(--charcoal); color:var(--ink); -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:var(--max); margin:0 auto; padding:0 var(--gut); }
+  h1,h2,h3,h4,p { margin:0; }
+  a { color:inherit; }
+  .label { display:block; font-size:12px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; color:var(--slate); margin-bottom:14px; }
+  .red { color:var(--red); }
+
+  /* buttons: rectangles cut like the logo */
+  .btn { display:inline-flex; align-items:center; justify-content:center; gap:10px; background:var(--red); color:#17181A; font-weight:800; letter-spacing:.02em; text-decoration:none; border:0; cursor:pointer; border-radius:var(--shape-sm); transition:background .15s; }
+  .btn:hover { background:var(--red-deep); color:#fff; }
+  .btn.lg { font-size:18px; padding:17px 30px; min-width:300px; border-radius:var(--shape); }
+  .btn.md { font-size:15px; padding:15px 28px; }
+  .btn.ghost { background:transparent; color:var(--ink); border:1px solid var(--line); }
+  .btn.ghost:hover { background:var(--raised2); }
+  .btn.light { background:var(--card); color:var(--red); }
+
+  /* top bar */
+  .bar { position:absolute; inset:0 0 auto 0; height:72px; z-index:5; }
+  .bar .wrap { height:72px; display:flex; align-items:center; justify-content:space-between; }
+  .bar b { font-size:19px; font-weight:800; letter-spacing:-.01em; display:flex; align-items:center; gap:9px; }
+  .bar .logo { height:34px; width:auto; display:block; }
+  .bar nav a { color:var(--ink); text-decoration:none; font-size:14px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; margin-left:28px; }
+
+  /* 1. hero: halftone image like the live site, 130/70 padding like the reference */
+  .hero { position:relative; background:var(--charcoal); padding:130px 0 70px; overflow:hidden; border-bottom:1px solid var(--line-soft); }
+  .hero::before { content:""; position:absolute; inset:0; background:url('../ben-wells-design/img/hero_halftone.webp') center 38%/cover; opacity:.4; }
+  .hero::after { content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(23,24,26,.15), var(--charcoal)); }
+  .hero .wrap { position:relative; z-index:2; }
+  .hero h1 { font-size:52px; font-weight:800; line-height:.98; letter-spacing:-1.2px; max-width:700px; }
+  .hero .sub { font-size:18px; line-height:1.35; letter-spacing:-.3px; color:#c9ccd2; margin:20px 0 28px; max-width:620px; }
+  .hero-top { display:grid; grid-template-columns:1.2fr 1fr; gap:50px; align-items:start; }
+  .rows { display:flex; flex-direction:column; gap:10px; }
+  .row-btn { display:flex; justify-content:space-between; align-items:center; text-decoration:none; font-size:20px; font-weight:700; padding:22px 26px; border-radius:var(--shape); color:#fff; }
+  .row-btn.design { background:linear-gradient(120deg,#E5171F,#B4121A); }
+  .row-btn.dev { background:linear-gradient(120deg,#41576D,#35495E); }
+  .row-btn.about { background:linear-gradient(120deg,#46494F,#3A3D42); }
+  .row-btn:hover { filter:brightness(1.12); }
+  .hero h2 { font-size:28px; font-weight:900; text-transform:uppercase; letter-spacing:-1px; line-height:1.05; margin-top:60px; }
+  .hero .lead { font-size:14px; color:var(--slate); margin:8px 0 18px; }
+  .cards { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .stat-card { background:var(--raised); border:1px solid var(--line-soft); border-radius:var(--shape); min-height:84px; display:flex; align-items:center; padding:0 26px; gap:22px; }
+  .stat-card b { color:var(--red); font-size:52px; font-weight:800; letter-spacing:-1.5px; min-width:150px; }
+  .stat-card span { font-size:15px; font-weight:600; color:#d6d8dc; }
+
+
+  /* qualification numbers: on hover the red text lifts up-left while a dark-red extrusion fills back to where it started, plus one quick sheen */
+  .stat-card b { position:relative; display:inline-block; transition:transform .16s ease-out, text-shadow .16s ease-out; }
+  .stat-card:hover b {
+    transform:translate(-5px,-5px);
+    text-shadow:1px 1px 0 #8f0f15, 2px 2px 0 #8f0f15, 3px 3px 0 #7a0c11, 4px 4px 0 #7a0c11, 5px 5px 0 #660a0e;
+  }
+  .stat-card b::after {
+    content:attr(data-text); position:absolute; left:0; top:0; white-space:nowrap; pointer-events:none; opacity:0;
+    background:linear-gradient(110deg, transparent 38%, rgba(255,255,255,.95) 50%, transparent 62%) 160% 0 / 260% 100% no-repeat;
+    -webkit-background-clip:text; background-clip:text; color:transparent; -webkit-text-fill-color:transparent;
+  }
+  .stat-card:hover b::after { opacity:1; animation:sheen .5s ease-out 1; }
+  @keyframes sheen { from { background-position:160% 0; } to { background-position:-60% 0; } }
+  @media (prefers-reduced-motion: reduce) { .stat-card:hover b::after { animation:none; opacity:0; } }
+
+  /* 2. carousel band: neutral grey so any PNG reads, logos fade at the edges */
+  .trusted { background:var(--grey); color:var(--text); padding:23px 0; text-align:center; }
+  .trusted h4 { font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:800; color:var(--body); margin-bottom:13px; }
+  .strip { overflow:hidden; -webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent); mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent); }
+  .strip:hover .strip-track { animation-play-state:paused; }
+  .strip-track { display:flex; width:max-content; align-items:center; animation:slide 55s linear infinite; }
+  .strip-track span { height:30px; margin:0 26px; display:flex; align-items:center; }
+  .strip-track img { height:100%; width:auto; max-width:100px; object-fit:contain; }
+  @keyframes slide { to { transform:translateX(-50%); } }
+
+
+  /* 4. services (light): 60px heading + button, three logo-cut cards, chip panel */
+  .services { background:var(--grey); color:var(--text); padding:60px 0; }
+  .services-head { display:flex; justify-content:space-between; align-items:center; gap:30px; }
+  .services h2 { font-size:60px; font-weight:900; line-height:.98; letter-spacing:-2px; max-width:585px; }
+  .svc-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:44px; }
+  .svc { background:var(--card); border-radius:var(--shape); padding:32px 30px; border-top:4px solid var(--red); }
+  .svc small { font-size:12px; font-weight:800; letter-spacing:.16em; color:var(--red); }
+  .svc h3 { font-size:22.85px; font-weight:800; line-height:1.2; letter-spacing:-.46px; margin-top:8px; }
+  .svc p { margin-top:14px; font-size:16px; line-height:24px; color:var(--body); }
+  .chips { background:var(--card); border-radius:var(--shape); padding:26px 34px; margin-top:20px; display:flex; align-items:center; flex-wrap:wrap; gap:12px; }
+  .chips h4 { font-size:16px; font-weight:800; margin-right:12px; }
+  .chip { background:var(--grey); border-radius:var(--shape-sm); padding:11px 22px; font-size:15px; font-weight:600; }
+
+  /* 5. featured work (dark): alternating rows, 50px titles */
+  .work { background:var(--raised); padding:80px 0; border-top:1px solid var(--line-soft); }
+  .row { display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:center; margin-top:60px; }
+  .row.first { margin-top:30px; }
+  .row.flip .shot { order:2; }
+  .shot { aspect-ratio:16/10; border-radius:var(--shape); overflow:hidden; background:#333; }
+  .shot img { width:100%; height:100%; object-fit:cover; display:block; }
+  .shot.contain { background:var(--card); }
+  .shot.contain img { object-fit:contain; padding:26px; }
+  .row h3 { font-size:50px; font-weight:800; line-height:1; letter-spacing:-1.5px; margin:6px 0 16px; }
+  .row p { font-size:18px; line-height:1.4; letter-spacing:-.3px; color:#c9ccd2; margin-bottom:24px; }
+  .tags { display:flex; gap:14px; margin:-4px 0 22px; font-size:14px; color:var(--slate); }
+
+  /* 6. process (light) */
+  .process { background:var(--grey2); color:var(--text); padding:70px 0; }
+  .process h2 { font-size:58px; font-weight:900; line-height:.95; letter-spacing:-1.5px; text-transform:uppercase; }
+  .steps { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:44px; }
+  .step { background:var(--card); border-radius:var(--shape); padding:32px; }
+  .step small { color:var(--red); font-weight:800; letter-spacing:.16em; text-transform:uppercase; font-size:12px; }
+  .step h3 { font-size:34px; font-weight:800; letter-spacing:-1px; margin:8px 0 10px; }
+  .step p { color:var(--body); font-size:17px; line-height:1.5; }
+
+  /* 7. closing band */
+  .cta { background:var(--red); color:#fff; padding:70px 0; }
+  .cta .wrap { display:grid; grid-template-columns:1.3fr 1fr; gap:50px; align-items:center; }
+  .cta h2 { font-size:72px; font-weight:900; line-height:.88; letter-spacing:-.04em; }
+  .cta p { font-size:18px; line-height:1.4; margin-bottom:22px; }
+  footer { background:var(--charcoal); color:var(--slate); padding:30px 0; font-size:14px; }
+  footer .wrap { display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; }
+
+  @media (max-width:900px) {
+    :root { --gut:24px; --r:18px; }
+    .hero { padding:110px 0 50px; } .hero h1 { font-size:46px; }
+    .hero-top, .cards, .svc-cards, .steps, .row, .cta .wrap { grid-template-columns:1fr; }
+    .row.flip .shot { order:0; } .row { gap:24px; }
+    .stat-card b { font-size:40px; min-width:110px; }
+    .services-head { flex-direction:column; align-items:flex-start; } .services h2 { font-size:40px; }
+    .row h3 { font-size:36px; } .process h2 { font-size:40px; } .cta h2 { font-size:52px; } .btn.lg { min-width:0; width:100%; }
+  }
+
+  /* "built." drops in letter by letter, same as the live site */
+  .build-word { display:block; width:fit-content; margin-left:auto; }
+  .build-letter { display:inline-block; animation:build-in .55s cubic-bezier(.34,1.56,.64,1) both; }
+  .build-letter:nth-child(1){animation-delay:.05s} .build-letter:nth-child(2){animation-delay:.15s} .build-letter:nth-child(3){animation-delay:.25s}
+  .build-letter:nth-child(4){animation-delay:.35s} .build-letter:nth-child(5){animation-delay:.45s} .build-letter:nth-child(6){animation-delay:.55s}
+  @keyframes build-in { 0%{opacity:0;transform:translateY(-.6em) scale(.6)} 60%{opacity:1;transform:translateY(.08em) scale(1.08)} 100%{opacity:1;transform:translateY(0) scale(1)} }
+  @media (prefers-reduced-motion: reduce) { .build-letter { animation:none; } }
+  .gh-cta { margin-bottom:34px; }
+
+  /* logo + name pop in on load, page fades up, same as the live site */
+  .bar .logo, .bar b span.nm { animation:pop-in .5s cubic-bezier(.22,1,.36,1) both; display:inline-block; }
+  .bar .logo { animation-delay:.08s; }
+  @keyframes pop-in { 0%{opacity:0;transform:scale(.4)} 70%{opacity:1;transform:scale(1.12)} 100%{opacity:1;transform:scale(1)} }
+  .hero .wrap, .pagehead .wrap { animation:fade-in .35s ease both; }
+  @keyframes fade-in { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
+  @media (prefers-reduced-motion: reduce) { .bar .logo, .bar b span.nm, .hero .wrap, .pagehead .wrap { animation:none; } }
+
+  /* hero columns: Design / Dev / About / Download Resume are one stack of four identical buttons (the resume button is the last one) */
+  .hero-top { align-items:start; }
+  .hero-top .sub { margin-bottom:0; }
+  .hero-top .rows { height:auto; }
+  .hero-top .rows .row-btn, .hero-top .rows .dl { flex:none; box-sizing:border-box; height:54px; min-width:0; width:100%; padding:0 26px; display:flex; align-items:center; }
+  .hero-top .rows .dl { justify-content:space-between; font-size:20px; font-weight:600; letter-spacing:0; border:1px solid transparent; border-radius:var(--shape); }
+  .hero-top { margin-bottom:56px; align-items:stretch; }
+  .hero-top > div:first-child { container-type:inline-size; display:flex; flex-direction:column; justify-content:center; }
+  /* "Design That Gets" is exactly as wide as "Built" (the period hangs past it); both lines left-aligned, small gap between */
+  .hero-top h1 { font-size:min(10.2cqw, 66px); line-height:.69; letter-spacing:0 !important; text-align:left; margin:0; width:auto; max-width:none; display:block; }
+  .hero-top h1 .build-word { font-size:3.85em; line-height:.69; display:block; width:fit-content; margin:.09em 0 0 -.052em; }
+  @media (max-width:900px) { .hero-top .rows { margin-top:26px; } }
+
+  /* built. extrude: hover lifts the word up-left, a dark-red extrusion fills back to where it started, one quick sheen */
+  .build-word { position:relative; transition:transform .16s ease-out, text-shadow .16s ease-out; }
+  .build-word:hover { transform:translate(-5px,-5px); text-shadow:1px 1px 0 #8f0f15, 2px 2px 0 #8f0f15, 3px 3px 0 #7a0c11, 4px 4px 0 #7a0c11, 5px 5px 0 #660a0e, 6px 6px 0 #52080b; }
+  .build-word::after { content:attr(data-text); position:absolute; left:0; top:0; white-space:nowrap; pointer-events:none; opacity:0;
+    background:linear-gradient(110deg, transparent 38%, rgba(255,255,255,.55) 50%, transparent 62%) 160% 0 / 260% 100% no-repeat;
+    -webkit-background-clip:text; background-clip:text; color:transparent; -webkit-text-fill-color:transparent; }
+  .build-word:hover::after { opacity:1; animation:sheen .5s ease-out 1; }
+  @media (prefers-reduced-motion: reduce) { .build-word:hover::after { animation:none; opacity:0; } }
+
+  /* phone header: logo on one line, links wrap underneath instead of running off the edge */
+  @media (max-width:700px) {
+    .bar { height:auto; }
+    .bar .wrap { height:auto; flex-wrap:wrap; padding-top:14px; padding-bottom:10px; gap:6px 18px; }
+    .bar nav { display:flex; flex-wrap:wrap; }
+    .bar nav a { margin-left:0; margin-right:16px; font-size:12px; }
+    .hero { padding-top:128px; }
+    .pagehead { padding-top:128px; }
+  }
+
+  /* phone menu: links hide under a hamburger at the top right */
+  .burger { display:none; }
+  @media (max-width:700px) {
+    .bar { height:64px; }
+    .bar .wrap { height:64px; flex-wrap:nowrap; padding-top:0; padding-bottom:0; gap:0; }
+    .hero { padding-top:104px; } .pagehead { padding-top:104px; }
+    .burger { display:flex; flex-direction:column; justify-content:center; gap:5px; width:44px; height:44px; padding:0 10px; margin-right:-10px; background:none; border:0; cursor:pointer; position:relative; z-index:7; }
+    .burger span { display:block; height:2px; border-radius:2px; background:var(--ink); transition:transform .25s ease, opacity .2s ease; }
+    .bar.open .burger span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+    .bar.open .burger span:nth-child(2) { opacity:0; }
+    .bar.open .burger span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+    /* the panel is the page background, 25% lighter (more contrast than going darker on a dark page) */
+    .bar nav { position:absolute; top:100%; left:0; right:0; display:flex; flex-direction:column; flex-wrap:nowrap; padding:6px 20px 14px;
+      background:color-mix(in srgb, var(--charcoal) 75%, #fff 25%); border-bottom:1px solid rgba(255,255,255,.1); box-shadow:0 18px 30px rgba(0,0,0,.45);
+      visibility:hidden; opacity:0; transform:translateY(-8px); transition:opacity .2s ease, transform .2s ease, visibility 0s linear .2s; z-index:6; overflow:hidden; }
+    .bar.open nav { visibility:visible; opacity:1; transform:none; transition:opacity .2s ease, transform .2s ease, visibility 0s; }
+    .bar nav a { margin:0; padding:15px 2px; font-size:16px; border-bottom:1px solid rgba(255,255,255,.08); }
+    .bar nav a:last-child { border-bottom:0; }
+    /* first visit only: the lines slide in one at a time */
+    .bar.open.first nav a { animation:menu-line .42s cubic-bezier(.22,1,.36,1) both; }
+    .bar.open.first nav a:nth-child(1) { animation-delay:.05s; } .bar.open.first nav a:nth-child(2) { animation-delay:.17s; }
+    .bar.open.first nav a:nth-child(3) { animation-delay:.29s; } .bar.open.first nav a:nth-child(4) { animation-delay:.41s; }
+  }
+  @keyframes menu-line { from { opacity:0; transform:translateX(-34px); } to { opacity:1; transform:none; } }
+
+  /* title bar: stays on screen; turns into liquid glass once the page scrolls */
+  .bar { position:fixed; inset:0 0 auto 0; border-bottom:1px solid transparent;
+    transition:background-color .35s ease, box-shadow .35s ease, border-color .35s ease, -webkit-backdrop-filter .35s ease, backdrop-filter .35s ease; }
+  .bar::before { content:""; position:absolute; inset:0; pointer-events:none; opacity:0; transition:opacity .35s ease;
+    background:linear-gradient(115deg, rgba(255,255,255,.15) 0%, rgba(255,255,255,.03) 28%, rgba(255,255,255,0) 52%, rgba(255,255,255,.10) 100%); }
+  .bar.scrolled { background-color:rgba(26,29,36,.9); -webkit-backdrop-filter:blur(20px) saturate(1.9) brightness(1.12); backdrop-filter:blur(20px) saturate(1.9) brightness(1.12);
+    border-bottom-color:rgba(255,255,255,.2);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.4), inset 0 -1px 0 rgba(255,255,255,.07), 0 10px 32px rgba(0,0,0,.38); }
+  .bar.scrolled::before { opacity:1; }
+  .bar .wrap { position:relative; }
+
+  /* the header image sits behind every page's title band and drifts slower than the page (parallax) */
+  .hero::before, .pagehead::before { inset:-150px 0 !important; transform:translate3d(0, var(--py, 0px), 0); will-change:transform; opacity:.3 !important; background-position:center 38% !important; }
+
+  /* home: the "What I Do" and process bands have no background, so the drifting header image shows through */
+  .pfx { position:fixed; inset:-220px 0; z-index:-1; pointer-events:none; background:url('../ben-wells-design/img/hero_halftone.webp') center 38%/cover; opacity:.3; transform:translate3d(0, var(--pfy, 0px), 0); will-change:transform; }
+  .services, .process { background:transparent !important; }
+
+  /* never squash an image: where only a width is set, the height follows the picture's own proportions */
+  img { height:auto; }
