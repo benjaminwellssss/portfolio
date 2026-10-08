@@ -48,9 +48,10 @@
       var path = '/case/' + p.slug + '/';
       if (location.pathname.indexOf(path) === 0) { location.replace('/design/'); return; }
       document.querySelectorAll('a[href="' + path + '"]').forEach(function (a) {
-        var box = a.closest('article.post, .pin-list > a, a.pin, .feat, .item, .card') || a; box.style.display = 'none';
+        var box = a.closest('article.post, .pin-list > a, a.pin, .feat, .item, .card') || a; box.style.display = 'none'; box.setAttribute('data-gone', '1');
       });
     });
+    document.dispatchEvent(new Event('posts-hidden'));
   }).catch(function () {});
 })();
 (function () {

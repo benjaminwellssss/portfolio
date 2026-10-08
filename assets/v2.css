@@ -377,6 +377,9 @@
   /* extrude layering: the bright red text is always the top layer. The sheen overlay is a copy of the text sitting ABOVE it, so it must not inherit the dark-red extrusion shadows (they would paint over the red face). */
   .pagehead .gh-cta { position:absolute; right:0; top:50%; transform:translateY(-50%); margin:0; }
   @media (max-width:900px) { .pagehead .gh-cta { position:static; transform:none; margin-top:22px; } }
+  .post.f-hide, .post.pg-hide { display:none !important; }
+  .more-wrap { text-align:center; margin:30px 0 10px; }
+  .more-wrap[hidden] { display:none; }
   .fx::after, .stat-card b::after, .build-word::after, .results-grid b::after { text-shadow:none !important; }
   /* full-width map panel + one-row endless gallery strip */
   .design-top { display:block; margin-bottom:44px; }
