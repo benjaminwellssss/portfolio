@@ -163,13 +163,15 @@
 
   // ---- publish ----
   $('publish').onclick = function () {
-    var jobs = [];
-    if (dirty.gallery) jobs.push(['gallery', { images: data.images }]);
-    if (dirty.posts) jobs.push(['posts', { posts: data.posts }]);
     $('publish').disabled = true; status('Publishing…');
-    jobs.reduce(function (p, j) {
-      return p.then(function () { return api('/api/content/' + j[0], { method: 'PUT', body: { data: j[1] } }).then(function () { dirty[j[0]] = false; }); });
-    }, Promise.resolve()).then(function () { status('Published. The live site updates in about a minute.', 'ok'); })
+    applyRotations().then(function () {
+      var jobs = [];
+      if (dirty.gallery) jobs.push(['gallery', { images: data.images }]);
+      if (dirty.posts) jobs.push(['posts', { posts: data.posts }]);
+      return jobs.reduce(function (p, j) {
+        return p.then(function () { return api('/api/content/' + j[0], { method: 'PUT', body: { data: j[1] } }).then(function () { dirty[j[0]] = false; }); });
+      }, Promise.resolve());
+    }).then(function () { renderGallery(); renderPosts(); status('Published. The live site updates in about a minute.', 'ok'); })
       .catch(function (e) { status(e.message, 'err'); $('publish').disabled = false; });
   };
   window.addEventListener('beforeunload', function (e) { if (dirty.posts || dirty.gallery) { e.preventDefault(); e.returnValue = ''; } });
@@ -205,6 +207,56 @@
       });
     });
   }
+  // ---- rotating a photo: the preview turns at once; the rotated copy is uploaded when you publish ----
+  function rotCanvas(src, deg, max) {
+    var w = src.naturalWidth || src.width, h = src.naturalHeight || src.height;
+    var k = Math.min(1, max / Math.max(w, h)), sw = Math.round(w * k), sh = Math.round(h * k);
+    var c = document.createElement('canvas'), turned = deg % 180 !== 0;
+    c.width = turned ? sh : sw; c.height = turned ? sw : sh;
+    var x = c.getContext('2d'); x.translate(c.width / 2, c.height / 2); x.rotate(deg * Math.PI / 180);
+    x.drawImage(src, -sw / 2, -sh / 2, sw, sh);
+    return c;
+  }
+  function rotPreview(it, im) {
+    var base = new Image();
+    base.onload = function () { im.src = rotCanvas(base, it.__rot || 0, 480).toDataURL('image/png'); };
+    base.src = thumbOf(it.src);
+  }
+  function swapSrc(oldSrc, newSrc) {
+    var inPosts = false;
+    function fix(o, k, isPost) { if (o && o[k] === oldSrc) { o[k] = newSrc; if (isPost) inPosts = true; } }
+    data.images.forEach(function (i) { fix(i, 'src', false); });
+    data.posts.forEach(function (p) {
+      fix(p, 'hero', true); fix(p, 'cardImg', true);
+      (p.thumbs || []).forEach(function (t) { fix(t, 'src', true); });
+      (p.cardThumbs || []).forEach(function (t) { fix(t, 'src', true); });
+    });
+    return inPosts;
+  }
+  function applyRotation(it) {
+    var deg = it.__rot, oldSrc = it.src;
+    return fetch('../' + oldSrc, { cache: 'no-store' }).then(function (r) {
+      if (!r.ok) throw new Error('Could not load ' + oldSrc + ' to rotate it.');
+      return r.blob();
+    }).then(function (b) { return createImageBitmap(b); }).then(function (bmp) {
+      var full = rotCanvas(bmp, deg, 1600), th = rotCanvas(bmp, deg, 480);
+      var name = (slugify(String(it.id || oldSrc.split('/').pop().replace(/[.]\w+$/, ''))).slice(0, 40) || 'photo') + '-' + Math.random().toString(36).slice(2, 6) + '.webp';
+      return Promise.all([toBlob(full, 0.85), toBlob(th, 0.8)]).then(function (bl) {
+        return Promise.all([blobB64(bl[0]), blobB64(bl[1])]).then(function (b64) {
+          return api('/api/upload', { method: 'POST', body: { name: name, full: b64[0], thumb: b64[1] } }).then(function (r) {
+            if (swapSrc(oldSrc, r.src)) dirty.posts = true;
+            it.id = name.replace(/[.]webp$/, ''); it.w = full.width; it.h = full.height; delete it.__rot;
+          });
+        });
+      });
+    });
+  }
+  function applyRotations() {
+    var list = data.images.filter(function (i) { return i.__rot; }), n = 0;
+    return list.reduce(function (p, it) {
+      return p.then(function () { status('Rotating photo ' + (++n) + ' of ' + list.length + '…'); return applyRotation(it); });
+    }, Promise.resolve());
+  }
   function uploadFiles(files) {
     var list = Array.prototype.slice.call(files).filter(function (f) { return /^image\//.test(f.type); });
     var tags = parseTags($('upTags').value), n = 0;
@@ -227,17 +279,22 @@
       if (q && (it.caption || '').toLowerCase().indexOf(q) < 0 && !(it.tags || []).some(function (t) { return t.indexOf(q) >= 0; })) return;
       var box = el('div', 'item');
       var im = el('img'); im.src = thumbOf(it.src); im.alt = it.caption || ''; im.loading = 'lazy'; box.appendChild(im);
+      if (it.__rot) rotPreview(it, im);
+      var note = el('p', 'hint', it.__rot ? 'Rotated. Saved when you publish.' : ''); note.style.margin = '0';
       var cap = el('input'); cap.value = it.caption || ''; cap.placeholder = 'Caption'; cap.setAttribute('aria-label', 'Caption');
       cap.onchange = function () { it.caption = cap.value; mark('gallery'); };
       var tg = el('input'); tg.value = tagText(it.tags); tg.placeholder = '#tags'; tg.setAttribute('aria-label', 'Tags');
       tg.onchange = function () { it.tags = parseTags(tg.value); tg.value = tagText(it.tags); mark('gallery'); };
       var row = el('div', 'row');
-      function btn(label, fn, cls) { var b = el('button', cls, label); b.onclick = fn; row.appendChild(b); }
+      function btn(label, fn, cls) { var b = el('button', cls, label); b.onclick = fn; row.appendChild(b); return b; }
       btn('↑', function () { move(data.images, i, -1); mark('gallery'); renderGallery(); });
       btn('↓', function () { move(data.images, i, 1); mark('gallery'); renderGallery(); });
       btn('Top', function () { data.images.unshift(data.images.splice(i, 1)[0]); mark('gallery'); renderGallery(); });
+      function turn(d) { var v = ((it.__rot || 0) + d) % 360; if (v) it.__rot = v; else delete it.__rot; mark('gallery'); renderGallery(); }
+      btn('\u21BA', function () { turn(270); }).setAttribute('aria-label', 'Rotate left');
+      btn('\u21BB', function () { turn(90); }).setAttribute('aria-label', 'Rotate right');
       btn('Remove', function () { if (confirm('Remove this photo from the gallery? (The file stays in the repo.)')) { data.images.splice(i, 1); mark('gallery'); renderGallery(); } }, 'danger');
-      box.appendChild(cap); box.appendChild(tg); box.appendChild(row); g.appendChild(box);
+      box.appendChild(cap); box.appendChild(tg); box.appendChild(note); box.appendChild(row); g.appendChild(box);
     });
     if (!g.children.length) g.appendChild(el('p', 'hint', 'No photos match.'));
   }
