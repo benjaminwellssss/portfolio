@@ -99,7 +99,35 @@ def minify_css(css):
     return css.strip()
 
 
+def featured_rows():
+    """the three "Featured Work" rows on the home page, built from the posts named in featured.json"""
+    import html as H
+    from PIL import Image
+    slugs = json.load(open(os.path.join(HERE, "featured.json"), encoding="utf-8"))["slugs"]
+    posts = {x["slug"]: x for x in json.load(open(os.path.join(SITE, "content", "posts.json"), encoding="utf-8"))["posts"]}
+    rows = []
+    for n, slug in enumerate([s for s in slugs if s in posts and not posts[s].get("hidden")][:3]):
+        q = posts[slug]
+        label = (q["kicker"].split("\u00b7")[1] if q["kicker"].count("\u00b7") >= 1 else "Case Study").strip()
+        contain = ""
+        try:
+            with Image.open(os.path.join(SITE, q["cardImg"])) as im:
+                r = im.size[0] / im.size[1]
+            if q.get("cardFit") != "cover" and (q["cardImg"].endswith(".png") or "lockup" in q["cardImg"] or r > 1.6 or r < 0.6):
+                contain = " contain"
+        except Exception:
+            pass
+        cls = ["row first", "row flip", "row"][n]
+        tags = "".join("<span>#%s</span>" % H.escape(t) for t in q.get("tags", [])[:3])
+        rows.append('    <div class="%s">\n      <div class="shot%s"><img src="../ben-wells-design/%s" alt="%s" /></div>\n'
+                    '      <div><span class="label">%s</span><h3>%s</h3><div class="tags">%s</div><p>%s</p><a class="btn md" href="case-%s-v2.html">Read the Post &rarr;</a></div>\n    </div>'
+                    % (cls, contain, q["cardImg"], H.escape(q.get("cardAlt", ""), quote=True), H.escape(label), H.escape(q["title"]), tags, H.escape(q["blurb"]), slug))
+    return "\n".join(rows)
+
+
 def fix(html):
+    if "<!--FEATURED-->" in html:
+        html = re.sub(r"<!--FEATURED-->.*?<!--/FEATURED-->", lambda m: featured_rows(), html, flags=re.S)
     # client-logo lines tagged "// post:<slug>" go away while that post is hidden
     for slug in HIDDEN:
         html = re.sub(r"[^\n]*// post:%s[^\n]*\n" % re.escape(slug), "", html)
