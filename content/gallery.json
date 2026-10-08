@@ -1,6 +1,20 @@
 {
  "images": [
   {
+   "id": "csu_sticker_bottle",
+   "src": "img/csu_sticker_bottle.webp",
+   "caption": "CSU sticker on a water bottle",
+   "tags": [
+    "branding",
+    "church",
+    "schools",
+    "stickers",
+    "csu"
+   ],
+   "w": 1194,
+   "h": 1600
+  },
+  {
    "id": "ramen_sticker",
    "src": "img/ramen_sticker.webp",
    "caption": "Sparticipation ramen sticker",

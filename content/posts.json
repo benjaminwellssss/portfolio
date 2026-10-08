@@ -360,24 +360,24 @@
    "kicker": "Case Study · Logo & Print Collateral · October 2022",
    "title": "Christian Student Union (CSU)",
    "blurb": "A student faith group founded by Element Church in East Lansing, branded with a monogram built from a middle school's own Trojan helmet — then carried onto flyers, stickers, and tee shirts.",
-   "cardImg": "img/csu_compare.webp",
-   "cardAlt": "The Trojan helmet logo beside the CSU mark, with the shared ribbed crest outlined",
+   "cardImg": "img/csu_sticker_bottle.webp",
+   "cardAlt": "Close-up of the CSU die-cut sticker on a teal water bottle: navy stacked C, S and U letters with the ribbed arc of the helmet crest, on a white sticker border",
    "cardThumbs": [
+    {
+     "src": "img/csu_compare.webp",
+     "alt": "Side by side: the Trojan helmet school logo and the CSU mark, with the ribbed crest outlined in red on both"
+    },
     {
      "src": "img/csu_logo_blue.webp",
      "alt": "CSU monogram with a ribbed arc taken from the helmet crest, navy on white"
     },
     {
-     "src": "img/csu_flyer_mms.webp",
-     "alt": "Full-page Macdonald Middle School flyer with a tinted photo of the school lobby, the CSU mark, a sign-up QR code and the before and after school schedule"
-    },
-    {
-     "src": "img/csu_nametag.webp",
-     "alt": "Navy and white name tag sticker with the CSU mark"
+     "src": "img/csu_logo_mms.webp",
+     "alt": "CSU monogram with the arc reading Macdonald Middle School"
     }
    ],
-   "hero": "img/csu_compare.webp",
-   "heroAlt": "Side by side: the Trojan helmet school logo and the CSU mark, with the ribbed crest outlined in red on both",
+   "hero": "img/csu_sticker_bottle.webp",
+   "heroAlt": "Close-up of the CSU die-cut sticker on a teal water bottle: navy stacked C, S and U letters with the ribbed arc of the helmet crest, on a white sticker border",
    "city": "East Lansing, MI",
    "body": [
     "Christian Student Union — CSU — was a student faith group founded by my old church, Element Church in East Lansing, and led by the church. It was active in Macdonald Middle School and East Lansing Middle School, and in October 2022 I designed its identity.",
@@ -386,6 +386,11 @@
     "From there the identity went onto everything: full-page and quarter-page flyers for the before-school Bible study and prayer time and the after-school club, vinyl stickers and name tags, and tee shirts."
    ],
    "thumbs": [
+    {
+     "src": "img/csu_compare.webp",
+     "alt": "Side by side: the Trojan helmet school logo and the CSU mark, with the ribbed crest outlined in red on both",
+     "caption": "The CSU mark next to the Trojan helmet it came from"
+    },
     {
      "src": "img/csu_logo_blue.webp",
      "alt": "CSU monogram with a ribbed arc taken from the helmet crest, navy on white",
