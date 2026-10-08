@@ -47,6 +47,8 @@
   .thumbs figure { margin:0; width:90px; position:relative; }
   .thumbs img { width:90px; height:68px; object-fit:cover; display:block; background:#000; }
   .thumbs button { position:absolute; top:2px; right:2px; padding:0 .35rem; line-height:1.3; }
+  .thumbs button.star { right:auto; left:2px; }
+  .thumbs button.star.on { background:var(--red); color:#fff; border-color:var(--red); }
   .modal { position:fixed; inset:0; background:rgba(0,0,0,.8); z-index:20; display:flex; align-items:center; justify-content:center; padding:1rem; }
   .modal > div { background:var(--panel); border:1px solid var(--line); max-width:900px; width:100%; max-height:88vh; overflow:auto; padding:1rem; }
   .modal .pick { display:grid; grid-template-columns:repeat(auto-fill, minmax(110px,1fr)); gap:.4rem; margin:.8rem 0; }
@@ -348,14 +350,21 @@
   function textInput(val, on) { var i = el('input'); i.value = val || ''; i.onchange = function () { on(i.value); mark('posts'); renderList(); }; return i; }
   function plabel(p) { return (p.hidden ? '[Hidden] ' : '') + (p.title || '(untitled)'); }
   function renderList() { var rows = $('pList').querySelectorAll('.pitem .t'); data.posts.forEach(function (p, i) { if (rows[i]) rows[i].textContent = plabel(p); }); }
-  function thumbStrip(list, onRemove) {
+  function thumbStrip(list, onRemove, onStar, starred) {
     var s = el('div', 'thumbs');
     list.forEach(function (src, i) {
       var f = el('figure'); var im = el('img'); im.src = thumbOf(src); f.appendChild(im);
-      var x = el('button', null, '×'); x.type = 'button'; x.onclick = function () { onRemove(i); }; f.appendChild(x); s.appendChild(f);
+      var x = el('button', null, '×'); x.type = 'button'; x.onclick = function () { onRemove(i); }; f.appendChild(x);
+      if (onStar) {
+        var st = el('button', 'star' + (src === starred ? ' on' : ''), '★'); st.type = 'button';
+        st.title = src === starred ? 'This is the thumbnail on the Design page' : 'Use this as the thumbnail on the Design page';
+        st.setAttribute('aria-label', st.title); st.onclick = function () { onStar(i); }; f.appendChild(st);
+      }
+      s.appendChild(f);
     });
     return s;
   }
+  function starThumb(p, src) { p.cardImg = src; p.cardAlt = capFor(src) || p.title; mark('posts'); renderEditor(); }
   function renderEditor() {
     var box = $('pEditor'); box.innerHTML = '';
     var p = data.posts[sel]; if (!p) { box.appendChild(el('p', 'hint', 'Pick a post on the left, or start a new one.')); return; }
@@ -378,7 +387,7 @@
     tg.onchange = function () { p.tags = parseTags(tg.value); tg.value = tagText(p.tags); mark('posts'); }; field(ed, 'Hashtags', tg);
 
     var heroRow = el('div'); ed.appendChild(el('label', null, 'Main photo'));
-    var hs = thumbStrip(p.hero ? [p.hero] : [], function () { p.hero = ''; mark('posts'); renderEditor(); }); heroRow.appendChild(hs);
+    var hs = thumbStrip(p.hero ? [p.hero] : [], function () { p.hero = ''; mark('posts'); renderEditor(); }, function () { starThumb(p, p.hero); }, p.cardImg); heroRow.appendChild(hs);
     var hb = el('button', null, p.hero ? 'Change main photo' : 'Choose main photo'); hb.type = 'button'; hb.style.marginTop = '.4rem';
     hb.onclick = function () { pickImages(false, p.hero ? [p.hero] : [], function (s) { p.hero = s[0]; p.heroAlt = capFor(s[0]) || p.title; if (!p.cardImg) { p.cardImg = s[0]; p.cardAlt = p.heroAlt; } mark('posts'); renderEditor(); }); };
     heroRow.appendChild(hb); ed.appendChild(heroRow);
@@ -388,7 +397,7 @@
 
     ed.appendChild(el('label', null, 'More photos (shown at the bottom of the post)'));
     var srcs = (p.thumbs || []).map(function (t) { return t.src; });
-    ed.appendChild(thumbStrip(srcs, function (i) { p.thumbs.splice(i, 1); p.cardThumbs = p.thumbs.slice(0, 3).map(function (t) { return { src: t.src, alt: t.alt }; }); mark('posts'); renderEditor(); }));
+    ed.appendChild(thumbStrip(srcs, function (i) { p.thumbs.splice(i, 1); p.cardThumbs = p.thumbs.slice(0, 3).map(function (t) { return { src: t.src, alt: t.alt }; }); mark('posts'); renderEditor(); }, function (i) { starThumb(p, srcs[i]); }, p.cardImg));
     var mb = el('button', null, 'Add or remove photos'); mb.type = 'button'; mb.style.marginTop = '.4rem';
     mb.onclick = function () {
       pickImages(true, srcs, function (list) {
