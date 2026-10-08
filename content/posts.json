@@ -618,6 +618,52 @@
     "broadcast",
     "podcast"
    ]
+  },
+  {
+   "slug": "made-new",
+   "cat": "brand",
+   "kicker": "Case Study · Apparel Design · August 2022",
+   "title": "Made New Baptism Shirt",
+   "blurb": "A baptism tee for Element Church: “made new” stacked three times on the chest and, on the back, “Raised to Life · Made New” circling a palm branch.",
+   "cardImg": "img/madenew_mockup.webp",
+   "cardAlt": "Front and back of the Made New baptism shirt on a black tee mockup",
+   "cardThumbs": [
+    {
+     "src": "img/madenew_front.webp",
+     "alt": "Made New front chest print"
+    },
+    {
+     "src": "img/madenew_back.webp",
+     "alt": "Made New back print"
+    }
+   ],
+   "hero": "img/madenew_mockup.webp",
+   "heroAlt": "Front and back of the Made New baptism shirt on a black tee mockup: small stacked made new text on the chest and a large oval palm-branch design on the back",
+   "city": "East Lansing, MI",
+   "body": [
+    "Made New is a shirt for baptisms at Element Church in East Lansing. I designed it in August 2022.",
+    "The front is simple: the words “made new” set three times in a stacked serif, with the Element Church wordmark underneath, printed small on the chest. The back carries the full design — “Raised to Life · Made New” set in a ring around a line-drawn palm branch, with a pair of map coordinates beside it.",
+    "The palm branch is the heart of the design. In the Gospels, the crowd welcoming Jesus into Jerusalem laid palm branches in His path and waved them as He came (Matthew 21:8; John 12:12–13), and the palm has been a sign of victory and triumph ever since — in Revelation 7:9 the great multitude before the throne holds palm branches in their hands. On a baptism shirt it carries the same welcome: a way opened for Christ to walk into a life, and the new life that follows when He does.",
+    "The coordinates are those of the Kellogg Center in East Lansing, where Element Church meets and where the baptisms take place. The shirt can be seen worn on camera in an Element Church video from October 2, 2022, filmed there. The designs are shown on a black tee mockup."
+   ],
+   "thumbs": [
+    {
+     "src": "img/madenew_front.webp",
+     "alt": "The made new chest print, white on black, stacked three times above the Element Church wordmark",
+     "caption": "Front chest print"
+    },
+    {
+     "src": "img/madenew_back.webp",
+     "alt": "The back print: Raised to Life, Made New around a palm branch with the Kellogg Center coordinates",
+     "caption": "Back print"
+    }
+   ],
+   "tags": [
+    "branding",
+    "church",
+    "apparel",
+    "baptism"
+   ]
   }
  ]
 }

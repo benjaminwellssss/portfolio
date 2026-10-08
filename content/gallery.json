@@ -1,6 +1,30 @@
 {
  "images": [
   {
+   "id": "madenew_back",
+   "src": "img/madenew_back.webp",
+   "caption": "Made New shirt, back print",
+   "tags": [
+    "church",
+    "apparel",
+    "baptism"
+   ],
+   "w": 1053,
+   "h": 1600
+  },
+  {
+   "id": "madenew_mockup",
+   "src": "img/madenew_mockup.webp",
+   "caption": "Made New baptism shirt, front and back (mockup)",
+   "tags": [
+    "church",
+    "apparel",
+    "baptism"
+   ],
+   "w": 1600,
+   "h": 1067
+  },
+  {
    "id": "ekids_mockup_ai",
    "src": "img/ekids_mockup_ai.webp",
    "caption": "EKids notebook mockup (AI-generated)",
