@@ -23,7 +23,7 @@ import hashlib
 
 
 def _ver(name):
-    return hashlib.md5(open(os.path.join(HERE, name), "rb").read()).hexdigest()[:8]
+    return hashlib.md5(open(os.path.join(HERE, name), "rb").read().replace(b"\r\n", b"\n")).hexdigest()[:8]   # same stamp on Windows and Linux
 
 
 # cache-busting: the version changes whenever the file changes, so browsers never keep an old stylesheet
