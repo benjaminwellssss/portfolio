@@ -212,9 +212,13 @@
    "kicker": "Case Study · Print & Cover Design · September 2022",
    "title": "EKids Notebook",
    "blurb": "A devotional notebook for the families of EKids, the children's department of Element Church — a bright geometric cover and back cover, made as a gift for parents and kids.",
-   "cardImg": "img/ekids_front.webp",
-   "cardAlt": "EKids notebook front cover with a pattern of colorful shapes and the EKids logo",
+   "cardImg": "img/ekids_mockup_ai.webp",
+   "cardAlt": "AI-generated mockup of two EKids notebooks with the colorful shape-pattern covers, on a wooden table beside a mug and a pen",
    "cardThumbs": [
+    {
+     "src": "img/ekids_spread.webp",
+     "alt": "The EKids notebook cover artwork laid out as one spread: a colorful pattern of rounded squares, circles and quarter shapes with the EKids logo and a This Book Belongs to line"
+    },
     {
      "src": "img/ekids_front.webp",
      "alt": "EKids notebook front cover: a grid of colorful rounded shapes in lime, green, teal, purple and orange with the EKids logo and a This Book Belongs to line"
@@ -222,21 +226,22 @@
     {
      "src": "img/ekids_back.webp",
      "alt": "EKids notebook back cover: the same colorful shape pattern with a small pill at the bottom reading Element Church, East Lansing, and the web address"
-    },
-    {
-     "src": "img/ekids_mockup_ai.webp",
-     "alt": "AI-generated mockup of two EKids notebooks on a wooden table beside a mug and a pen"
     }
    ],
-   "hero": "img/ekids_spread.webp",
-   "heroAlt": "The EKids notebook cover artwork laid out as one spread: a colorful pattern of rounded squares, circles and quarter shapes with the EKids logo and a This Book Belongs to line",
+   "hero": "img/ekids_mockup_ai.webp",
+   "heroAlt": "AI-generated mockup of two EKids notebooks with the colorful shape-pattern covers, on a wooden table beside a mug and a pen",
    "city": "East Lansing, MI",
    "body": [
     "EKids is the children's department of Element Church in East Lansing. This notebook was made as a gift for the parents and kids involved in EKids, and was meant to work as a devotional book for them to use together.",
     "The cover is built from a grid of rounded squares, circles, and quarter shapes in a five-color palette — lime, green, teal, purple, and orange. The EKids logo sits on a clear panel in the pattern, with a “This Book Belongs to:” line underneath so every child can claim their copy. The back cover carries the same pattern and a small pill with the church name, the city, and the web address.",
-    "I laid out the first version of the covers on September 16, 2022, and had the final files by September 21, 2022. The notebook mockup shown below is AI-generated; it isn't a photo of the printed book."
+    "I laid out the first version of the covers on September 16, 2022, and had the final files by September 21, 2022. The notebook mockup at the top of this post is AI-generated; it isn't a photo of the printed book."
    ],
    "thumbs": [
+    {
+     "src": "img/ekids_spread.webp",
+     "alt": "The EKids notebook cover artwork laid out as one spread: a colorful pattern of rounded squares, circles and quarter shapes with the EKids logo and a This Book Belongs to line",
+     "caption": "The cover artwork as one spread"
+    },
     {
      "src": "img/ekids_front.webp",
      "alt": "EKids notebook front cover: a grid of colorful rounded shapes in lime, green, teal, purple and orange with the EKids logo and a This Book Belongs to line",
@@ -246,11 +251,6 @@
      "src": "img/ekids_back.webp",
      "alt": "EKids notebook back cover: the same colorful shape pattern with a small pill at the bottom reading Element Church, East Lansing, and the web address",
      "caption": "Back cover"
-    },
-    {
-     "src": "img/ekids_mockup_ai.webp",
-     "alt": "AI-generated mockup of two EKids notebooks on a wooden table beside a mug and a pen",
-     "caption": "AI-generated mockup (not a photo of the printed book)"
     }
    ],
    "tags": [
