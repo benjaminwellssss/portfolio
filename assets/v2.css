@@ -229,6 +229,9 @@
   .pfx { position:fixed; inset:-220px 0; z-index:-1; pointer-events:none; background:url('/img/hero_halftone.webp') center 38%/cover; opacity:.3; transform:translate3d(0, var(--pfy, 0px), 0); will-change:transform; }
   .services, .process { background:transparent !important; }
 
+  /* never squash an image: where only a width is set, the height follows the picture's own proportions */
+  img { height:auto; }
+
   /* ---- inner pages ---- */
   .pagehead { position:relative; background:var(--charcoal); padding:130px 0 56px; border-bottom:1px solid var(--line-soft); overflow:hidden; }
   .pagehead::before { content:""; position:absolute; inset:0; background:url('/img/hero_halftone.webp') center 38%/cover; opacity:.22; }
