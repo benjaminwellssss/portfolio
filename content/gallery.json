@@ -1,6 +1,43 @@
 {
  "images": [
   {
+   "id": "ramen_sticker",
+   "src": "img/ramen_sticker.webp",
+   "caption": "Sparticipation ramen sticker",
+   "tags": [
+    "branding",
+    "church",
+    "stickers",
+    "sparticipation"
+   ],
+   "w": 1068,
+   "h": 1060
+  },
+  {
+   "id": "ramen_info_sticker",
+   "src": "img/ramen_info_sticker.webp",
+   "caption": "Sparticipation info sticker with bus map",
+   "tags": [
+    "church",
+    "stickers",
+    "sparticipation"
+   ],
+   "w": 1600,
+   "h": 1600
+  },
+  {
+   "id": "ramen_stickers_pile",
+   "src": "img/ramen_stickers_pile.webp",
+   "caption": "Printed Sparticipation ramen stickers",
+   "tags": [
+    "church",
+    "stickers",
+    "sparticipation"
+   ],
+   "w": 1200,
+   "h": 1600
+  },
+  {
    "id": "msu_tee_team_group",
    "src": "img/msu_tee_team_group.webp",
    "caption": "Jesus Loves MSU shirt, the Element team",
