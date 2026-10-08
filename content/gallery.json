@@ -1,6 +1,30 @@
 {
  "images": [
   {
+   "id": "msu_tee_team_group",
+   "src": "img/msu_tee_team_group.webp",
+   "caption": "Jesus Loves MSU shirt, the Element team",
+   "tags": [
+    "apparel",
+    "screen-print",
+    "church"
+   ],
+   "w": 1600,
+   "h": 873
+  },
+  {
+   "id": "msu_tee_team_trio",
+   "src": "img/msu_tee_team_trio.webp",
+   "caption": "Jesus Loves MSU shirt, worn on the street",
+   "tags": [
+    "apparel",
+    "screen-print",
+    "church"
+   ],
+   "w": 1600,
+   "h": 1236
+  },
+  {
    "id": "madenew_lifestyle",
    "src": "img/madenew_lifestyle.webp",
    "caption": "Made New shirt, back print (lifestyle mockup)",
