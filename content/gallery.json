@@ -1,6 +1,18 @@
 {
  "images": [
   {
+   "id": "madenew_lifestyle",
+   "src": "img/madenew_lifestyle.webp",
+   "caption": "Made New shirt, back print (lifestyle mockup)",
+   "tags": [
+    "church",
+    "apparel",
+    "baptism"
+   ],
+   "w": 1600,
+   "h": 1194
+  },
+  {
    "id": "madenew_back",
    "src": "img/madenew_back.webp",
    "caption": "Made New shirt, back print",
