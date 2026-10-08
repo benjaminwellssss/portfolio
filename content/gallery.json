@@ -424,8 +424,8 @@
     "vehicle-graphics",
     "legion"
    ],
-   "w": 1200,
-   "h": 1600
+   "w": 1600,
+   "h": 1200
   },
   {
    "id": "legion_van_4626",
@@ -679,8 +679,8 @@
     "farmers-insurance",
     "interior-signs"
    ],
-   "w": 1600,
-   "h": 1200
+   "w": 1200,
+   "h": 1600
   },
   {
    "id": "mmd-farmers-insurance-4",
@@ -705,8 +705,8 @@
     "farmers-insurance",
     "interior-signs"
    ],
-   "w": 1600,
-   "h": 900
+   "w": 900,
+   "h": 1600
   },
   {
    "id": "mmd-farmers-insurance-6",
