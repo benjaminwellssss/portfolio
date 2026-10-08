@@ -6,6 +6,20 @@
 })();
 
 (function () {
+  // posts switched off in the admin disappear straight away, even before the pages are rebuilt
+  fetch('/content/posts.json?t=' + Date.now(), { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (d) {
+    if (!d || !d.posts) return;
+    d.posts.forEach(function (p) {
+      if (!p.hidden) return;
+      var path = '/case/' + p.slug + '/';
+      if (location.pathname.indexOf(path) === 0) { location.replace('/design/'); return; }
+      document.querySelectorAll('a[href="' + path + '"]').forEach(function (a) {
+        var box = a.closest('article.post, .pin, .feat, .item, .card') || a; box.style.display = 'none';
+      });
+    });
+  }).catch(function () {});
+})();
+(function () {
   var bar = document.querySelector('.bar'), bands = document.querySelectorAll('.hero, .pagehead'), tick = false;
   function update() {
     tick = false;

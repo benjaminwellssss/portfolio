@@ -276,7 +276,7 @@
     var l = $('pList'); l.innerHTML = '';
     data.posts.forEach(function (p, i) {
       var r = el('div', 'pitem' + (i === sel ? ' sel' : ''));
-      var t = el('button', 't', p.title || '(untitled)'); t.onclick = function () { sel = i; renderPosts(); };
+      var t = el('button', 't', plabel(p)); t.onclick = function () { sel = i; renderPosts(); };
       var up = el('button', null, '↑'); up.onclick = function () { move(data.posts, i, -1); if (sel === i) sel = Math.max(0, i - 1); mark('posts'); renderPosts(); };
       var dn = el('button', null, '↓'); dn.onclick = function () { move(data.posts, i, 1); if (sel === i) sel = Math.min(data.posts.length - 1, i + 1); mark('posts'); renderPosts(); };
       r.appendChild(t); r.appendChild(up); r.appendChild(dn); l.appendChild(r);
@@ -289,7 +289,8 @@
   };
   function field(parent, label, node) { var l = el('label', null, label); parent.appendChild(l); parent.appendChild(node); return node; }
   function textInput(val, on) { var i = el('input'); i.value = val || ''; i.onchange = function () { on(i.value); mark('posts'); renderList(); }; return i; }
-  function renderList() { var rows = $('pList').querySelectorAll('.pitem .t'); data.posts.forEach(function (p, i) { if (rows[i]) rows[i].textContent = p.title || '(untitled)'; }); }
+  function plabel(p) { return (p.hidden ? '[Hidden] ' : '') + (p.title || '(untitled)'); }
+  function renderList() { var rows = $('pList').querySelectorAll('.pitem .t'); data.posts.forEach(function (p, i) { if (rows[i]) rows[i].textContent = plabel(p); }); }
   function thumbStrip(list, onRemove) {
     var s = el('div', 'thumbs');
     list.forEach(function (src, i) {
@@ -302,6 +303,11 @@
     var box = $('pEditor'); box.innerHTML = '';
     var p = data.posts[sel]; if (!p) { box.appendChild(el('p', 'hint', 'Pick a post on the left, or start a new one.')); return; }
     var ed = el('div', 'editor'); box.appendChild(ed);
+    var hideRow = el('label', 'hidebox'); hideRow.style.cssText = 'display:flex;gap:.5rem;align-items:center;margin:0 0 1rem;padding:.6rem .7rem;border:1px solid var(--soft);background:var(--panel);cursor:pointer';
+    var hideCb = el('input'); hideCb.type = 'checkbox'; hideCb.checked = !!p.hidden; hideCb.style.width = 'auto';
+    hideCb.onchange = function () { if (hideCb.checked) p.hidden = true; else delete p.hidden; mark('posts'); renderList(); };
+    hideRow.appendChild(hideCb); hideRow.appendChild(el('span', null, 'Hide this post from the site for now (nothing is deleted; untick to show it again)'));
+    ed.appendChild(hideRow);
     field(ed, 'Title', textInput(p.title, function (v) { p.title = v; }));
     field(ed, 'Kicker (small line above the title)', textInput(p.kicker, function (v) { p.kicker = v; }));
     var cat = el('select'); [['brand', 'Brand & Print'], ['signs', 'Signage']].forEach(function (o) { var op = el('option', null, o[1]); op.value = o[0]; cat.appendChild(op); });
