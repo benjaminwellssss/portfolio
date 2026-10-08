@@ -1,6 +1,57 @@
 {
  "images": [
   {
+   "id": "ekids_mockup_ai",
+   "src": "img/ekids_mockup_ai.webp",
+   "caption": "EKids notebook mockup (AI-generated)",
+   "tags": [
+    "church",
+    "print",
+    "ekids"
+   ],
+   "w": 1195,
+   "h": 1600
+  },
+  {
+   "id": "ekids_back",
+   "src": "img/ekids_back.webp",
+   "caption": "EKids notebook, back cover",
+   "tags": [
+    "branding",
+    "church",
+    "print",
+    "ekids"
+   ],
+   "w": 1143,
+   "h": 1600
+  },
+  {
+   "id": "ekids_front",
+   "src": "img/ekids_front.webp",
+   "caption": "EKids notebook, front cover",
+   "tags": [
+    "branding",
+    "church",
+    "print",
+    "ekids"
+   ],
+   "w": 1143,
+   "h": 1600
+  },
+  {
+   "id": "ekids_spread",
+   "src": "img/ekids_spread.webp",
+   "caption": "EKids notebook cover artwork, full spread",
+   "tags": [
+    "branding",
+    "church",
+    "print",
+    "ekids"
+   ],
+   "w": 1600,
+   "h": 1236
+  },
+  {
    "id": "csu_nametag",
    "src": "img/csu_nametag.webp",
    "caption": "CSU name tag sticker",
