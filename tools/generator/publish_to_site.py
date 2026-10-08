@@ -43,6 +43,62 @@ import json
 HIDDEN = [x["slug"] for x in json.load(open(os.path.join(SITE, "content", "posts.json"), encoding="utf-8"))["posts"] if x.get("hidden")]
 
 
+_DIMS = {}
+
+
+def _dims(path):
+    """width and height of a site image, so every <img> can carry them and the page does not jump while images load"""
+    if path not in _DIMS:
+        try:
+            from PIL import Image
+            with Image.open(os.path.join(SITE, path.lstrip("/"))) as im:
+                _DIMS[path] = im.size
+        except Exception:
+            _DIMS[path] = None
+    return _DIMS[path]
+
+
+def add_sizes(html):
+    def one(m):
+        tag = m.group(0)
+        if " width=" in tag or " height=" in tag:
+            return tag
+        src = re.search(r'src="(/img/[^"?#]+)"', tag)
+        d = _dims(src.group(1)) if src else None
+        return tag.replace("<img ", '<img width="%d" height="%d" ' % d, 1) if d else tag
+    return re.sub(r"<img [^>]*>", one, html)
+
+
+def medium_cards(html):
+    """home-page cards show a photo at about 330px wide: serve an 800px copy (img/m/) instead of the full 1600px one"""
+    def one(m):
+        name = m.group(2)
+        src = os.path.join(SITE, "img", name)
+        dst = os.path.join(SITE, "img", "m", name)
+        if not os.path.exists(dst) and os.path.exists(src):
+            try:
+                from PIL import Image
+                with Image.open(src) as im:
+                    im = im.convert("RGBA" if im.mode in ("RGBA", "LA", "P") else "RGB")
+                    im.thumbnail((800, 800))
+                    os.makedirs(os.path.dirname(dst), exist_ok=True)
+                    im.save(dst, "WEBP", quality=80, method=6)
+            except Exception:
+                return m.group(0)
+        return m.group(1) + "/img/m/" + name + '"' if os.path.exists(dst) else m.group(0)
+    return re.sub(r'(<div class="shot[^"]*"><img src=")/img/([^"/]+\.webp)"', one, html)
+
+
+def minify_css(css):
+    """safe, simple: drop comments and collapse whitespace (calc() operators keep their spaces)"""
+    css = re.sub(r"/\*.*?\*/", "", css, flags=re.S)
+    css = re.sub(r"\s+", " ", css)
+    css = re.sub(r"\s*([{};])\s*", r"\1", css)
+    css = re.sub(r"\s*([,>])\s*", r"\1", css)
+    css = re.sub(r":\s+", ":", css)
+    return css.strip()
+
+
 def fix(html):
     # client-logo lines tagged "// post:<slug>" go away while that post is hidden
     for slug in HIDDEN:
@@ -59,11 +115,11 @@ def fix(html):
               '<meta property="og:image" content="https://www.bwells.online/img/logo.png" /><meta property="og:type" content="website" /><meta name="twitter:card" content="summary" />') % t
         hashfix = ("<script>(function(){var h=location.hash.replace(/^#\/?/,'');if(location.pathname==='/'&&/^(design|gallery|about|case|resumes|development|signs)(\/|$)/.test(h))"
                    "location.replace('/'+(h==='signs'?'design/':h.replace(/\/?$/,'/')));})();</script>")
-        return html.replace("</head>", og + hashfix + "</head>", 1)
+        return add_sizes(medium_cards(html.replace("</head>", og + hashfix + "</head>", 1)))
     # unlisted test pages
     html = html.replace("<head>", '<head><meta name="robots" content="noindex, nofollow">', 1) if "<head>" in html else html.replace('<meta charset="utf-8" />', '<meta charset="utf-8" /><meta name="robots" content="noindex, nofollow" />', 1)
     # the generated CSS has image urls too
-    return html
+    return add_sizes(html)
 
 
 def write(path, text):
@@ -96,6 +152,6 @@ if os.path.isdir(case_dir):
             print("removed page for", slug)
 
 css = open(os.path.join(HERE, "v2.css"), encoding="utf-8").read().replace("../ben-wells-design/", "/")
-write(os.path.join(SITE, ASSETS, "v2.css"), css)
+write(os.path.join(SITE, ASSETS, "v2.css"), minify_css(css) if LIVE else css)
 shutil.copyfile(os.path.join(HERE, "v2.js"), os.path.join(SITE, ASSETS, "v2.js"))
 print("published", count, "pages + assets2/ into", SITE, "(live)" if LIVE else "(test)")

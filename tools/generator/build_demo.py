@@ -50,6 +50,27 @@ def thumb(p):
     return REL + ("img/t/" + os.path.splitext(p[4:])[0] + ".webp" if re.match(r"^img/[^/]+$", p) else p)
 
 
+
+def small(p):
+    """a ~260px thumbnail (img/s/<name>.webp), made on first use, for places that show an image at thumbnail size"""
+    p = IMG.get(p, p)
+    if p.startswith("@draft/") or not re.match(r"^img/[^/]+\.webp$", p):
+        return thumb(p)
+    name = os.path.basename(p)
+    dst = os.path.join(SITE, "img", "s", name)
+    if not os.path.exists(dst):
+        try:
+            from PIL import Image
+            with Image.open(os.path.join(SITE, p)) as im:
+                im = im.convert("RGBA" if im.mode in ("RGBA", "LA", "P") else "RGB")
+                im.thumbnail((260, 260))
+                os.makedirs(os.path.dirname(dst), exist_ok=True)
+                im.save(dst, "WEBP", quality=70, method=6)
+        except Exception:
+            return thumb(p)
+    return REL + "img/s/" + name
+
+
 def e(s):
     return H.escape(s, quote=True)
 
@@ -75,7 +96,7 @@ EXTRA = r'''
 
   .design-top { display:grid; grid-template-columns:1.3fr 1fr; gap:36px; align-items:start; margin-bottom:56px; }
   .map-box { background:var(--raised); border:1px solid var(--line-soft); border-radius:var(--shape); padding:22px; }
-  .map-box h3, .gal-box h3 { font-size:26px; font-weight:800; letter-spacing:-.6px; margin:4px 0 6px; }
+  .map-box h2, .gal-box h2 { font-size:26px; font-weight:800; letter-spacing:-.6px; margin:4px 0 6px; }
   .map-box p, .gal-box p { color:var(--slate); font-size:14px; margin-bottom:14px; }
   .map-box svg { width:100%; height:auto; display:block; }
   .map-box svg path { fill:#26282D; stroke:#34373D; stroke-width:2; }
@@ -128,11 +149,11 @@ EXTRA = r'''
   .lede { font-size:22px; line-height:1.5; letter-spacing:-.4px; color:var(--text); max-width:820px; margin-bottom:40px; }
   .items { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
   .item { background:var(--card); border-top:4px solid var(--red); border-radius:var(--shape); padding:32px 30px; color:var(--text); }
-  .item h3 { font-size:24px; font-weight:800; letter-spacing:-.5px; margin:8px 0 12px; } .item p { color:var(--body); line-height:1.55; font-size:16px; }
+  .item h2 { font-size:24px; font-weight:800; letter-spacing:-.5px; margin:8px 0 12px; } .item p { color:var(--body); line-height:1.55; font-size:16px; }
   .item ul { margin:16px 0 0; padding-left:18px; color:var(--body); line-height:1.7; font-size:15px; }
   .rcards { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
   .rcard { background:var(--card); border-radius:var(--shape); padding:34px; color:var(--text); }
-  .rcard h3 { font-size:28px; font-weight:800; letter-spacing:-.7px; margin:8px 0 12px; } .rcard p { color:var(--body); line-height:1.55; margin-bottom:22px; }
+  .rcard h2 { font-size:28px; font-weight:800; letter-spacing:-.7px; margin:8px 0 12px; } .rcard p { color:var(--body); line-height:1.55; margin-bottom:22px; }
   .ract { display:flex; align-items:center; gap:22px; flex-wrap:wrap; } .ract a.v { color:var(--text); font-weight:700; }
 
   .post.flash { animation:flash 1.5s ease; } @keyframes flash { 0%,100%{border-color:var(--line-soft);box-shadow:none} 25%,75%{border-color:var(--red);box-shadow:0 0 0 3px rgba(229,23,31,.25)} }
@@ -193,7 +214,7 @@ OVERRIDE = r"""
   .fchip.on, .light .fchip.on { color:#fff; }
   .kick { color:#ff5a62; }
   .bar nav a[style] { color:#ff5a62 !important; }
-  .trusted h4 { color:var(--text); }
+  .trusted h2 { color:var(--text); }
   .trusted .label, .services .label, .process .label, .section-light .label, .section-light .kick, .item .kick, .rcard .kick { color:#38393b; }
   .svc small, .step small, .item .kick, .rcard .kick, .section-light .kick { color:#7d0b11; }
   .services .label, .process .label, .section-light .label { color:#2a2b2d; }
@@ -206,6 +227,18 @@ OVERRIDE = r"""
   .pagehead .gh-cta { position:absolute; right:0; top:50%; transform:translateY(-50%); margin:0; }
   @media (max-width:900px) { .pagehead .gh-cta { position:static; transform:none; margin-top:22px; } }
   .design-top[hidden] { display:none !important; }
+  .post-nav { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:44px; }
+  .pn { display:block; padding:18px 22px; background:var(--raised); border:1px solid var(--line-soft); border-radius:var(--shape); text-decoration:none; color:var(--ink); transition:border-color .15s ease, transform .15s ease; }
+  .pn.next { text-align:right; }
+  .pn small { display:block; font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--slate); margin-bottom:6px; }
+  .pn b { display:block; font-size:17px; font-weight:800; line-height:1.25; letter-spacing:-.2px; }
+  .pn:hover, .pn:focus-visible { border-color:var(--red); outline:none; transform:translateY(-2px); }
+  @media (max-width:700px) { .post-nav { grid-template-columns:1fr; } .pn.next { text-align:left; } }
+  :focus-visible { outline:2px solid #ff5a62; outline-offset:2px; }
+  .skip { position:absolute; left:-9999px; top:8px; z-index:200; background:#fff; color:#111; padding:10px 16px; font-weight:800; text-decoration:none; border-radius:0 12px 0 12px; }
+  .skip:focus { left:12px; }
+  .tagrow { gap:2px 6px; }
+  .tagrow a { display:inline-block; padding:5px 6px; }
   .post.f-hide, .post.pg-hide { display:none !important; }
   .more-wrap { text-align:center; margin:30px 0 10px; }
   .more-wrap[hidden] { display:none; }
@@ -215,7 +248,7 @@ OVERRIDE = r"""
   .map-box { width:100%; }
   /* the map fills the whole panel, proportionally: it covers the frame and is cropped where it overflows; the heading sits on top */
   .map-box { position:relative; overflow:hidden; container-type:size; height:clamp(340px, 42vw, 520px); padding:0; border:0; outline:1px solid var(--line-soft); outline-offset:-1px; }
-  .map-box > .label, .map-box > h3, .map-box > p { position:relative; z-index:2; margin-left:24px; margin-right:24px; }
+  .map-box > .label, .map-box > h2, .map-box > p { position:relative; z-index:2; margin-left:24px; margin-right:24px; }
   .map-box > .label { display:block; padding-top:22px; }
   .map-box::after { content:""; position:absolute; inset:0; z-index:1; pointer-events:none; background:linear-gradient(90deg, rgba(21,25,32,.9) 0%, rgba(21,25,32,.5) 30%, rgba(21,25,32,0) 55%); }
   .mapwrap { position:absolute; inset:0; margin:0; width:auto; aspect-ratio:auto; overflow:visible; z-index:0; }
@@ -234,18 +267,18 @@ OVERRIDE = r"""
   a.pin:hover .pin-tip, a.pin:focus-visible .pin-tip { opacity:1; }
   /* a dot that stands for several jobs in the same area: a count, and a list on hover / tap */
   .pin-multi { width:22px; height:22px; display:flex; align-items:center; justify-content:center; cursor:pointer; background:var(--red); border-radius:50%; box-shadow:0 0 0 5px rgba(229,23,31,.25); transition:box-shadow .15s ease, background .15s ease; }
-  .pin-count { font:800 12px/1 Archivo, Arial, sans-serif; color:#fff; pointer-events:none; }
+  .pin-count { font:800 12px/1 Archivo,'Archivo Fallback',Arial, sans-serif; color:#fff; pointer-events:none; }
   .pin-multi:hover, .pin-multi:focus-visible, .pin-multi.open { z-index:9; background:#ff3b44; outline:none; box-shadow:0 0 0 5px rgba(255,59,68,.4), 0 0 22px 9px rgba(255,59,68,.65); }
   .pin-list { display:none; }
   .pin-pop { position:absolute; z-index:12; width:max-content; max-width:min(300px, calc(100% - 20px)); max-height:calc(100% - 20px); overflow:auto; text-align:left;
     background:#151920; border:1px solid #2a313b; border-radius:0 14px 0 14px; padding:12px 14px; box-shadow:0 14px 34px rgba(0,0,0,.55); }
   .pin-pop[hidden] { display:none; }
   .pin-pop strong { display:block; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:#9aa0aa; margin-bottom:6px; }
-  .pin-pop a { display:flex; justify-content:space-between; align-items:baseline; gap:14px; padding:6px 0; color:#fff; text-decoration:none; font:700 13px/1.25 Archivo, Arial, sans-serif; border-top:1px solid #232933; }
+  .pin-pop a { display:flex; justify-content:space-between; align-items:baseline; gap:14px; padding:6px 0; color:#fff; text-decoration:none; font:700 13px/1.25 Archivo,'Archivo Fallback',Arial, sans-serif; border-top:1px solid #232933; }
   .pin-pop a:hover, .pin-pop a:focus-visible { color:#ff5a62; outline:none; }
   .pin-pop small { font-size:11px; font-weight:600; color:#9aa0aa; white-space:nowrap; }
   .gal-head { display:flex; justify-content:space-between; align-items:flex-end; gap:20px; flex-wrap:wrap; margin-bottom:18px; }
-  .gal-head h3 { font-size:26px; font-weight:700; letter-spacing:-.5px; margin:4px 0 6px; } .gal-head p { color:var(--slate); font-size:14px; }
+  .gal-head h2 { font-size:26px; font-weight:700; letter-spacing:-.5px; margin:4px 0 6px; } .gal-head p { color:var(--slate); font-size:14px; }
   .gal-strip { overflow:hidden; margin-bottom:56px; -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent); mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent); }
   .gal-track { display:flex; gap:8px; width:max-content; animation:gal-scroll var(--gal-dur,220s) linear infinite; }
   .gal-strip:hover .gal-track, .gal-strip:focus-within .gal-track { animation-play-state:paused; }
@@ -266,7 +299,7 @@ NIGHT = r"""
   .hero h1 { font-weight:700; letter-spacing:-.6px; } .hero h2, .results h2 { font-weight:700; letter-spacing:-.4px; }
   .services h2, .process h2, .pagehead h1, .cta h2, .row h3 { font-weight:700; letter-spacing:-.8px; }
   .pagehead h1 { letter-spacing:-1px; } .process h2 { text-transform:none; }
-  .svc h3, .step h3, .item h3, .rcard h3, .devbody h2, .post h2 { font-weight:700; }
+  .svc h3, .step h3, .item h2, .rcard h2, .devbody h2, .post h2 { font-weight:700; }
   .hero::before { opacity:.22; } .pagehead::before { opacity:.12; }
   .hero::after { background:linear-gradient(180deg, rgba(14,16,20,.35), var(--charcoal)); }
   .red, .hero h1 .red { color:var(--accent); }
@@ -286,14 +319,14 @@ NIGHT = r"""
   .bar nav a[style] { color:var(--accent-text) !important; }
   .bar .logo { filter:brightness(.92); }
   /* the carousel keeps a calm, neutral mid-grey so every logo PNG stays readable */
-  .trusted { background:#b9bec6; color:#1c1f24; } .trusted h4 { color:#1c1f24; }
+  .trusted { background:#b9bec6; color:#1c1f24; } .trusted h2 { color:#1c1f24; }
   .strip-track img { filter:none; }
   .services, .process, .section-light { background:var(--grey); color:var(--ink); border-top:1px solid var(--line-soft); }
   .process { background:var(--grey2); }
   .svc, .step, .item, .rcard, .chips { background:var(--card); border:1px solid var(--line-soft); color:var(--ink); }
   .svc { border-top:4px solid var(--red); } .item { border-top:4px solid var(--red); }
   .svc p, .step p, .item p, .rcard p, .item ul, .lede, .results-grid p { color:var(--body); }
-  .lede { color:#b9c0cc; } .chips h4 { color:var(--ink); }
+  .lede { color:#b9c0cc; } .chips h3 { color:var(--ink); }
   .chip { background:#222831; color:#c9ced8; border:1px solid var(--line-soft); }
   .shot, .shot.contain, .post .ph, .post .ph.contain, .detail .hero-img, .detail .hero-img.contain { background:#fff; }
   .work { background:var(--raised); } .post, .devpost { background:var(--raised); }
@@ -360,19 +393,20 @@ open(os.path.join(HERE, "v2.js"), "a", encoding="utf-8").write("""
   window.addEventListener('resize', function () { if (cur) place(cur); });
 })();
 (function () {
-  // posts switched off in the admin disappear straight away, even before the pages are rebuilt
-  fetch('/content/posts.json?t=' + Date.now(), { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (d) {
+  // posts switched off in the admin disappear straight away, even before the pages are rebuilt (checked once the page is idle)
+  var run = function () { fetch('/content/posts.json?t=' + Date.now(), { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (d) {
     if (!d || !d.posts) return;
     d.posts.forEach(function (p) {
       if (!p.hidden) return;
       var path = '/case/' + p.slug + '/';
       if (location.pathname.indexOf(path) === 0) { location.replace('/design/'); return; }
       document.querySelectorAll('a[href="' + path + '"]').forEach(function (a) {
-        var box = a.closest('article.post, .pin-list > a, a.pin, .feat, .item, .card') || a; box.style.display = 'none'; box.setAttribute('data-gone', '1');
+        var box = a.closest('article.post, .pin-list > a, a.pin, a.pn, .feat, .item, .card') || a; box.style.display = 'none'; box.setAttribute('data-gone', '1');
       });
     });
     document.dispatchEvent(new Event('posts-hidden'));
-  }).catch(function () {});
+  }).catch(function () {}); };
+  if ('requestIdleCallback' in window) requestIdleCallback(run, { timeout: 4000 }); else setTimeout(run, 2500);
 })();
 (function () {
   var bar = document.querySelector('.bar'), bands = document.querySelectorAll('.hero, .pagehead'), tick = false;
@@ -477,10 +511,13 @@ def page(title, body, active="", extra_js=""):
     return '''<!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>%s</title><link rel="icon" href="../ben-wells-design/favicon.ico" sizes="any" /><link rel="icon" type="image/png" sizes="32x32" href="../ben-wells-design/img/favicon-32.png" /><link rel="apple-touch-icon" href="../ben-wells-design/img/apple-touch-icon.png" /><meta name="description" content="Graphic design portfolio &mdash; logos, brand systems, apparel graphics, and print work. Available for freelance and full-time work." />
-<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap" />
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap" media="print" onload="this.media='all'" /><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap" /></noscript>
 <link rel="stylesheet" href="v2.css" /></head><body>
+<a class="skip" href="#main">Skip to Content</a>
 <header class="bar"><div class="wrap"><a href="index-v2.html" style="text-decoration:none;color:inherit"><b><img class="logo" src="../ben-wells-design/img/logo.png" alt="Benjamin Wells logo mark" /><span class="nm">Benjamin Wells</span></b></a><nav id="sitenav">%s</nav><button class="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="sitenav"><span></span><span></span><span></span></button></div></header>
+<main id="main">
 %s
+</main>
 <footer><div class="wrap"><span>&copy; 2026 Benjamin Wells</span><span><a href="index-v2.html" style="color:inherit">Home</a> &middot; Graphic Design + Physical Sign Design</span></div></footer>
 <div class="lb" id="lb"><button class="x" aria-label="Close">&times;</button><button class="p" aria-label="Previous">&lsaquo;</button><button class="n" aria-label="Next">&rsaquo;</button><figure style="margin:0;display:contents"><img id="lbimg" alt="" /><figcaption id="lbcap"></figcaption></figure></div>
 <script src="v2.js"></script>
@@ -578,7 +615,7 @@ def _cluster_html(c):
 
 
 pin_html = '<div class="map-shade"></div>' + "".join(_cluster_html(c) for c in _clusters)
-teaser = "".join('<a href="gallery-v2.html" style="width:%dpx"><img src="%s" alt="%s" loading="lazy" /></a>' % (round(133 * g["w"] / g["h"]) if g.get("w") and g.get("h") else 175, thumb(g["src"]), e(g.get("caption", ""))) for g in gallery)
+teaser = "".join('<a href="gallery-v2.html" style="width:%dpx"><img src="%s" alt="%s" loading="lazy" /></a>' % (round(133 * g["w"] / g["h"]) if g.get("w") and g.get("h") else 175, small(g["src"]), e(g.get("caption", ""))) for g in gallery[:24])
 
 # ---- design page filter: the 10 most-used hashtags, with similar tags counted as one ----
 _ALIAS = {   # tags that mean the same thing as another (after dropping a trailing "s" / "ing")
@@ -609,7 +646,7 @@ print("filter tags:", [(_LABEL.get(g, g), len(_group_posts[g])) for g in _top])
 
 cards = []
 for p in posts:
-    th = "".join('<img src="%s" alt="" />' % thumb(t["src"]) for t in p.get("cardThumbs", [])[:3])
+    th = "".join('<img src="%s" alt="" width="40" height="40" loading="lazy" />' % small(t["src"]) for t in p.get("cardThumbs", [])[:3])
     contain = " contain" if p.get("cardFit") != "cover" and (p["cardImg"].endswith(".png") or "lockup" in p["cardImg"] or _wide(p["cardImg"])) else ""
     cards.append('''<article class="post" id="post-%s" data-cat="%s" data-tags="%s" data-post="%s"><a class="ph%s" href="case-%s-v2.html"><img src="%s" alt="%s" loading="lazy" /></a><div>
 <span class="kick">%s</span><h2>%s</h2><p>%s</p>%s<div class="thumbs">%s</div><a class="btn md" href="case-%s-v2.html">Read the Whole Blog Post &rarr;</a></div></article>''' % (
@@ -617,9 +654,9 @@ for p in posts:
 design_body = '''%s
 <section class="section-dark"><div class="wrap">
 <div class="design-top">
-  <div class="map-box"><span class="label">Design &amp; Signage &middot; Michigan</span><h3>Design Work Across the State</h3><p>Tap a pin to jump to the project.</p><div class="mapwrap"><div class="mapzoom">%s%s</div></div></div>
+  <div class="map-box"><span class="label">Design &amp; Signage &middot; Michigan</span><h2>Design Work Across the State</h2><p>Tap a pin to jump to the project.</p><div class="mapwrap"><div class="mapzoom">%s%s</div></div></div>
 </div>
-<div class="gal-head"><div><span class="label">Gallery</span><h3>Photos &amp; Proofs</h3><p>Tagged by project &mdash; tap any photo to open the full gallery.</p></div><a class="btn md" href="gallery-v2.html">View Full Gallery &rarr;</a></div>
+<div class="gal-head"><div><span class="label">Gallery</span><h2>Photos &amp; Proofs</h2><p>Tagged by project &mdash; tap any photo to open the full gallery.</p></div><a class="btn md" href="gallery-v2.html">View Full Gallery &rarr;</a></div>
 <div class="gal-strip" aria-label="Gallery photos"><div class="gal-track" id="gt">%s</div></div>
 <div class="filters" id="f"><button class="fchip on" data-f="all">All Work</button>%s</div>
 %s
@@ -665,15 +702,25 @@ write("design-v2.html", page("Design & Signage", design_body, "Design", """
     t.style.setProperty('--gal-dur', Math.max(45, set.length * 2.5) + 's'); })();
 """))
 
+def _postnav(i):
+    """Previous / Next links, in the same order as the cards on the Design page"""
+    def card(j, cls, label):
+        if j < 0 or j >= len(posts):
+            return '<span></span>'
+        q = posts[j]
+        return '<a class="pn %s" href="case-%s-v2.html"><small>%s</small><b>%s</b></a>' % (cls, q["slug"], label, e(q["title"]))
+    return '<nav class="post-nav" aria-label="More posts">%s%s</nav>' % (card(i - 1, "prev", "&larr; Previous Post"), card(i + 1, "next", "Next Post &rarr;"))
+
+
 # ---------- one page per post ----------
-for p in posts:
+for _i, p in enumerate(posts):
     body_p = "".join("<p>%s</p>" % e(t) for t in p["body"])
     gal = "".join('<figure><a href="%s" data-lb="%s" data-cap="%s"><img src="%s" alt="%s" loading="lazy" /></a><figcaption>%s</figcaption></figure>' % (img(t["src"]), img(t["src"]), e(t.get("caption", "")), thumb(t["src"]), e(t.get("alt", "")), e(t.get("caption", ""))) for t in p.get("thumbs", []))
     contain = " contain" if p["hero"].endswith(".png") or "lockup" in p["hero"] else ""
     b = '''%s<section class="section-dark"><div class="wrap"><div class="detail">
-<div class="hero-img%s"><img src="%s" alt="%s" /></div>%s%s<div class="detail-gal">%s</div>
-<p style="margin-top:36px"><a class="btn md" href="design-v2.html">&larr; Back to Design</a></p></div></div></section>''' % (
-        head(e(p["kicker"] + (" — " + p["city"] if p.get("city") else "")), e(p["title"])), contain, img(p["hero"]), e(p.get("heroAlt", "")), tag_links(p.get("tags", [])), body_p, gal)
+<div class="hero-img%s"><img src="%s" alt="%s" fetchpriority="high" /></div>%s%s<div class="detail-gal">%s</div>
+<p style="margin-top:36px"><a class="btn md" href="design-v2.html">&larr; Back to Design</a></p>%s</div></div></section>''' % (
+        head(e(p["kicker"] + (" — " + p["city"] if p.get("city") else "")), e(p["title"])), contain, img(p["hero"]), e(p.get("heroAlt", "")), tag_links(p.get("tags", [])), body_p, gal, _postnav(_i))
     write("case-%s-v2.html" % p["slug"], page(p["title"], b, "Design"))
 
 # ---------- gallery ----------
@@ -756,7 +803,7 @@ items = re.findall(r'<div class="item">(.*?)</div>\s*(?=<div class="item">|</div
 items_html = "".join('<div class="item">%s</div>' % it for it in items)
 about_body = '''%s<section class="section-light"><div class="wrap"><p class="lede">%s</p><div class="items">%s</div></div></section>
 <section class="cta"><div class="wrap"><div><span class="kick">Open to work</span><h2>What&rsquo;s Next for Your Project?</h2></div><div><p>Hiring for design or sign work? Send a message and I&rsquo;ll get back to you.</p><a class="btn lg light" id="mail" href="#">Email Me</a></div></div></section>''' % (
-    head("", "What I Do"), lede, items_html.replace('<span class="label">', '<span class="kick">'))
+    head("", "What I Do"), lede, items_html.replace('<span class="label">', '<span class="kick">').replace('<h3>', '<h2>').replace('</h3>', '</h2>'))
 mail_js = "  document.getElementById('mail') && (document.getElementById('mail').href = 'mailto:' + 'moc.liamg@ssssllew.nimajneb'.split('').reverse().join(''));"
 write("about-v2.html", page("About", about_body, "About", mail_js))
 
@@ -769,7 +816,7 @@ for c in re.findall(r'<div class="resume-card">(.*?)<div class="resume-actions">
     lab = re.search(r'<span class="label">(.*?)</span>', top).group(1)
     ti = re.search(r"<h3>(.*?)</h3>", top).group(1)
     pa = re.search(r"<p>(.*?)</p>", top, re.S).group(1)
-    res_html.append('<div class="rcard"><span class="kick">%s</span><h3>%s</h3><p>%s</p><div class="ract"><a class="btn md" href="%s%s" download>Download PDF &darr;</a><a class="v" href="%s%s" target="_blank" rel="noopener">View Online &#8599;</a></div></div>' % (lab, ti, pa, REL, pdf, REL, pdf))
+    res_html.append('<div class="rcard"><span class="kick">%s</span><h2>%s</h2><p>%s</p><div class="ract"><a class="btn md" href="%s%s" download>Download PDF &darr;</a><a class="v" href="%s%s" target="_blank" rel="noopener">View Online &#8599;</a></div></div>' % (lab, ti, pa, REL, pdf, REL, pdf))
 write("resume-v2.html", page("Resume", '%s<section class="section-light"><div class="wrap"><div class="rcards">%s</div></div></section>' % (
     head("", "Get My Resume", "Grab the resume built for the role you&rsquo;re hiring for."), "".join(res_html)), "Resume"))
 print("built", len(posts), "post pages + design, gallery, dev, about, resume")

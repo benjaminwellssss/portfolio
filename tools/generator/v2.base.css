@@ -1,3 +1,7 @@
+/* a fallback font sized to match Archivo, so nothing moves when the web font arrives */
+@font-face { font-family:"Archivo Fallback"; src:local("Arial"); font-weight:100 600; size-adjust:98.9%; ascent-override:89%; descent-override:21.3%; line-gap-override:0%; }
+@font-face { font-family:"Archivo Fallback"; src:local("Arial Bold"), local("Arial"); font-weight:700; size-adjust:98.9%; ascent-override:89%; descent-override:21.3%; line-gap-override:0%; }
+@font-face { font-family:"Archivo Fallback"; src:local("Arial Bold"), local("Arial"); font-weight:800 900; size-adjust:103%; ascent-override:85.5%; descent-override:20.4%; line-gap-override:0%; }
 
   /* v2: the reference layout's sizes and section rhythm, with the site's charcoal + red identity, the halftone hero image,
      and every button/card/chip cut like the logo (square, top-right and bottom-left corners rounded). */
@@ -13,7 +17,7 @@
   }
   * { box-sizing:border-box; }
   html { scroll-behavior:smooth; }
-  body { margin:0; font-family:'Archivo', Arial, sans-serif; background:var(--charcoal); color:var(--ink); -webkit-font-smoothing:antialiased; }
+  body { margin:0; font-family:'Archivo','Archivo Fallback',Arial, sans-serif; background:var(--charcoal); color:var(--ink); -webkit-font-smoothing:antialiased; }
   .wrap { max-width:var(--max); margin:0 auto; padding:0 var(--gut); }
   h1,h2,h3,h4,p { margin:0; }
   a { color:inherit; }
@@ -75,7 +79,7 @@
 
   /* 2. carousel band: neutral grey so any PNG reads, logos fade at the edges */
   .trusted { background:var(--grey); color:var(--text); padding:23px 0; text-align:center; }
-  .trusted h4 { font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:800; color:var(--body); margin-bottom:13px; }
+  .trusted h2 { font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:800; color:var(--body); margin-bottom:13px; }
   .strip { overflow:hidden; -webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent); mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent); }
   .strip:hover .strip-track { animation-play-state:paused; }
   .strip-track { display:flex; width:max-content; align-items:center; animation:slide 55s linear infinite; }
@@ -94,7 +98,7 @@
   .svc h3 { font-size:22.85px; font-weight:800; line-height:1.2; letter-spacing:-.46px; margin-top:8px; }
   .svc p { margin-top:14px; font-size:16px; line-height:24px; color:var(--body); }
   .chips { background:var(--card); border-radius:var(--shape); padding:26px 34px; margin-top:20px; display:flex; align-items:center; flex-wrap:wrap; gap:12px; }
-  .chips h4 { font-size:16px; font-weight:800; margin-right:12px; }
+  .chips h3 { font-size:16px; font-weight:800; margin-right:12px; }
   .chip { background:var(--grey); border-radius:var(--shape-sm); padding:11px 22px; font-size:15px; font-weight:600; }
 
   /* 5. featured work (dark): alternating rows, 50px titles */

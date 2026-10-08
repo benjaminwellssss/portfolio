@@ -1,0 +1,54 @@
+name: Rebuild pages
+
+# Runs when posts, gallery data, images or the page generator change (for example when you save in /admin/).
+# It regenerates the published pages and commits them, so the site always matches its content.
+# The commit it makes only touches generated pages, which are not in the paths below, so it cannot trigger itself.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'content/**'
+      - 'img/**'
+      - '!img/s/**'
+      - '!img/m/**'
+      - 'tools/generator/**'
+      - '.github/workflows/rebuild-pages.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: rebuild-pages
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pillow
+      - name: Build and publish the pages
+        run: |
+          python tools/generator/build_demo.py
+          python tools/generator/publish_to_site.py --live
+      - name: Check the result
+        run: python tools/check_site.py
+      - name: Commit the rebuilt pages
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add -A
+            git commit -m "Rebuild pages from the latest content"
+            git pull --rebase origin main
+            git push origin main
+          else
+            echo "Pages already match the content."
+          fi
