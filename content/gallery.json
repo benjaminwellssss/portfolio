@@ -632,42 +632,6 @@
    "h": 1600
   },
   {
-   "id": "mmd-exterior-1",
-   "src": "img/mmd-exterior-1.webp",
-   "caption": "Exterior sign 1 (MMD Signs)",
-   "tags": [
-    "signs",
-    "mmd-signs",
-    "exterior-signs"
-   ],
-   "w": 1600,
-   "h": 900
-  },
-  {
-   "id": "mmd-exterior-4",
-   "src": "img/mmd-exterior-4.webp",
-   "caption": "Exterior sign 4 (MMD Signs)",
-   "tags": [
-    "signs",
-    "mmd-signs",
-    "exterior-signs"
-   ],
-   "w": 1600,
-   "h": 1465
-  },
-  {
-   "id": "mmd-exterior-6",
-   "src": "img/mmd-exterior-6.webp",
-   "caption": "Exterior sign 6 (MMD Signs)",
-   "tags": [
-    "signs",
-    "mmd-signs",
-    "exterior-signs"
-   ],
-   "w": 1600,
-   "h": 1200
-  },
-  {
    "id": "mmd-exterior-8",
    "src": "img/mmd-exterior-8.webp",
    "caption": "Exterior sign 8 (MMD Signs)",
@@ -805,28 +769,6 @@
    "h": 221
   },
   {
-   "id": "mmd-image-13",
-   "src": "img/mmd-image-13.webp",
-   "caption": "Sign (MMD Signs)",
-   "tags": [
-    "signs",
-    "mmd-signs"
-   ],
-   "w": 166,
-   "h": 221
-  },
-  {
-   "id": "mmd-image-9",
-   "src": "img/mmd-image-9.webp",
-   "caption": "Sign (MMD Signs)",
-   "tags": [
-    "signs",
-    "mmd-signs"
-   ],
-   "w": 166,
-   "h": 221
-  },
-  {
    "id": "mmd-interior-1",
    "src": "img/mmd-interior-1.webp",
    "caption": "Interior sign 1 (MMD Signs)",
@@ -849,30 +791,6 @@
    ],
    "w": 1600,
    "h": 900
-  },
-  {
-   "id": "mmd-interior-5",
-   "src": "img/mmd-interior-5.webp",
-   "caption": "Interior sign 5 (MMD Signs)",
-   "tags": [
-    "signs",
-    "mmd-signs",
-    "interior-signs"
-   ],
-   "w": 1600,
-   "h": 777
-  },
-  {
-   "id": "mmd-interior-7",
-   "src": "img/mmd-interior-7.webp",
-   "caption": "Interior sign 7 (MMD Signs)",
-   "tags": [
-    "signs",
-    "mmd-signs",
-    "interior-signs"
-   ],
-   "w": 1070,
-   "h": 877
   },
   {
    "id": "mmd-marquee-2",
