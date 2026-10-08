@@ -1,6 +1,215 @@
 {
  "images": [
   {
+   "id": "mmd_orig_two_guys_options",
+   "src": "img/mmd_orig_two_guys_options.webp",
+   "caption": "MMD Signs design: Logo and branding options for a food trailer: four directions, each in red, one color and black",
+   "tags": [
+    "signs",
+    "mmd-signs"
+   ],
+   "w": 1600,
+   "h": 986
+  },
+  {
+   "id": "mmd_orig_two_guys_branding",
+   "src": "img/mmd_orig_two_guys_branding.webp",
+   "caption": "MMD Signs design: Branding sheet: logo, fonts and color palette",
+   "tags": [
+    "signs",
+    "mmd-signs"
+   ],
+   "w": 1316,
+   "h": 1600
+  },
+  {
+   "id": "mmd_orig_two_guys_trailer",
+   "src": "img/mmd_orig_two_guys_trailer.webp",
+   "caption": "MMD Signs design: Trailer wrap, with photos of the trailer",
+   "tags": [
+    "signs",
+    "mmd-signs"
+   ],
+   "w": 1600,
+   "h": 1078
+  },
+  {
+   "id": "mmd_orig_two_guys_logo",
+   "src": "img/mmd_orig_two_guys_logo.webp",
+   "caption": "MMD Signs design: Two Guys Nomadic Grill logo",
+   "tags": [
+    "signs",
+    "mmd-signs"
+   ],
+   "w": 1600,
+   "h": 463
+  },
+  {
+   "id": "mmd_orig_emergency",
+   "src": "img/mmd_orig_emergency.webp",
+   "caption": "MMD Signs design: Emergency Shut-Off and Emergency Exit signs",
+   "tags": [
+    "signs",
+    "mmd-signs"
+   ],
+   "w": 1600,
+   "h": 1251
+  },
+  {
+   "id": "mmd_orig_dalmac",
+   "src": "img/mmd_orig_dalmac.webp",
+   "caption": "MMD Signs design: Dalmac Riders welcome banner for DeWitt",
+   "tags": [
+    "signs",
+    "mmd-signs"
+   ],
+   "w": 1600,
+   "h": 240
+  },
+  {
+   "id": "mmd_orig_takengo",
+   "src": "img/mmd_orig_takengo.webp",
+   "caption": "MMD Signs design: Interior pan sign and flat-cut-out combo with the lobby it was designed for",
+   "tags": [
+    "signs",
+    "mmd-signs"
+   ],
+   "w": 1600,
+   "h": 1062
+  },
+  {
+   "id": "mmd_orig_cochrans_banners",
+   "src": "img/mmd_orig_cochrans_banners.webp",
+   "caption": "MMD Signs design: Two 3x6 foot grand opening banners",
+   "tags": [
+    "signs",
+    "mmd-signs"
+   ],
+   "w": 1600,
+   "h": 992
+  },
+  {
+   "id": "mmd_orig_cochrans_wall",
+   "src": "img/mmd_orig_cochrans_wall.webp",
+   "caption": "MMD Signs design: Dimensional multimedia wall sign: contour-cut raised black panel, red vinyl, half-inch PVC letters",
+   "tags": [
+    "signs",
+    "mmd-signs"
+   ],
+   "w": 1600,
+   "h": 1220
+  },
+  {
+   "id": "mmd_orig_lifetime_roofing",
+   "src": "img/mmd_orig_lifetime_roofing.webp",
+   "caption": "MMD Signs design: Pickup wrap, option 1",
+   "tags": [
+    "signs",
+    "mmd-signs"
+   ],
+   "w": 1600,
+   "h": 937
+  },
+  {
+   "id": "mmd_orig_thacker_farms",
+   "src": "img/mmd_orig_thacker_farms.webp",
+   "caption": "MMD Signs design: Double-faced ground sign with a matching wall or barn sign",
+   "tags": [
+    "signs",
+    "mmd-signs"
+   ],
+   "w": 1600,
+   "h": 1021
+  },
+  {
+   "id": "mmd_orig_farmers_market",
+   "src": "img/mmd_orig_farmers_market.webp",
+   "caption": "MMD Signs design: Printed vinyl banner, 3 by 20 feet, with sponsor areas left blank so they can be swapped",
+   "tags": [
+    "signs",
+    "mmd-signs"
+   ],
+   "w": 1600,
+   "h": 810
+  },
+  {
+   "id": "mmd_orig_price_right",
+   "src": "img/mmd_orig_price_right.webp",
+   "caption": "MMD Signs design: Multimedia backlit wall sign: existing, proposed and night views",
+   "tags": [
+    "signs",
+    "mmd-signs"
+   ],
+   "w": 1600,
+   "h": 997
+  },
+  {
+   "id": "mmd_orig_fries_burgers",
+   "src": "img/mmd_orig_fries_burgers.webp",
+   "caption": "MMD Signs design: Printed coroplast sign, 60 by 24 inches",
+   "tags": [
+    "signs",
+    "mmd-signs"
+   ],
+   "w": 1600,
+   "h": 997
+  },
+  {
+   "id": "mmd_orig_smoke_pig_trailer",
+   "src": "img/mmd_orig_smoke_pig_trailer.webp",
+   "caption": "MMD Signs design: Catering trailer full re-cover: both sides in printed and cut vinyl, with photos of the trailer",
+   "tags": [
+    "signs",
+    "mmd-signs"
+   ],
+   "w": 1600,
+   "h": 997
+  },
+  {
+   "id": "mmd_orig_smoke_pig_whiteboard",
+   "src": "img/mmd_orig_smoke_pig_whiteboard.webp",
+   "caption": "MMD Signs design: Whiteboard with printed vinyl header, plus a cut vinyl magnet",
+   "tags": [
+    "signs",
+    "mmd-signs"
+   ],
+   "w": 1399,
+   "h": 1600
+  },
+  {
+   "id": "mmd_orig_bombay_mahal",
+   "src": "img/mmd_orig_bombay_mahal.webp",
+   "caption": "MMD Signs design: Printed banner with grommets, 181 by 36 inches",
+   "tags": [
+    "signs",
+    "mmd-signs"
+   ],
+   "w": 1600,
+   "h": 997
+  },
+  {
+   "id": "mmd_orig_graduation",
+   "src": "img/mmd_orig_graduation.webp",
+   "caption": "MMD Signs design: Coroplast graduation yard sign, 18 by 24 inches",
+   "tags": [
+    "signs",
+    "mmd-signs"
+   ],
+   "w": 1600,
+   "h": 997
+  },
+  {
+   "id": "mmd_orig_alpha_mechanical",
+   "src": "img/mmd_orig_alpha_mechanical.webp",
+   "caption": "MMD Signs design: Alpha Mechanical sign artwork",
+   "tags": [
+    "signs",
+    "mmd-signs"
+   ],
+   "w": 1600,
+   "h": 695
+  },
+  {
    "id": "csu_sticker_bottle",
    "src": "img/csu_sticker_bottle.webp",
    "caption": "CSU sticker on a water bottle",
