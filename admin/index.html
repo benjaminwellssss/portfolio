@@ -18,6 +18,9 @@
   button { background:var(--raised); border:1px solid var(--line); padding:.45rem .9rem; cursor:pointer; }
   button:hover { border-color:var(--mute); }
   button.primary { background:var(--red); border-color:var(--red); font-weight:600; }
+  a.homebtn { display:inline-block; background:var(--raised); border:1px solid var(--line); padding:.45rem .9rem; color:var(--ink); text-decoration:none; white-space:nowrap; }
+  a.homebtn:hover, a.homebtn:focus-visible { border-color:var(--mute); outline:none; }
+  .login a.homebtn { margin-top:.9rem; }
   button.danger:hover { border-color:var(--red); color:var(--red); }
   button:disabled { opacity:.45; cursor:default; }
   .wrap { max-width:1200px; margin:0 auto; padding:1rem; }
@@ -67,10 +70,12 @@
   <input id="pw" type="password" autocomplete="current-password" aria-label="Password" />
   <p id="loginErr" class="hint" style="color:var(--red)" role="alert"></p>
   <button id="loginBtn" class="primary">Sign in</button>
+  <p><a class="homebtn" href="/">&larr; Back to Site</a></p>
 </div>
 
 <div id="app" class="wrap" hidden>
   <div class="bar">
+    <a class="homebtn" href="/">&larr; Home</a>
     <h1>Site Admin</h1>
     <button class="tab active" data-tab="gallery">Gallery</button>
     <button class="tab" data-tab="posts">Posts</button>
